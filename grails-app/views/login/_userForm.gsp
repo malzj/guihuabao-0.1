@@ -25,7 +25,8 @@
 <div class="form-group">
     <label class="col-sm-2 col-sm-2 control-label">公司：</label>
     <div class="col-sm-10 col-lg-4">
-        <input name="cid"  class="form-control" type="text" value="${userInstance?.cid}">
+        %{--<input name="cid"  class="form-control" type="text" value="${userInstance?.cid}">--}%
+        <g:select name="cid" from="${com.guihuabao.Company.list()}" optionKey="id" required="" value="" class="many-to-one"/>
     </div>
 </div>
 <div class="form-group">

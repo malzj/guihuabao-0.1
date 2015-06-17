@@ -22,7 +22,8 @@ class LoginController {
 
     }
     def userCreate() {
-        [userInstance: new User(params)]
+
+        [userInstance: new User(params),companyList: Company.list()]
     }
     def userSave() {
         def userInstance = new User(params)
