@@ -46,7 +46,7 @@
                     编辑用户
                 </header>
                 <div class="panel-body">
-                    <g:form class="form-horizontal tasi-form" method="post">
+                    <g:form class="form-horizontal tasi-form" action="userUpdate" method="post">
                         <g:hiddenField name="id" value="${userInstance?.id}" />
                         <g:hiddenField name="version" value="${userInstance?.version}" />
                         <g:render template="userForm" />

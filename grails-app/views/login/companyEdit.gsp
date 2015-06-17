@@ -46,7 +46,7 @@
                             编辑公司
                         </header>
                         <div class="panel-body">
-                            <g:form class="form-horizontal tasi-form" method="post">
+                            <g:form class="form-horizontal tasi-form" action="companyUpdate" method="post">
                                 <g:hiddenField name="id" value="${companyInstance?.id}" />
                                 <g:hiddenField name="version" value="${companyInstance?.version}" />
                                 <g:render template="companyForm" />

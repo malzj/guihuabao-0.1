@@ -58,7 +58,7 @@ class LoginController {
         def userInstance = User.get(id)
         if (!userInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'User'), id])
-            redirect(action: "list")
+            redirect(action: "userList")
             return
         }
 
@@ -67,7 +67,7 @@ class LoginController {
                 userInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
                         [message(code: 'user.label', default: 'User')] as Object[],
                         "Another user has updated this User while you were editing")
-                render(view: "edit", model: [userInstance: userInstance])
+                render(view: "userEdit", model: [userInstance: userInstance])
                 return
             }
         }
@@ -75,12 +75,12 @@ class LoginController {
         userInstance.properties = params
 
         if (!userInstance.save(flush: true)) {
-            render(view: "edit", model: [userInstance: userInstance])
+            render(view: "userEdit", model: [userInstance: userInstance])
             return
         }
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'user.label', default: 'User'), userInstance.id])
-        redirect(action: "show", id: userInstance.id)
+        redirect(action: "userShow", id: userInstance.id)
     }
     def userDelete(Long id) {
         def userInstance = User.get(id)
@@ -139,7 +139,7 @@ class LoginController {
         def companyInstance = Company.get(id)
         if (!companyInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'company.label', default: 'Company'), id])
-            redirect(action: "list")
+            redirect(action: "companyList")
             return
         }
 
@@ -148,7 +148,7 @@ class LoginController {
                 companyInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
                         [message(code: 'company.label', default: 'Company')] as Object[],
                         "Another user has updated this Company while you were editing")
-                render(view: "edit", model: [companyInstance: companyInstance])
+                render(view: "companyEdit", model: [companyInstance: companyInstance])
                 return
             }
         }
@@ -156,12 +156,12 @@ class LoginController {
         companyInstance.properties = params
 
         if (!companyInstance.save(flush: true)) {
-            render(view: "edit", model: [companyInstance: companyInstance])
+            render(view: "companyEdit", model: [companyInstance: companyInstance])
             return
         }
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'company.label', default: 'Company'), companyInstance.id])
-        redirect(action: "show", id: companyInstance.id)
+        redirect(action: "companyShow", id: companyInstance.id)
     }
     def companyDelete(Long id){
         def companyInstance = Company.get(id)
