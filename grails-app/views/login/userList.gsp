@@ -30,48 +30,10 @@
 
 <section id="container" >
 <!--header start-->
-<header class="header white-bg">
-    <div class="sidebar-toggle-box">
-        <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
-    </div>
-    <!--logo start-->
-    <a href="index.html" class="logo">Flat<span>lab</span></a>
-    <!--logo end-->
-</header>
+<g:render template="hearder" />
 <!--header end-->
 <!--sidebar start-->
-<aside>
-    <div id="sidebar"  class="nav-collapse ">
-        <!-- sidebar menu start-->
-        <ul class="sidebar-menu" id="nav-accordion">
-            <li>
-                <a class="active" href="index.html">
-                    <i class="fa fa-dashboard"></i>
-                    <span>用户管理</span>
-                </a>
-            </li>
-            <li>
-                <a href="google_maps.html" >
-                    <i class="fa fa-map-marker"></i>
-                    <span>公司管理</span>
-                </a>
-            </li>
-            <li>
-                <a href="google_maps.html" >
-                    <i class="fa fa-map-marker"></i>
-                    <span>权限管理</span>
-                </a>
-            </li>
-            <li>
-                <a href="google_maps.html" >
-                    <i class="fa fa-map-marker"></i>
-                    <span>和许助手</span>
-                </a>
-            </li>
-        </ul>
-        <!-- sidebar menu end-->
-    </div>
-</aside>
+<g:render template="sidebar" />
 <!--sidebar end-->
 <!--main content start-->
 <section id="main-content">

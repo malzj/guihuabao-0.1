@@ -37,25 +37,58 @@
 <!--sidebar end-->
 <!--main content start-->
 <section id="main-content">
-<section class="wrapper">
-    <section class="panel">
+    <section class="wrapper">
         <div class="row">
             <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        <h2 style="float:left;">公司列表</h2>
+                        <g:link controller="login" action="companyCreate" class="btn btn-info" style="display:block;float:right;">新建公司</g:link>
+                        <div style="clear:both;"></div>
+                    </header>
+                    <table class="table table-striped table-advance table-hover">
+                        <thead>
+                        <tr>
+                            <th>#编号</th>
+                            <th>名称</th>
+                            <th>备注</th>
+                            <th>使用时间</th>
+                            <th>创建时间</th>
+                            <th>地址</th>
+                            <th>电话</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <g:each in="${companyInstanceList}" status="i" var="companyInstance">
+                            <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+                                <td>${fieldValue(bean: companyInstance, field: "id")}</td>
+                                <td><g:link controller="login" action="companyShow" id="${companyInstance?.id}">${fieldValue(bean: companyInstance, field: "companyname")}</g:link></td>
+                                <td>${fieldValue(bean: companyInstance, field: "remark")}</td>
+                                <td>${fieldValue(bean: companyInstance, field: "dateUse")}</td>
+                                <td>${fieldValue(bean: companyInstance, field: "dateCreat")}</td>
+                                <td>${fieldValue(bean: companyInstance, field: "address")}</td>
+                                <td>${fieldValue(bean: companyInstance, field: "phone")}</td>
 
-                <header class="panel-heading">
-                    编辑用户
-                </header>
-                <div class="panel-body">
-                    <g:form class="form-horizontal tasi-form" method="post">
-                        <g:hiddenField name="id" value="${userInstance?.id}" />
-                        <g:hiddenField name="version" value="${userInstance?.version}" />
-                        <g:render template="userForm" />
+                                <td>
+                                    <g:link action="companyShow" id="${companyInstance?.id}" class="btn btn-success btn-xs"><i class="fa fa-check"></i></g:link>
+                                    <g:link action="companyEdit" id="${companyInstance?.id}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></g:link>
+                                    <g:link action="companyDelete" id="${companyInstance?.id}" class="btn btn-danger btn-xs" onclick="return confirm('确定删除？');"><i class="fa fa-trash-o "></i></g:link>
+                                </td>
 
-                        <button type="submit" class="btn btn-info">保存</button>
-                    </g:form>
-                </div>
+
+                            </tr>
+                        </g:each>
+
+                        </tbody>
+                    </table>
+                    <div class="pagination">
+                        <g:paginate total="${companyInstanceTotal}" />
+                    </div>
+                </section>
             </div>
         </div>
+
 
     </section>
 </section>
@@ -219,27 +252,27 @@
 </section>
 
 <!-- js placed at the end of the document so the pages load faster -->
-<script src="${resource(dir: 'js', file: 'jquery.js')}"></script>
-<script src="${resource(dir: 'js', file: 'bootstrap.min.js')}"></script>
-<script class="include" type="text/javascript" src="${resource(dir: 'js', file: 'jquery.dcjqaccordion.2.7.js')}"></script>
-<script src="${resource(dir: 'js', file: 'jquery.scrollTo.min.js')}"></script>
-<script src="${resource(dir: 'js', file: 'jquery.nicescroll.js')}" type="text/javascript"></script>
-<script src="${resource(dir: 'js', file: 'jquery.sparkline.js')}" type="text/javascript"></script>
-<script src="${resource(dir: 'assets/jquery-easy-pie-chart/', file: 'jquery.easy-pie-chart.js')}"></script>
-<script src="${resource(dir: 'js', file: 'owl.carousel.js')}" ></script>
-<script src="${resource(dir: 'js', file: 'jquery.customSelect.min.js')}" ></script>
-<script src="${resource(dir: 'js', file: 'respond.min.js')}" ></script>
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script class="include" type="text/javascript" src="js/jquery.dcjqaccordion.2.7.js"></script>
+<script src="js/jquery.scrollTo.min.js"></script>
+<script src="js/jquery.nicescroll.js" type="text/javascript"></script>
+<script src="js/jquery.sparkline.js" type="text/javascript"></script>
+<script src="assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
+<script src="js/owl.carousel.js" ></script>
+<script src="js/jquery.customSelect.min.js" ></script>
+<script src="js/respond.min.js" ></script>
 
 <!--right slidebar-->
-<script src="${resource(dir: 'js', file: 'slidebars.min.js')}"></script>
+<script src="js/slidebars.min.js"></script>
 
 <!--common script for all pages-->
-<script src="${resource(dir: 'js', file: 'common-scripts.js')}"></script>
+<script src="js/common-scripts.js"></script>
 
 <!--script for this page-->
-<script src="${resource(dir: 'js', file: 'sparkline-chart.js')}"></script>
-<script src="${resource(dir: 'js', file: 'easy-pie-chart.js')}"></script>
-<script src="${resource(dir: 'js', file: 'count.js')}"></script>
+<script src="js/sparkline-chart.js"></script>
+<script src="js/easy-pie-chart.js"></script>
+<script src="js/count.js"></script>
 
 %{--<script>--}%
 
