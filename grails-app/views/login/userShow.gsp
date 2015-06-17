@@ -81,7 +81,7 @@
             <div class="col-lg-12">
 
                 <header class="panel-heading">
-                    新建用户
+                    用户
                 </header>
                 <div class="panel-body">
 
@@ -121,7 +121,7 @@
                         <g:form>
                             <g:hiddenField name="id" value="${userInstance?.id}" />
                             <g:link controller="login" action="userEdit" id="${userInstance?.id}" class="btn btn-info">修改</g:link>
-                            <g:actionSubmit type="submit" class="btn btn-info" action="userDelete"  value="${message(code: 'default.button.delete.label', default: '删除')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: '确定删除?')}');" />
+                            <g:actionSubmit type="submit" class="btn btn-info" action="userDelete"  value="删除" onclick="return confirm('确定删除?');" />
                         </g:form>
 
                 </div>

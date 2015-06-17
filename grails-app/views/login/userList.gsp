@@ -103,7 +103,7 @@
                             <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
                                 <td>${fieldValue(bean: userInstance, field: "id")}</td>
 
-                                 <td>${fieldValue(bean: userInstance, field: "name")}</td>
+                                 <td><g:link controller="login" action="userShow" id="${userInstance?.id}">${fieldValue(bean: userInstance, field: "name")}</g:link></td>
 
                                 <td>${fieldValue(bean: userInstance, field: "username")}</td>
 
@@ -117,9 +117,9 @@
 
 
                                 <td>
-                                    <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                                    <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                                    <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                    <g:link action="userShow" id="${userInstance?.id}" class="btn btn-success btn-xs"><i class="fa fa-check"></i></g:link>
+                                    <g:link action="userEdit" id="${userInstance?.id}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></g:link>
+                                    <g:link action="userDelete" id="${userInstance?.id}" class="btn btn-danger btn-xs" onclick="return confirm('确定删除？');"><i class="fa fa-trash-o "></i></g:link>
                                 </td>
 
 

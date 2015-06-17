@@ -99,7 +99,4 @@ class RoleController {
             redirect(action: "show", id: id)
         }
     }
-    def test(){
-        
-    }
 }

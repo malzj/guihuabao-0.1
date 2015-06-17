@@ -81,7 +81,7 @@
             <div class="col-lg-12">
 
                 <header class="panel-heading">
-                    新建用户
+                    编辑用户
                 </header>
                 <div class="panel-body">
                     <g:form class="form-horizontal tasi-form" url="[controller:'login',action:'userSave']">
