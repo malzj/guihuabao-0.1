@@ -84,46 +84,60 @@
                     新建用户
                 </header>
                 <div class="panel-body">
-
+                    <g:form class="form-horizontal tasi-form" url="[controller:'login',action:'userSave']">
+                        <g:hiddenField name="id" value="${userInstance?.id}" />
+                        <g:hiddenField name="version" value="${userInstance?.version}" />
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">姓名：</label>
-                            <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${userInstance}" field="name"/></span>
+                            <div class="col-sm-10 col-lg-4">
+                                <input name="name" class="form-control" type="text" value="${userInstance?.name}">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">用户名：</label>
-                            <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${userInstance}" field="username"/></span>
+                            <div class="col-sm-10 col-lg-4">
+                                <input name="username" class="form-control" type="text" value="${userInstance?.username}">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">城市：</label>
-                            <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${userInstance}" field="city"/></span>
+                            <div class="col-sm-10 col-lg-4">
+                                <input name="city" class="form-control" type="text" value="${userInstance?.city}">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">电话：</label>
-                            <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${userInstance}" field="phone"/></span>
+                            <div class="col-sm-10 col-lg-4">
+                                <input name="phone" class="form-control" type="text" value="${userInstance?.phone}">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">公司：</label>
-                            <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${userInstance}" field="cid"/></span>
+                            <div class="col-sm-10 col-lg-4">
+                                <input name="cid"  class="form-control" type="text" value="${userInstance?.cid}">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">权限：</label>
-                            <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${userInstance}" field="rid"/></span>
+                            <div class="col-sm-10 col-lg-4">
+                                <input name="rid" class="form-control" type="text" value="${userInstance?.rid}">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">地址：</label>
-                            <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${userInstance}" field="address"/></span>
+                            <div class="col-sm-10 col-lg-4">
+                                <input name="address" class="form-control" type="text" value="${userInstance?.address}">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">创建时间</label>
-                            <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${userInstance}" field="dateCreat"/></span>
+                            <div class="col-sm-10 col-lg-4">
+                                <g:datePicker name="dateCreat" precision="day"  value="${userInstance?.dateCreat}"  />
+                            </div>
                         </div>
 
-                        <g:form>
-                            <g:hiddenField name="id" value="${userInstance?.id}" />
-                            <g:link controller="login" action="userEdit" id="${userInstance?.id}" class="btn btn-info">修改</g:link>
-                            <g:actionSubmit type="submit" class="btn btn-info" action="userDelete"  value="${message(code: 'default.button.delete.label', default: '删除')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: '确定删除?')}');" />
-                        </g:form>
-
+                        <button type="submit" class="btn btn-info">保存</button>
+                    </g:form>
                 </div>
             </div>
         </div>

@@ -1,5 +1,7 @@
 package com.guihuabao
 
+import org.springframework.dao.DataIntegrityViolationException
+
 class LoginController {
     def login(){
         def username = params.username
@@ -41,5 +43,33 @@ class LoginController {
         }
 
         [userInstance: userInstance]
+    }
+    def userEdit(Long id) {
+        def userInstance = User.get(id)
+        if (!userInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'User'), id])
+            redirect(action: "userList")
+            return
+        }
+
+        [userInstance: userInstance]
+    }
+    def userDelete(Long id) {
+        def userInstance = User.get(id)
+        if (!userInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'User'), id])
+            redirect(action: "userList")
+            return
+        }
+
+        try {
+            userInstance.delete(flush: true)
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'user.label', default: 'User'), id])
+            redirect(action: "userList")
+        }
+        catch (DataIntegrityViolationException e) {
+            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'user.label', default: 'User'), id])
+            redirect(action: "userShow", id: id)
+        }
     }
 }
