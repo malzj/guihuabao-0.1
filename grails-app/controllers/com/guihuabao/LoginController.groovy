@@ -183,7 +183,10 @@ class LoginController {
 
     def roleList(Integer max){
         params.max = Math.min(max ?: 10, 100)
-        [roleInstanceList:Role.list(params), roleInstanceTotal: role.count()]
+        [roleInstanceList:Role.list(params), roleInstanceTotal: Role.count()]
+    }
+    def roleCreate(){
+        [roleInstance: new Role(params)]
     }
     def roleSave(){
         def roleInstance = new Role(params)

@@ -15,10 +15,10 @@
                 </g:link>
             </li>
             <li>
-                <a href="google_maps.html" >
+                <g:link controller="login" action="roleList">
                     <i class="fa fa-map-marker"></i>
                     <span>权限管理</span>
-                </a>
+                </g:link>
             </li>
             <li>
                 <a href="google_maps.html" >
