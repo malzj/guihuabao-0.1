@@ -48,28 +48,85 @@
                         <div class="panel-body">
 
                             <div class="form-group">
-                                <label class="col-sm-2 col-sm-2 control-label">名称：</label>
-                                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${companyInstance}" field="companyname"/></span>
+                                <label class="col-sm-2 col-sm-2 control-label">企业名称：</label>
+                                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${roleInstance}" field="companyname"/></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label">企业简称：</label>
+                                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${roleInstance}" field="companyAbbrev"/></span>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label">企业联系人：</label>
+                                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${roleInstance}" field="contactName"/></span>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label">职务：</label>
+                                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${roleInstance}" field="job"/></span>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label">公司电话：</label>
+                                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${roleInstance}" field="phone"/></span>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label">移动电话：</label>
+                                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${roleInstance}" field="telephone"/></span>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label">电子邮件：</label>
+                                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${roleInstance}" field="email"/></span>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label">传真：</label>
+                                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${roleInstance}" field="fax"/></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label">企业类型：</label>
+                                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${roleInstance}" field="companyType"/></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label">企业成立时间：</label>
+                                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${roleInstance}" field="regtime"/></span>
+                                <div class="col-sm-10 col-lg-4">
+                                    <g:datePicker name="regtime" precision="day"  value="${companyInstance?.regtime}"  />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label">通信地址：</label>
+                                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${roleInstance}" field="address"/></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label">邮政编码：</label>
+                                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${roleInstance}" field="postalcode"/></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label">网址：</label>
+                                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${roleInstance}" field="website"/></span>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 col-sm-2 control-label">备注：</label>
-                                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${companyInstance}" field="remark"/></span>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 col-sm-2 control-label">地址：</label>
-                                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${companyInstance}" field="address"/></span>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 col-sm-2 control-label">电话：</label>
-                                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${companyInstance}" field="phone"/></span>
+                                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${roleInstance}" field="remark"/></span>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 col-sm-2 control-label">使用时间：</label>
-                                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${companyInstance}" field="dateUse"/></span>
+                                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${roleInstance}" field="dateUse"/></span>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 col-sm-2 control-label">创建时间：</label>
-                                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${companyInstance}" field="dateCreat"/></span>
+                                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${roleInstance}" field="dateCreat"/></span>
+                                <div class="col-sm-10 col-lg-4">
+                                    <g:datePicker name="dateCreat" precision="day"  value="${companyInstance?.dateCreat}"  />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label">公司logo：</label>
+                                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${roleInstance}" field="logoimg"/></span>
                             </div>
 
                             <g:form>
