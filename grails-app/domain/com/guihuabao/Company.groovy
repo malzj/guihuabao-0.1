@@ -6,7 +6,6 @@ class Company {
     String contactName
     String sex
     String job
-    String companyPhone
     String telephone
     String email
     String fax
@@ -19,6 +18,7 @@ class Company {
     Date dateCreat
     String address
     String phone
+    String logoimg
 
     static constraints = {
         companyname(nullable: true)
@@ -29,7 +29,6 @@ class Company {
         contactName(nullable: true)
         sex(nullable: true)
         job(nullable: true)
-        companyPhone(nullable: true)
         telephone(nullable: true)
         email(nullable: true)
         fax(nullable: true)
@@ -37,5 +36,6 @@ class Company {
         regtime(nullable: true)
         postalcode(nullable: true)
         website(nullable: true)
+        logoimg(nullable: true)
     }
 }
