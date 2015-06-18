@@ -180,4 +180,85 @@ class LoginController {
             redirect(action: "companyShow", id: id)
         }
     }
+
+    def roleList(Integer max){
+        params.max = Math.min(max ?: 10, 100)
+        [roleInstanceList:Role.list(params), roleInstanceTotal: role.count()]
+    }
+    def roleSave(){
+        def roleInstance = new Role(params)
+        if (!roleInstance.save(flush: true)) {
+            render(view: "roleCreate", model: [roleInstance: roleInstance])
+            return
+        }
+
+        flash.message = message(code: 'default.created.message', args: [message(code: 'role.label', default: 'Role'), roleInstance.id])
+        redirect(action: "roleShow", id: roleInstance.id)
+    }
+    def roleShow(Long id) {
+        def roleInstance = Role.get(id)
+        if (!roleInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'role.label', default: 'Role'), id])
+            redirect(action: "roleList")
+            return
+        }
+
+        [roleInstance: roleInstance]
+    }
+    def roleEdit(Long id) {
+        def roleInstance = Role.get(id)
+        if (!roleInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'role.label', default: 'Role'), id])
+            redirect(action: "roleList")
+            return
+        }
+
+        [roleInstance: roleInstance]
+    }
+    def roleUpdate(Long id, Long version) {
+        def roleInstance = Role.get(id)
+        if (!roleInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'role.label', default: 'Role'), id])
+            redirect(action: "roleList")
+            return
+        }
+
+        if (version != null) {
+            if (roleInstance.version > version) {
+                roleInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+                        [message(code: 'role.label', default: 'Role')] as Object[],
+                        "Another role has updated this Role while you were editing")
+                render(view: "roleEdit", model: [roleInstance: roleInstance])
+                return
+            }
+        }
+
+        roleInstance.properties = params
+
+        if (!roleInstance.save(flush: true)) {
+            render(view: "roleEdit", model: [roleInstance: roleInstance])
+            return
+        }
+
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'role.label', default: 'Role'), roleInstance.id])
+        redirect(action: "roleShow", id: roleInstance.id)
+    }
+    def roleDelete(Long id) {
+        def roleInstance = Role.get(id)
+        if (!roleInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'role.label', default: 'Role'), id])
+            redirect(action: "roleList")
+            return
+        }
+
+        try {
+            roleInstance.delete(flush: true)
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'role.label', default: 'Role'), id])
+            redirect(action: "roleList")
+        }
+        catch (DataIntegrityViolationException e) {
+            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'role.label', default: 'Role'), id])
+            redirect(action: "roleShow", id: id)
+        }
+    }
 }
