@@ -26,13 +26,14 @@
     <label class="col-sm-2 col-sm-2 control-label">公司：</label>
     <div class="col-sm-10 col-lg-4">
         %{--<input name="cid"  class="form-control" type="text" value="${userInstance?.cid}">--}%
-        <g:select name="cid" from="${com.guihuabao.Company.list()}" optionKey="id" required="" value="" class="many-to-one"/>
+        <g:select name="cid" from="${com.guihuabao.Company.list()}" optionKey="id" optionValue="companyname" required="" value="${userInstance?.cid}" class="many-to-one"/>
     </div>
 </div>
 <div class="form-group">
     <label class="col-sm-2 col-sm-2 control-label">权限：</label>
     <div class="col-sm-10 col-lg-4">
-        <input name="rid" class="form-control" type="text" value="${userInstance?.rid}">
+        %{--<input name="rid" class="form-control" type="text" value="${userInstance?.rid}">--}%
+        <g:select name="rid" from="${com.guihuabao.Role.list()}" optionKey="id" optionValue="rolename" required="" value="${userInstance?.rid}" class="many-to-one"/>
     </div>
 </div>
 <div class="form-group">
