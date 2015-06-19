@@ -11,6 +11,12 @@
     </div>
 </div>
 <div class="form-group">
+    <label class="col-sm-2 col-sm-2 control-label">密码：</label>
+    <div class="col-sm-10 col-lg-4">
+        <input name="password" class="form-control" type="text" value="${userInstance?.password}">
+    </div>
+</div>
+<div class="form-group">
     <label class="col-sm-2 col-sm-2 control-label">城市：</label>
     <div class="col-sm-10 col-lg-4">
         <input name="city" class="form-control" type="text" value="${userInstance?.city}">
