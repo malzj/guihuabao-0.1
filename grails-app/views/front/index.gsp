@@ -10,7 +10,7 @@
 <body style="background-color:#fff;">
 <img width="100%" height="50%" src="${resource(dir: 'img', file: 'login_bg.png')}" />
 <div class="login">
-    <g:form url="[controller:'login',action:'login']">
+    <g:form url="[controller:'front',action:'login']">
         <table>
             <tr>
                 <td><input class="form-control" id="username" name="username" placeholder="用户名" type="text" autofocus /></td>
@@ -18,6 +18,9 @@
             <tr>
                 <td><input class="form-control" id="password" name="password" placeholder="密码" type="password" /></td>
             </tr>
+            <span><g:if test="${flash.message}">
+                <div class="message" role="status">${flash.message}</div>
+            </g:if></span>
             <tr>
                 <td><input class="btn btn-info" type="submit" value="登录" /></td>
             </tr>
