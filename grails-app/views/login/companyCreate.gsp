@@ -46,7 +46,7 @@
                             新建公司
                         </header>
                         <div class="panel-body">
-                            <g:form class="form-horizontal tasi-form" url="[controller:'login',action:'companySave']">
+                            <g:form class="form-horizontal tasi-form" url="[controller:'login',action:'companySave']" method="post"  enctype= "multipart/form-data">
                                 <g:render template="companyForm" />
 
                                 <button type="submit" class="btn btn-info">保存</button>

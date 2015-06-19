@@ -46,7 +46,7 @@
                     新建用户
                 </header>
                 <div class="panel-body">
-                    <g:form class="form-horizontal tasi-form" url="[controller:'login',action:'userSave']">
+                    <g:form class="form-horizontal tasi-form" url="[controller:'login',action:'userSave']" method= "post" enctype= "multipart/form-data">
                         <g:render template="userForm" />
 
                         <button type="submit" class="btn btn-info">保存</button>

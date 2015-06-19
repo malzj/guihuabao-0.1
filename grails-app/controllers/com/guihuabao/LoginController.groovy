@@ -2,6 +2,8 @@ package com.guihuabao
 
 import org.springframework.dao.DataIntegrityViolationException
 
+import org.springframework.web.multipart.MultipartFile
+
 class LoginController {
     def login(){
         def username = params.username
@@ -111,6 +113,18 @@ class LoginController {
     }
     def companySave(){
         def companyInstance = new Company(params)
+        def  filePath
+        def    fileName
+
+        MultipartFile f = request.getFile('file1')
+        if(!f.empty) {
+            fileName=f.getOriginalFilename()
+            filePath="web-app/images/"
+            f.transferTo(new File(filePath+fileName))
+        }
+
+
+        companyInstance.logoimg=fileName
         if(!companyInstance.save(flush: true)){
             render(view: "companyCreate",model: [companyInstance: companyInstance])
         }
@@ -129,6 +143,7 @@ class LoginController {
     }
     def companyEdit(Long id){
         def companyInstance = Company.get(id)
+
         if(!companyInstance){
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'company.label', default: 'Company'), id])
             redirect(action: "companyList")
@@ -138,6 +153,18 @@ class LoginController {
     }
     def companyUpdate(Long id, Long version) {
         def companyInstance = Company.get(id)
+        def  filePath
+        def    fileName
+
+        MultipartFile f = request.getFile('file1')
+        if(!f.empty) {
+            fileName=f.getOriginalFilename()
+            filePath="web-app/images/"
+            f.transferTo(new File(filePath+fileName))
+        }
+
+
+        companyInstance.logoimg=fileName
         if (!companyInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'company.label', default: 'Company'), id])
             redirect(action: "companyList")
