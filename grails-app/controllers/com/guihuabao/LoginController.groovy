@@ -29,7 +29,8 @@ class LoginController {
     }
     def userSave() {
         def userInstance = new User(params)
-        if (!userInstance.save(flush: true)) {
+        def companyUser = new CompanyUser(params)
+        if (!userInstance.save(flush: true)||!companyUser.save(flush: true)) {
             render(view: "userCreate", model: [userInstance: userInstance])
             return
         }
@@ -59,6 +60,7 @@ class LoginController {
     }
     def userUpdate(Long id, Long version) {
         def userInstance = User.get(id)
+
         if (!userInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'User'), id])
             redirect(action: "userList")
