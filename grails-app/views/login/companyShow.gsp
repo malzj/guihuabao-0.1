@@ -126,7 +126,9 @@
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 col-sm-2 control-label">公司logo：</label>
-                                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${roleInstance}" field="logoimg"/></span>
+                                <span class="property-value" aria-labelledby="name-label"><img alt="" src="${resource(dir: 'images', file: ''+companyInstance.logoimg+'')}" alt="" />
+                                    %{--<g:fieldValue bean="${roleInstance}" field="logoimg"/>--}%
+                                </span>
                             </div>
 
                             <g:form>

@@ -106,6 +106,6 @@
 <div class="form-group">
     <label class="col-sm-2 col-sm-2 control-label">公司logo：</label>
     <div class="col-sm-10 col-lg-4">
-        <input name="logoimg" class="form-control" type="text" value="${companyInstance?.logoimg}">
+        <input type="file" name="file1" value="${companyInstance?.logoimg}" />
     </div>
 </div>
