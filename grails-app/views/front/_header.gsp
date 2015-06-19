@@ -6,7 +6,7 @@
             <ul>
                 <li><a href="javascript:;"><i class="fa fa-bell"></i>消息<span class="badge bg-important">5</span></a></li>
                 <li>|</li>
-                <li><i class="fa fa-bell"></i>设置<a href="javascript:;" class="fa fa-chevron-down"></a></li>
+                <li><i class="fa fa-cog"></i>设置<a href="javascript:;" class="fa fa-chevron-down"></a></li>
                 <li>|</li>
                 <li><a href="javascript:;"><i></i>安全退出</a></li>
             </ul>
@@ -14,7 +14,7 @@
     </div>
     <div class="navbox">
         <!--logo start-->
-        <a href="index.html" class="logo"><img height="30" src="img/logo.png"></a>
+        <a href="index.html" class="logo"><img height="30" src="${resource(dir: 'img', file: 'logo.png')}"></a>
         <!--logo end-->
         <ul class="nav">
             <li><a href="javascript:;"><i class="home"></i>首页</a></li>

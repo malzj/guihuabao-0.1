@@ -213,7 +213,7 @@ ul.sidebar-menu , ul.sidebar-menu li ul.sub{
 }
 
 ul.sidebar-menu {
-    margin-top: 75px;
+    margin-top: 110px;
 }
 
 #sidebar > ul > li > ul.sub {
@@ -262,8 +262,6 @@ ul.sidebar-menu li ul.sub li a:hover, ul.sidebar-menu li ul.sub li.active a {
 ul.sidebar-menu li{
     /*line-height: 20px !important;*/
     margin-bottom: 5px;
-    margin-left:10px;
-    margin-right:10px;
 }
 
 ul.sidebar-menu li.sub-menu{
@@ -278,8 +276,8 @@ ul.sidebar-menu li a{
     color: #aeb2b7;
     text-decoration: none;
     display: block;
-    padding: 15px 0 15px 10px;
-    font-size: 12px;
+    padding: 15px 0 15px 25px;
+    font-size: 16px;
     outline: none;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
@@ -289,10 +287,10 @@ ul.sidebar-menu li a{
 }
 
 ul.sidebar-menu li a.active, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus {
-    background: #35404d;
+    background: #267995;
     color: #fff;
     display: block;
-    border-radius: 4px;
+/*     border-radius: 4px;
     -webkit-border-radius: 4px;
 
     -webkit-transition: all 0.3s ease;
@@ -300,7 +298,7 @@ ul.sidebar-menu li a.active, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:fo
     -o-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     transition: all 0.3s ease;
-}
+*/}
 
 
 ul.sidebar-menu li a i {
@@ -330,7 +328,7 @@ ul.sidebar-menu li a.active i {
 
 .header, .footer {
     min-height: 60px;
-    padding: 0 15px;
+    /*padding: 0 15px;*/
 }
 
 .header {
@@ -347,7 +345,7 @@ ul.sidebar-menu li a.active i {
 
 .wrapper {
     display: inline-block;
-    margin-top: 60px;
+    margin-top: 110px;
     padding: 15px;
     width: 100%;
 }
@@ -356,7 +354,8 @@ a.logo {
     font-size: 21px;
     color: #2e2e2e;
     float: left;
-    margin-top: 15px;
+    margin-top: 19px;
+	margin-left: 70px;
     text-transform: uppercase;
 }
 
