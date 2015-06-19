@@ -212,10 +212,13 @@ ul.sidebar-menu , ul.sidebar-menu li ul.sub{
     padding: 0;
 }
 
-ul.sidebar-menu {
+/*ul.sidebar-menu {
     margin-top: 110px;
 }
-
+*/
+.sidebar_object{
+    margin-top: 110px;
+}
 #sidebar > ul > li > ul.sub {
     display: none;
 }
@@ -276,7 +279,7 @@ ul.sidebar-menu li a{
     color: #aeb2b7;
     text-decoration: none;
     display: block;
-    padding: 15px 0 15px 25px;
+    padding: 15px 0 15px 49px;
     font-size: 16px;
     outline: none;
     -webkit-transition: all 0.3s ease;

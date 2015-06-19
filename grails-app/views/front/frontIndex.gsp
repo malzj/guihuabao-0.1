@@ -37,31 +37,26 @@
     <!--sidebar start-->
     <aside>
         <div id="sidebar"  class="nav-collapse ">
+            <div class="sidebar_object">
+                <i class="page"></i>
+                后台管理
+            </div>
             <!-- sidebar menu start-->
             <ul class="sidebar-menu" id="nav-accordion">
                 <li>
                     <g:link controller="login" action="userList">
-                        <i class="fa fa-dashboard"></i>
                         <span>用户管理</span>
                     </g:link>
                 </li>
                 <li>
                     <g:link controller="login" action="companyList">
-                        <i class="fa fa-map-marker"></i>
-                        <span>公司管理</span>
+                        <span>部门管理</span>
                     </g:link>
                 </li>
                 <li>
                     <g:link controller="login" action="roleList">
-                        <i class="fa fa-map-marker"></i>
-                        <span>权限管理</span>
+                        <span>角色管理</span>
                     </g:link>
-                </li>
-                <li>
-                    <a href="google_maps.html" >
-                        <i class="fa fa-map-marker"></i>
-                        <span>和许助手</span>
-                    </a>
                 </li>
             </ul>
             <!-- sidebar menu end-->
