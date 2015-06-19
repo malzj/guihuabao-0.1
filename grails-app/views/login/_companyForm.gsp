@@ -20,8 +20,8 @@
     <label class="col-sm-2 col-sm-2 control-label">联系人性别：</label>
     <div class="col-sm-10 col-lg-4">
         %{--<input name="sex" class="form-control" type="text" value="${companyInstance?.sex}">--}%
-        <input name="sex" value="男" <g:if test="${companyInstance?.sex=="男"}">checked="checked" </g:if> />男
-        <input name="sex" value="女" <g:if test="${companyInstance?.sex=="女"}">checked="checked" </g:if> />女
+        <input name="sex" type="radio" value="男" <g:if test="${companyInstance?.sex=="男"}">checked="checked" </g:if> />男
+        <input name="sex" type="radio" value="女" <g:if test="${companyInstance?.sex=="女"}">checked="checked" </g:if> />女
     </div>
 </div>
 <div class="form-group">
