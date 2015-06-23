@@ -43,43 +43,14 @@
             <div class="middle_content">
                 <div class="m_box">
                     <header class="panel-heading">
-                        <span><i class="yh"></i>用户信息</span>
+                        <span><i class="yh"></i>修改用户</span>
                     </header>
-                    <table>
-                        <tr>
-                            <td>姓名：</td>
-                            <td width="345">${fieldValue(bean: companyUserInstance, field: "name")}</td>
-                        </tr>
-                        <tr>
-                            <td>密码：</td>
-                            <td>${fieldValue(bean: companyUserInstance, field: "password")}</td>
-                        </tr>
-                        <tr>
-                            <td>手机号：</td>
-                            <td>${fieldValue(bean: companyUserInstance, field: "phone")}</td>
-                        </tr>
-                        <tr>
-                            <td>部门：</td>
-                            <td>${fieldValue(bean: companyUserInstance, field: "bid")}</td>
-                        </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                角色：
-                            </td>
-                            <td>${fieldValue(bean: companyUserInstance, field: "pid")}</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                时间：
-                            </td>
-                            <td>${fieldValue(bean: companyUserInstance, field: "dateCreat")}</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td align="right"><button type="submit" class="btn btn-info">保存</button></td>
-                        </tr>
-                    </table>
+                    <g:form url="[controller:'front',action:'companyUserUpdate']">
+                        <g:hiddenField name="cid" value="${session.company.id}" />
+                        <g:hiddenField name="id" value="${companyUserInstance?.id}" />
+                        <g:hiddenField name="version" value="${companyUserInstance?.version}" />
+                        <g:render template="userForm" />
+                    </g:form>
                 </div>
             </div>
         </section>
