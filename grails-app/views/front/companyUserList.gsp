@@ -24,6 +24,8 @@
     <!-- Custom styles for this template -->
     <link href="${resource(dir: 'css', file: 'style.css')}" rel="stylesheet">
     <link href="${resource(dir: 'css', file: 'style-responsive.css')}" rel="stylesheet">
+
+    <link href="${resource(dir: 'css', file: 'ownset.css')}" rel="stylesheet">
 </head>
 
 <body>
@@ -33,38 +35,7 @@
 <g:render template="header" />
 <!--header end-->
 <!--sidebar start-->
-    <aside>
-        <div id="sidebar"  class="nav-collapse ">
-            <!-- sidebar menu start-->
-            <ul class="sidebar-menu" id="nav-accordion">
-                <li>
-                    <g:link controller="login" action="userList">
-                        <i class="fa fa-dashboard"></i>
-                        <span>用户管理</span>
-                    </g:link>
-                </li>
-                <li>
-                    <g:link controller="login" action="companyList">
-                        <i class="fa fa-map-marker"></i>
-                        <span>公司管理</span>
-                    </g:link>
-                </li>
-                <li>
-                    <g:link controller="login" action="roleList">
-                        <i class="fa fa-map-marker"></i>
-                        <span>权限管理</span>
-                    </g:link>
-                </li>
-                <li>
-                    <a href="google_maps.html" >
-                        <i class="fa fa-map-marker"></i>
-                        <span>和许助手</span>
-                    </a>
-                </li>
-            </ul>
-            <!-- sidebar menu end-->
-        </div>
-    </aside>
+    <g:render template="siderbar" />
 <!--sidebar end-->
 <!--main content start-->
 <section id="main-content">
@@ -75,7 +46,7 @@
             <input type="text" name="search" />
             <input type="submit" value="" />
         </form>
-        <a href="#" class="f-r"><i class="fa fa-plus-circle"></i>新建用户</a>
+        <g:link controller="front" action="companyUserCreate" class="f-r"><i class="fa fa-plus-circle"></i>新建用户</g:link>
     </div>
     <div class="content">
         <table class="table table-striped table-advance table-hover">
@@ -83,28 +54,31 @@
                 <th>#编号</th>
                 <th>姓名</th>
                 <th>用户名</th>
-                <th>城市</th>
                 <th>电话</th>
                 <th>公司</th>
                 <th>权限</th>
-                <th>地址</th>
                 <th>操作</th>
             </tr>
-            <tr class="odd">
-                <td>4</td>
-                <td><a href="/guihuabao/login/userShow/4"></a></td>
-                <td>hexuadmin</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>1</td>
-                <td></td>
-                <td>
-                    <a href="/guihuabao/login/userShow/4" class="btn btn-success btn-xs"><i class="fa fa-check"></i></a>
-                    <a href="/guihuabao/login/userEdit/4" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
-                    <a href="/guihuabao/login/userDelete/4" class="btn btn-danger btn-xs" onclick="return confirm('确定删除？');"><i class="fa fa-trash-o "></i></a>
-                </td>
-            </tr>
+            <g:each in="${companyUserInstanceList}" status="i" var="companyUserInstance">
+                <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
+                    <td>${fieldValue(bean: companyUserInstance, field: "id")}</td>
+
+                    <td><g:link controller="front" action="companyUserShow" id="${companyUserInstance?.id}">${fieldValue(bean: companyUserInstance, field: "name")}</g:link></td>
+
+                    <td>${fieldValue(bean: companyUserInstance, field: "username")}</td>
+
+                    <td>${fieldValue(bean: companyUserInstance, field: "phone")}</td>
+                    <td>${fieldValue(bean: companyUserInstance, field: "cid")}</td>
+                    <td>${fieldValue(bean: companyUserInstance, field: "rid")}</td>
+                    <td>
+                        <g:link action="userShow" id="${userInstance?.id}" class="btn btn-success btn-xs"><i class="fa fa-eye"></i></g:link>
+                        <g:link action="userEdit" id="${userInstance?.id}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></g:link>
+                        <g:link action="userDelete" id="${userInstance?.id}" class="btn btn-danger btn-xs" onclick="return confirm('确定删除？');"><i class="fa fa-trash-o "></i></g:link>
+                    </td>
+
+
+                </tr>
+            </g:each>
         </table>
     </div>
 </section>
