@@ -5,6 +5,7 @@ class CompanyUser {
     String password
     String cid
     String rid
+    String pid
     String name
     String img
     String sex
@@ -17,6 +18,7 @@ class CompanyUser {
         password(nullable: true)
         cid(nullable: true)
         rid(nullable: true)
+        pid(nullable: true)
         name(nullable: true)
         img(nullable: true)
         sex(nullable: true)

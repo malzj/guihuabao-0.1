@@ -35,74 +35,23 @@
     <g:render template="header" />
     <!--header end-->
     <!--sidebar start-->
-    <aside>
-        <div id="sidebar"  class="nav-collapse ">
-            <div class="sidebar_object">
-                <i class="page"></i>
-                后台管理
-            </div>
-            <!-- sidebar menu start-->
-            <ul class="sidebar-menu" id="nav-accordion">
-                <li>
-                    <g:link controller="login" action="userList">
-                        <span>用户管理</span>
-                    </g:link>
-                </li>
-                <li>
-                    <g:link controller="login" action="companyList">
-                        <span>部门管理</span>
-                    </g:link>
-                </li>
-                <li>
-                    <g:link controller="login" action="roleList">
-                        <span>角色管理</span>
-                    </g:link>
-                </li>
-            </ul>
-            <!-- sidebar menu end-->
-        </div>
-    </aside>
+    <g:render template="siderbar" />
     <!--sidebar end-->
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper">
-            <div class="wrapper_title">
-                <span class="f-l"><i class="yh"></i>用户列表</span>
-                <form class="f-r">
-                    <input type="text" name="search" />
-                    <input type="submit" value="" />
-                </form>
-                <a href="#" class="f-r"><i class="fa fa-plus-circle"></i>新建用户</a>
-            </div>
-            <div class="content">
-                <table class="table table-striped table-advance table-hover">
-                    <tr class="even">
-                        <th>#编号</th>
-                        <th>姓名</th>
-                        <th>用户名</th>
-                        <th>城市</th>
-                        <th>电话</th>
-                        <th>公司</th>
-                        <th>权限</th>
-                        <th>地址</th>
-                        <th>操作</th>
-                    </tr>
-                    <tr class="odd">
-                        <td>4</td>
-                        <td><a href="/guihuabao/login/userShow/4"></a></td>
-                        <td>hexuadmin</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>1</td>
-                        <td></td>
-                        <td>
-                            <a href="/guihuabao/login/userShow/4" class="btn btn-success btn-xs"><i class="fa fa-check"></i></a>
-                            <a href="/guihuabao/login/userEdit/4" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
-                            <a href="/guihuabao/login/userDelete/4" class="btn btn-danger btn-xs" onclick="return confirm('确定删除？');"><i class="fa fa-trash-o "></i></a>
-                        </td>
-                    </tr>
-                </table>
+            <div class="middle_content">
+                <div class="m_box">
+                    <header class="panel-heading">
+                        <span><i class="yh"></i>修改部门</span>
+                    </header>
+                    <g:form url="[controller:'front',action:'bumenUpdate']">
+                        <g:hiddenField name="cid" value="${session.company.id}" />
+                        <g:hiddenField name="id" value="${bumenInstance?.id}" />
+                        <g:hiddenField name="version" value="${bumenInstance?.version}" />
+                        <g:render template="bumenForm" />
+                    </g:form>
+                </div>
             </div>
         </section>
         <!--main content end-->

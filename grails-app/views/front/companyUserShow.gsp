@@ -35,74 +35,60 @@
     <g:render template="header" />
     <!--header end-->
     <!--sidebar start-->
-    <aside>
-        <div id="sidebar"  class="nav-collapse ">
-            <div class="sidebar_object">
-                <i class="page"></i>
-                后台管理
-            </div>
-            <!-- sidebar menu start-->
-            <ul class="sidebar-menu" id="nav-accordion">
-                <li>
-                    <g:link controller="login" action="userList">
-                        <span>用户管理</span>
-                    </g:link>
-                </li>
-                <li>
-                    <g:link controller="login" action="companyList">
-                        <span>部门管理</span>
-                    </g:link>
-                </li>
-                <li>
-                    <g:link controller="login" action="roleList">
-                        <span>角色管理</span>
-                    </g:link>
-                </li>
-            </ul>
-            <!-- sidebar menu end-->
-        </div>
-    </aside>
+    <g:render template="siderbar" />
     <!--sidebar end-->
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper">
-            <div class="wrapper_title">
-                <span class="f-l"><i class="yh"></i>用户列表</span>
-                <form class="f-r">
-                    <input type="text" name="search" />
-                    <input type="submit" value="" />
-                </form>
-                <a href="#" class="f-r"><i class="fa fa-plus-circle"></i>新建用户</a>
-            </div>
-            <div class="content">
-                <table class="table table-striped table-advance table-hover">
-                    <tr class="even">
-                        <th>#编号</th>
-                        <th>姓名</th>
-                        <th>用户名</th>
-                        <th>城市</th>
-                        <th>电话</th>
-                        <th>公司</th>
-                        <th>权限</th>
-                        <th>地址</th>
-                        <th>操作</th>
-                    </tr>
-                    <tr class="odd">
-                        <td>4</td>
-                        <td><a href="/guihuabao/login/userShow/4"></a></td>
-                        <td>hexuadmin</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>1</td>
-                        <td></td>
-                        <td>
-                            <a href="/guihuabao/login/userShow/4" class="btn btn-success btn-xs"><i class="fa fa-check"></i></a>
-                            <a href="/guihuabao/login/userEdit/4" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
-                            <a href="/guihuabao/login/userDelete/4" class="btn btn-danger btn-xs" onclick="return confirm('确定删除？');"><i class="fa fa-trash-o "></i></a>
-                        </td>
-                    </tr>
-                </table>
+            <div class="middle_content">
+                <div class="m_box">
+                    <header class="panel-heading">
+                        <span><i class="yh"></i>新建用户</span>
+                    </header>
+                    <table>
+                        <tr>
+                            <td>姓名：</td>
+                            <td width="345"><input class="form-control form-control-inline input-medium default-date-picker" type="text" name="name"  value="${userInstance?.name}" /></td>
+                        </tr>
+                        <tr>
+                            <td>密码：</td>
+                            <td><input class="form-control form-control-inline input-medium default-date-picker" type="text" name="password"  value="${userInstance?.password}" /></td>
+                        </tr>
+                        <tr>
+                            <td>手机号：</td>
+                            <td><input class="form-control form-control-inline input-medium default-date-picker" type="text" name="phone"  value="${userInstance?.phone}" /></td>
+                        </tr>
+                        <tr>
+                            <td>公司：</td>
+                            <td><input class="form-control form-control-inline input-medium default-date-picker" type="text" name="company"  value="${userInstance?.company}" /></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                角色：
+                            </td>
+                            <td>
+                                <input class="form-control form-control-inline input-medium default-date-picker" type="text" name="character"  value="${userInstance?.character}" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                时间：
+                            </td>
+                            <td>
+                                <g:datePicker name="dateCreat" precision="day"  value="${userInstance?.dateCreat}"  />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>地址：</td>
+                            <td><input class="form-control form-control-inline input-medium default-date-picker" type="text" name="address"  value="${userInstance?.address}" /></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td align="right"><button type="submit" class="btn btn-info">保存</button></td>
+                        </tr>
+                    </table>
+
+                </div>
             </div>
         </section>
         <!--main content end-->
