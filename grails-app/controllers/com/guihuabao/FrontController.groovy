@@ -77,9 +77,9 @@ class FrontController {
         [companyUserInstance: companyUserInstance, bumenList: bumenList]
     }
     def companyUserUpdate(Long id, Long version) {
-        def companyUserInstance = Bumen.get(id)
+        def companyUserInstance = CompanyUser.get(id)
         if (!companyUserInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'companyUser.label', default: 'Bumen'), id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'companyUser.label', default: 'CompanyUser'), id])
             redirect(action: "companyUserList")
             return
         }
@@ -87,7 +87,7 @@ class FrontController {
         if (version != null) {
             if (companyUserInstance.version > version) {
                 companyUserInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                        [message(code: 'companyUser.label', default: 'Bumen')] as Object[],
+                        [message(code: 'companyUser.label', default: 'CompanyUser')] as Object[],
                         "Another user has updated this User while you were editing")
                 render(view: "companyUserEdit", model: [companyUserInstance: companyUserInstance])
                 return
@@ -101,24 +101,24 @@ class FrontController {
             return
         }
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'companyUser.label', default: 'Bumen'), companyUserInstance.id])
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'companyUser.label', default: 'CompanyUser'), companyUserInstance.id])
         redirect(action: "companyUserShow", id: companyUserInstance.id)
     }
     def companyUserDelete(Long id) {
-        def companyUserInstance = Bumen.get(id)
+        def companyUserInstance = CompanyUser.get(id)
         if (!companyUserInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'companyUser.label', default: 'Bumen'), id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'companyUser.label', default: 'CompanyUser'), id])
             redirect(action: "companyUserList")
             return
         }
 
         try {
             companyUserInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'companyUser.label', default: 'Bumen'), id])
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'companyUser.label', default: 'CompanyUser'), id])
             redirect(action: "companyUserList")
         }
         catch (DataIntegrityViolationException e) {
-            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'companyUser.label', default: 'Bumen'), id])
+            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'companyUser.label', default: 'CompanyUser'), id])
             redirect(action: "companyUserShow", id: id)
         }
     }
