@@ -42,14 +42,15 @@
         <section class="wrapper mt80">
             <div class="hxzs_heading clearfix">
                 <h2>功能介绍</h2>
-                <g:link href="#" class="btn btn-danger" style="display:block;float:right;">删除</g:link>
-                <g:link href="#" class="btn btn-info" style="display:block;float:right;">保存</g:link>
+                <g:link class="btn btn-danger" style="display:block;float:right;">删除</g:link>
+                <button onclick="form1.submit()" class="btn btn-info" style="display:block;float:right;">保存</button>
             </div>
             <div class="mt25">
                 <div class="textarea">
-                    <form>
-                        <textarea name="gnjs"></textarea>
-                    </form>
+                    <g:form name="form1" id="form1" action="funIntroductionSave" method="post" enctype="multipart/form-data">
+                    <script id="introduction"  name="introduction" type="text/plain" style="width:100%;height:500px;"></script>
+                        <button type="submit">tijiao</button>
+                    </g:form>
                 </div>
             </div>
 
@@ -91,6 +92,18 @@
     <script src="${resource(dir: 'js', file: 'easy-pie-chart.js')}"></script>
     <script src="${resource(dir: 'js', file: 'count.js')}"></script>
 
+    <!--ueditor js-->
+    <script type="text/javascript" charset="utf-8" src="${resource(dir: 'ueditor', file: 'ueditor.config.js')}"></script>
+    <script type="text/javascript" charset="utf-8" src="${resource(dir: 'ueditor', file: 'ueditor.all.min.js')}"> </script>
+    <script type="text/javascript" charset="utf-8" src="${resource(dir: 'ueditor/lang/zh-cn/', file: 'zh-cn.js')}"></script>
+
+    <script type="text/javascript">
+
+        //实例化编辑器
+        //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+        var ue = UE.getEditor('introduction');
+
+    </script>
     %{--<script>--}%
 
     %{--//owl carousel--}%
