@@ -45,7 +45,7 @@
             </div>
             <div class="mt25">
                 <div class="zs_style">
-                    <g:link href="#">
+                    <g:link action="loginImg">
                         <img src="${resource(dir: 'img', file: 'sz_img_1.png')}" height="195" width="235" />
                     </g:link>
                     <span>登入页图片</span>

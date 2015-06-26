@@ -104,6 +104,11 @@ ul.sidebar-menu.reset ul.sub li{ padding-left:49px !important;}
 
 .textarea textarea{height:200px; width:100%; padding:30px; border:none;}
 
+/*登入图片 start*/
+.login_img{padding:10px; background-color:#FFF;}
+.login_img img{ margin-top:20px; }
+/*登入图片 end*/
+
 /*反馈信息 start*/
 .btn-xs{height:24px; width:24px; padding:4px 5px !important;}
 /*反馈信息 end*/

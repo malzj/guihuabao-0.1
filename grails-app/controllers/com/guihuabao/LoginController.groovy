@@ -306,5 +306,7 @@ class LoginController {
     def feedback(){
 
     }
+    def loginImg(){
 
+    }
 }
