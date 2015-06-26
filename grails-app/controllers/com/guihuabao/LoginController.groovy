@@ -293,4 +293,18 @@ class LoginController {
             redirect(action: "roleShow", id: id)
         }
     }
+
+    def hxhelper(){
+
+    }
+    def hxset(){
+
+    }
+    def funIntroduction(){
+
+    }
+    def feedback(){
+
+    }
+
 }

@@ -1,18 +1,24 @@
-<div class="form-group">
-    <label class="col-sm-2 col-sm-2 control-label">名称：</label>
-    <div class="col-sm-10 col-lg-4">
-        <input name="rolename" class="form-control" type="text" value="${roleInstance?.rolename}">
-    </div>
-</div>
-<div class="form-group">
-    <label class="col-sm-2 col-sm-2 control-label">备注：</label>
-    <div class="col-sm-10 col-lg-4">
-        <input name="remark" class="form-control" type="text" value="${roleInstance?.remark}">
-    </div>
-</div>
-<div class="form-group">
-    <label class="col-sm-2 col-sm-2 control-label">创建时间：</label>
-    <div class="col-sm-10 col-lg-4">
-        <g:datePicker name="dateCreat" precision="day"  value="${roleInstance?.dateCreat}"  />
-    </div>
-</div>
+<table>
+    <tr>
+        <td>名称：</td>
+        <td width="345"><input name="rolename" class="form-control form-control-inline input-medium default-date-picker" type="text" value="${roleInstance?.rolename}"></td>
+    </tr>
+    <tr>
+        <td>备注：</td>
+        <td><input name="remark" class="form-control form-control-inline input-medium default-date-picker" type="text" value="${roleInstance?.remark}"></td>
+    </tr>
+    <tr>
+        <td>
+            创建时间：
+        </td>
+        <td>
+            <g:datePicker name="dateCreat" precision="day"  value="${roleInstance?.dateCreat}"  />
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td align="right">
+            <button type="submit" class="btn btn-info">保存</button>
+        </td>
+    </tr>
+</table>

@@ -24,13 +24,15 @@
     <!-- Custom styles for this template -->
     <link href="${resource(dir: 'css', file: 'style.css')}" rel="stylesheet">
     <link href="${resource(dir: 'css', file: 'style-responsive.css')}" rel="stylesheet">
+
+    <link href="${resource(dir: 'css', file: 'ownset.css')}" rel="stylesheet">
 </head>
 
 <body>
 
 <section id="container" >
     <!--header start-->
-    <g:render template="hearder" />
+    <g:render template="header" />
     <!--header end-->
     <!--sidebar start-->
     <g:render template="sidebar" />
@@ -38,39 +40,44 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper">
-            <section class="panel">
-                <div class="row">
-                    <div class="col-lg-12">
+            <div class="middle_content">
+                <div class="m_box">
+
 
                         <header class="panel-heading">
                             权限
                         </header>
-                        <div class="panel-body">
-
-                            <div class="form-group">
-                                <label class="col-sm-2 col-sm-2 control-label">名称：</label>
-                                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${roleInstance}" field="rolename"/></span>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 col-sm-2 control-label">备注：</label>
-                                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${roleInstance}" field="remark"/></span>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 col-sm-2 control-label">创建时间：</label>
-                                <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${roleInstance}" field="dateCreat"/></span>
-                            </div>
-
-                            <g:form>
-                                <g:hiddenField name="id" value="${roleInstance?.id}" />
-                                <g:link controller="login" action="roleEdit" id="${roleInstance?.id}" class="btn btn-info">修改</g:link>
-                                <g:actionSubmit type="submit" class="btn btn-info" action="roleDelete"  value="删除" onclick="return confirm('确定删除?');" />
-                            </g:form>
-
-                        </div>
-                    </div>
+                        <table>
+                            <tr>
+                                <td>姓名：</td>
+                                <td width="345"><input name="rolename" class="form-control form-control-inline input-medium default-date-picker" type="text" value="${roleInstance?.rolename}"></td>
+                            </tr>
+                            <tr>
+                                <td>备注：</td>
+                                <td><input name="remark" class="form-control form-control-inline input-medium default-date-picker" type="text" value="${roleInstance?.remark}"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    创建时间：
+                                </td>
+                                <td>
+                                    <g:datePicker name="dateCreat" precision="day"  value="${roleInstance?.dateCreat}"  />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td align="right">
+                                    <g:form>
+                                        <g:hiddenField name="id" value="${roleInstance?.id}" />
+                                        <g:link controller="login" action="roleEdit" id="${roleInstance?.id}" class="btn btn-info">修改</g:link>
+                                        <g:actionSubmit type="submit" class="btn btn-info" action="roleDelete"  value="删除" onclick="return confirm('确定删除?');" />
+                                    </g:form>
+                                </td>
+                            </tr>
+                        </table>
                 </div>
+            </div>
 
-            </section>
         </section>
         <!--main content end-->
 

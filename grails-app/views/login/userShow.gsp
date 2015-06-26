@@ -24,73 +24,84 @@
     <!-- Custom styles for this template -->
     <link href="${resource(dir: 'css', file: 'style.css')}" rel="stylesheet">
     <link href="${resource(dir: 'css', file: 'style-responsive.css')}" rel="stylesheet">
+
+    <link href="${resource(dir: 'css', file: 'ownset.css')}" rel="stylesheet">
 </head>
 
 <body>
 
 <section id="container" >
 <!--header start-->
-<g:render template="hearder" />
+<g:render template="header" />
 <!--header end-->
 <!--sidebar start-->
 <g:render template="sidebar" />
 <!--sidebar end-->
 <!--main content start-->
 <section id="main-content">
-<section class="wrapper">
-    <section class="panel">
-        <div class="row">
-            <div class="col-lg-12">
+<section class="wrapper mt80">
+    <div class="middle_content">
+        <div class="m_box">
 
                 <header class="panel-heading">
                     用户
                 </header>
-                <div class="panel-body">
 
-                        <div class="form-group">
-                            <label class="col-sm-2 col-sm-2 control-label">姓名：</label>
-                            <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${userInstance}" field="name"/></span>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 col-sm-2 control-label">用户名：</label>
-                            <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${userInstance}" field="username"/></span>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 col-sm-2 control-label">城市：</label>
-                            <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${userInstance}" field="city"/></span>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 col-sm-2 control-label">电话：</label>
-                            <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${userInstance}" field="phone"/></span>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 col-sm-2 control-label">公司：</label>
-                            <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${userInstance}" field="cid"/></span>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 col-sm-2 control-label">权限：</label>
-                            <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${userInstance}" field="rid"/></span>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 col-sm-2 control-label">地址：</label>
-                            <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${userInstance}" field="address"/></span>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 col-sm-2 control-label">创建时间</label>
-                            <span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${userInstance}" field="dateCreat"/></span>
-                        </div>
+                    <table>
+                        <tr>
+                            <td>姓名：</td>
+                            <td width="345"><g:fieldValue bean="${userInstance}" field="name"/></td>
+                        </tr>
+                        <tr>
+                            <td>用户名：</td>
+                            <td><g:fieldValue bean="${userInstance}" field="username"/></td>
+                        </tr>
+                        <tr>
+                            <td>城市：</td>
+                            <td><g:fieldValue bean="${userInstance}" field="city"/></td>
+                        </tr>
+                        <tr>
+                            <td>电话：</td>
+                            <td><g:fieldValue bean="${userInstance}" field="phone"/></td>
+                        </tr>
+                        <tr>
+                            <td>公司：</td>
+                            <td><g:fieldValue bean="${userInstance}" field="cid"/></td>
+                        </tr>
+                        <tr>
+                            <td>权限：</td>
+                            <td>
+                                <g:fieldValue bean="${userInstance}" field="rid"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>地址：</td>
+                            <td><g:fieldValue bean="${userInstance}" field="address"/></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                创建时间：
+                            </td>
+                            <td>
+                                <g:fieldValue bean="${userInstance}" field="dateCreat"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td align="right">
+                                <g:form>
+                                    <g:hiddenField name="id" value="${userInstance?.id}" />
+                                    <g:link controller="login" action="userEdit" id="${userInstance?.id}" class="btn btn-info">修改</g:link>
+                                    <g:actionSubmit type="submit" class="btn btn-info" action="userDelete"  value="删除" onclick="return confirm('确定删除?');" />
+                                </g:form>
+                            </td>
+                        </tr>
+                    </table>
 
-                        <g:form>
-                            <g:hiddenField name="id" value="${userInstance?.id}" />
-                            <g:link controller="login" action="userEdit" id="${userInstance?.id}" class="btn btn-info">修改</g:link>
-                            <g:actionSubmit type="submit" class="btn btn-info" action="userDelete"  value="删除" onclick="return confirm('确定删除?');" />
-                        </g:form>
 
-                </div>
-            </div>
         </div>
+    </div>
 
-    </section>
 </section>
 <!--main content end-->
 

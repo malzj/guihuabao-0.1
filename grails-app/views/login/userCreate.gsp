@@ -24,38 +24,35 @@
     <!-- Custom styles for this template -->
     <link href="${resource(dir: 'css', file: 'style.css')}" rel="stylesheet">
     <link href="${resource(dir: 'css', file: 'style-responsive.css')}" rel="stylesheet">
+
+    <link href="${resource(dir: 'css', file: 'ownset.css')}" rel="stylesheet">
 </head>
 
 <body>
 
 <section id="container" >
 <!--header start-->
-<g:render template="hearder" />
+<g:render template="header" />
 <!--header end-->
 <!--sidebar start-->
 <g:render template="sidebar" />
 <!--sidebar end-->
 <!--main content start-->
 <section id="main-content">
-<section class="wrapper">
-    <section class="panel">
-        <div class="row">
-            <div class="col-lg-12">
+<section class="wrapper mt80">
+     <div class="middle_content">
+        <div class="m_box">
 
-                <header class="panel-heading">
-                    新建用户
-                </header>
-                <div class="panel-body">
-                    <g:form class="form-horizontal tasi-form" url="[controller:'login',action:'userSave']" method= "post" enctype= "multipart/form-data">
-                        <g:render template="userForm" />
-
-                        <button type="submit" class="btn btn-info">保存</button>
-                    </g:form>
-                </div>
+            <header class="panel-heading">
+                新建用户
+            </header>
+            <div class="panel-body">
+                <g:form class="form-horizontal tasi-form" url="[controller:'login',action:'userSave']" method= "post" enctype= "multipart/form-data">
+                    <g:render template="userForm" />
+                </g:form>
             </div>
         </div>
-
-    </section>
+    </div>
 </section>
 <!--main content end-->
 

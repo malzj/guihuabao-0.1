@@ -40,21 +40,47 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper mt80">
-            <div class="middle_content">
-                <div class="m_box">
-
-
-                        <header class="panel-heading">
-                            编辑公司
-                        </header>
-                        <g:form class="form-horizontal tasi-form" action="companyUpdate" method="post"  enctype= "multipart/form-data">
-                            <g:hiddenField name="id" value="${companyInstance?.id}" />
-                            <g:hiddenField name="version" value="${companyInstance?.version}" />
-
-                            <g:render template="companyForm" />
-                        </g:form>
-
+            <div class="hxzs_heading clearfix">
+                <h2>和许设置</h2>
+            </div>
+            <div class="mt25">
+                <div class="zs_style">
+                    <g:link href="#">
+                        <img src="${resource(dir: 'img', file: 'sz_img_1.png')}" height="195" width="235" />
+                    </g:link>
+                    <span>登入页图片</span>
                 </div>
+                <div class="zs_style">
+                    <g:link action="funIntroduction">
+                        <img src="${resource(dir: 'img', file: 'sz_img_1.png')}" height="195" width="235" />
+                    </g:link>
+                    <span>功能介绍</span>
+                </div>
+                <div class="zs_style">
+                    <a href="#">
+                        <img src="${resource(dir: 'img', file: 'sz_img_1.png')}" height="195" width="235" />
+                    </a>
+                    <span>系统通知</span>
+                </div>
+                <div class="zs_style">
+                    <g:link action="feedback">
+                        <img src="${resource(dir: 'img', file: 'sz_img_1.png')}" height="195" width="235" />
+                    </g:link>
+                    <span>反馈意见</span>
+                </div>
+                <div class="zs_style">
+                    <a href="#">
+                        <img src="${resource(dir: 'img', file: 'sz_img_1.png')}" height="195" width="235" />
+                    </a>
+                    <span>版本更新</span>
+                </div>
+                <div class="zs_style">
+                    <a href="#">
+                        <img src="${resource(dir: 'img', file: 'sz_img_1.png')}" height="195" width="235" />
+                    </a>
+                    <span>使用条款</span>
+                </div>
+
             </div>
 
         </section>
