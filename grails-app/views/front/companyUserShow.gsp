@@ -43,51 +43,49 @@
             <div class="middle_content">
                 <div class="m_box">
                     <header class="panel-heading">
-                        <span><i class="yh"></i>新建用户</span>
+                        <span><i class="yh"></i>用户信息</span>
                     </header>
                     <table>
                         <tr>
                             <td>姓名：</td>
-                            <td width="345"><input class="form-control form-control-inline input-medium default-date-picker" type="text" name="name"  value="${userInstance?.name}" /></td>
+                            <td width="345">${fieldValue(bean: companyUserInstance, field: "name")}</td>
                         </tr>
                         <tr>
                             <td>密码：</td>
-                            <td><input class="form-control form-control-inline input-medium default-date-picker" type="text" name="password"  value="${userInstance?.password}" /></td>
+                            <td>${fieldValue(bean: companyUserInstance, field: "password")}</td>
                         </tr>
                         <tr>
                             <td>手机号：</td>
-                            <td><input class="form-control form-control-inline input-medium default-date-picker" type="text" name="phone"  value="${userInstance?.phone}" /></td>
+                            <td>${fieldValue(bean: companyUserInstance, field: "phone")}</td>
                         </tr>
                         <tr>
-                            <td>公司：</td>
-                            <td><input class="form-control form-control-inline input-medium default-date-picker" type="text" name="company"  value="${userInstance?.company}" /></td>
+                            <td>部门：</td>
+                            <td>${fieldValue(bean: companyUserInstance, field: "bid")}</td>
+                        </td>
                         </tr>
                         <tr>
                             <td>
                                 角色：
                             </td>
-                            <td>
-                                <input class="form-control form-control-inline input-medium default-date-picker" type="text" name="character"  value="${userInstance?.character}" />
-                            </td>
+                            <td>${fieldValue(bean: companyUserInstance, field: "pid")}</td>
                         </tr>
                         <tr>
                             <td>
                                 时间：
                             </td>
-                            <td>
-                                <g:datePicker name="dateCreat" precision="day"  value="${userInstance?.dateCreat}"  />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>地址：</td>
-                            <td><input class="form-control form-control-inline input-medium default-date-picker" type="text" name="address"  value="${userInstance?.address}" /></td>
+                            <td>${fieldValue(bean: companyUserInstance, field: "dateCreat")}</td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td align="right"><button type="submit" class="btn btn-info">保存</button></td>
+                            <td align="right">
+                                <g:form>
+                                    <g:hiddenField name="id" value="${companyUserInstance?.id}" />
+                                    <g:link controller="front" action="companyUserEdit" id="${companyUserInstance?.id}" class="btn btn-info">修改</g:link>
+                                    <g:actionSubmit type="submit" class="btn btn-info" action="companyUserDelete"  value="删除" onclick="return confirm('确定删除?');" />
+                                </g:form>
+                            </td>
                         </tr>
                     </table>
-
                 </div>
             </div>
         </section>

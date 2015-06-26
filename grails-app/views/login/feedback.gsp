@@ -40,21 +40,29 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper mt80">
-            <div class="middle_content">
-                <div class="m_box">
+            <div class="hxzs_heading clearfix">
+                <h2>功能介绍</h2>
+            </div>
+            <div class="content mt25">
+                <table class="table table-striped table-advance table-hover">
+                    <tr class="even">
+                        <th>编号</th>
+                        <th>用户名</th>
+                        <th>反馈内容</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr class="odd">
+                        <td>4</td>
+                        <td>hexuadmin</td>
+                        <td>反馈内容</td>
+                        <td>
+                            <a href="/guihuabao/login/userShow/4" class="btn btn-success btn-xs"><i class="fa fa-eye"></i></a>
+                            <a href="/guihuabao/login/userEdit/4" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+                            <a href="/guihuabao/login/userDelete/4" class="btn btn-danger btn-xs" onClick="return confirm('确定删除？');"><i class="fa fa-trash-o "></i></a>
+                        </td>
+                    </tr>
+                </table>
 
-
-                        <header class="panel-heading">
-                            编辑公司
-                        </header>
-                        <g:form class="form-horizontal tasi-form" action="companyUpdate" method="post"  enctype= "multipart/form-data">
-                            <g:hiddenField name="id" value="${companyInstance?.id}" />
-                            <g:hiddenField name="version" value="${companyInstance?.version}" />
-
-                            <g:render template="companyForm" />
-                        </g:form>
-
-                </div>
             </div>
 
         </section>

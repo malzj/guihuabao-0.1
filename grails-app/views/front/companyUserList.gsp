@@ -71,9 +71,9 @@
                     <td>${fieldValue(bean: companyUserInstance, field: "cid")}</td>
                     <td>${fieldValue(bean: companyUserInstance, field: "rid")}</td>
                     <td>
-                        <g:link action="userShow" id="${userInstance?.id}" class="btn btn-success btn-xs"><i class="fa fa-eye"></i></g:link>
-                        <g:link action="userEdit" id="${userInstance?.id}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></g:link>
-                        <g:link action="userDelete" id="${userInstance?.id}" class="btn btn-danger btn-xs" onclick="return confirm('确定删除？');"><i class="fa fa-trash-o "></i></g:link>
+                        <g:link action="companyUserShow" id="${companyUserInstance?.id}" class="btn btn-success btn-xs"><i class="fa fa-eye"></i></g:link>
+                        <g:link action="companyUserEdit" id="${companyUserInstance?.id}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></g:link>
+                        <g:link action="companyUserDelete" id="${companyUserInstance?.id}" class="btn btn-danger btn-xs" onclick="return confirm('确定删除？');"><i class="fa fa-trash-o "></i></g:link>
                     </td>
 
 

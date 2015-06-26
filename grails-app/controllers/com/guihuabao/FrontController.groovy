@@ -40,6 +40,9 @@ class FrontController {
     }
     def companyUserSave(){
         def companyUserInstance = new CompanyUser(params)
+        if(params.pid==1){
+            companyUserInstance.pid = 2
+        }
         if (!companyUserInstance.save(flush: true)) {
             render(view: "companyUserCreate", model: [companyUserInstance: companyUserInstance])
             return
@@ -64,13 +67,60 @@ class FrontController {
     }
     def companyUserEdit(Long id) {
         def companyUserInstance = CompanyUser.get(id)
+        def bumenList = Bumen.findAllByCid(session.company.id)
         if (!companyUserInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'companyUser.label', default: 'CompanyUser'), id])
             redirect(action: "companyUserList")
             return
         }
 
-        [companyUserInstance: companyUserInstance]
+        [companyUserInstance: companyUserInstance, bumenList: bumenList]
+    }
+    def companyUserUpdate(Long id, Long version) {
+        def companyUserInstance = CompanyUser.get(id)
+        if (!companyUserInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'companyUser.label', default: 'CompanyUser'), id])
+            redirect(action: "companyUserList")
+            return
+        }
+
+        if (version != null) {
+            if (companyUserInstance.version > version) {
+                companyUserInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+                        [message(code: 'companyUser.label', default: 'CompanyUser')] as Object[],
+                        "Another user has updated this User while you were editing")
+                render(view: "companyUserEdit", model: [companyUserInstance: companyUserInstance])
+                return
+            }
+        }
+
+        companyUserInstance.properties = params
+
+        if (!companyUserInstance.save(flush: true)) {
+            render(view: "companyUserEdit", model: [companyUserInstance: companyUserInstance])
+            return
+        }
+
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'companyUser.label', default: 'CompanyUser'), companyUserInstance.id])
+        redirect(action: "companyUserShow", id: companyUserInstance.id)
+    }
+    def companyUserDelete(Long id) {
+        def companyUserInstance = CompanyUser.get(id)
+        if (!companyUserInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'companyUser.label', default: 'CompanyUser'), id])
+            redirect(action: "companyUserList")
+            return
+        }
+
+        try {
+            companyUserInstance.delete(flush: true)
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'companyUser.label', default: 'CompanyUser'), id])
+            redirect(action: "companyUserList")
+        }
+        catch (DataIntegrityViolationException e) {
+            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'companyUser.label', default: 'CompanyUser'), id])
+            redirect(action: "companyUserShow", id: id)
+        }
     }
 
 
@@ -154,7 +204,7 @@ class FrontController {
         }
         catch (DataIntegrityViolationException e) {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'bumen.label', default: 'Bumen'), id])
-            redirect(action: "buemnShow", id: id)
+            redirect(action: "bumenShow", id: id)
         }
     }
 

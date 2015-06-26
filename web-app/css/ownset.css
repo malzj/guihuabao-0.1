@@ -1,12 +1,14 @@
 body{padding:0;margin:0;}
 .f-l{float:left;}
 .f-r{float:right;}
+.mt25{ margin-top:25px !important; }
+.mt80{ margin-top:80px !important; }
 .clearfix:after { content:"/20"; display:block; visibility:hidden; clear:both; font-size:0; line-height:0; height:0; }
 .clearfix { *zoom:1; }
 /*header start*/
 .header .top{width:100%;height:40px;background-color:#f1f2f7;}
 .header .top a{font-size:14px;color:#9c9c9c;}
-.header .top .t_left{float:left;height:40px;line-height:40px;margin-left:45px;padding-left:30px;background:url(../img/p_01.png) no-repeat 0% 50%;}
+.header .top .t_left{float:left;height:40px;line-height:40px;margin-left:45px;padding-left:30px;background:url("../img/p_01.png") no-repeat 0% 50%;}
 .header .top .t_right{float:right;margin-right:20px;}
 .header .top .t_right li{float:left;line-height:40px;margin:0 8px; color:#9c9c9c;}
 .header .top .t_right li i{font-size:16px;}
@@ -14,13 +16,13 @@ body{padding:0;margin:0;}
 .header .nav{margin-left:56px;float:left;}
 .header .nav li{float:left;}
 .header .nav i,.header .zs i{display:block;float:left;height:30px;width:30px;}
-.header .nav li .home{background:url(../img/nav_1.png) no-repeat;}
-.header .nav li .aim{background:url(../img/nav_2.png) no-repeat;}
-.header .nav li .rw{background:url(../img/nav_3.png) no-repeat;}
-.header .nav li .bg{background:url(../img/nav_4.png) no-repeat;}
-.header .nav li .app{background:url(../img/nav_5.png) no-repeat;}
-.header .nav li .ht{background:url(../img/nav_6.png) no-repeat;}
-.header .zs i{background:url(../img/nav_7.png) no-repeat;}
+.header .nav li .home{background:url("../img/nav_1.png") no-repeat;}
+.header .nav li .aim{background:url("../img/nav_2.png") no-repeat;}
+.header .nav li .rw{background:url("../img/nav_3.png") no-repeat;}
+.header .nav li .bg{background:url("../img/nav_4.png") no-repeat;}
+.header .nav li .app{background:url("../img/nav_5.png") no-repeat;}
+.header .nav li .ht{background:url("../img/nav_6.png") no-repeat;}
+.header .zs i{background:url("../img/nav_7.png") no-repeat;}
 .header a{font-size:18px;color:#fff;line-height:32px;}
 .header .zs{padding:19px 30px;}
 /*header end*/
@@ -29,18 +31,18 @@ body{padding:0;margin:0;}
 .login input{width:300px;margin-bottom:24px;}
 /*login start*/
 .sidebar_object{color: #AEB2B7;text-decoration: none;padding: 15px 0px 15px 25px;font-size: 16px;outline: medium none;}
-.sidebar_object .page{ display:inline-block; height:25px; width:20px;background:url(../img/page_icon.png) no-repeat;}
+.sidebar_object .page{ display:inline-block; height:25px; width:20px;background:url("../img/page_icon.png") no-repeat;}
 .sidebar_object span{display:inline-block;}
 .wrapper_title{height:45px;border:1px #d2d2d2 solid;background-color:#fff;margin-bottom:17px;}
 .wrapper_title span,.wrapper_title a{font-size:16px;color:#666;}
 .wrapper_title span{margin:9px 0 0 12px;}
-.wrapper_title span .yh{display:inline-block; height:21px; width:30px; background:url(../img/yh.png) no-repeat;}
+.wrapper_title span .yh{display:inline-block; height:21px; width:30px; background:url("../img/yh.png") no-repeat;}
 .wrapper_title a{ line-height:16px;padding:14px 18px;border-left:1px #d2d2d2 solid;border-right:1px #d2d2d2 solid;}
 .wrapper_title a i{color:#03a9f4;margin-right:5px;}
 
 .wrapper_title form{ position:relative;}
 .wrapper_title input[type="text"]{font-size:15px; width:210px; line-height:25px;padding:9px 15px;border:none;}
-.wrapper_title input[type="submit"]{height:30px;width:30px;border:none;background:url(../img/search_icon.png) no-repeat; position:absolute; top:12px; right:5px;}
+.wrapper_title input[type="submit"]{height:30px;width:30px;border:none;background:url("../img/search_icon.png") no-repeat; position:absolute; top:12px; right:5px;}
 
 .content table{border:1px #d2d2d2 solid;}
 /*login footer start*/
@@ -53,8 +55,55 @@ body{padding:0;margin:0;}
 .middle_content .panel-heading{height:45px; overflow: hidden;border-bottom:1px #d2d2d2 solid;background-color:#fff;margin-bottom:30px;}
 .middle_content .panel-heading span{font-size:16px;color:#666;}
 .middle_content .panel-heading span{margin:0 0 0 12px; padding-top:9px;}
-.middle_content .panel-heading span .yh{display:inline-block; height:21px; width:30px; background:url(../img/yh.png) no-repeat;}
+.middle_content .panel-heading span .yh{display:inline-block; height:21px; width:30px; background:url("../img/yh.png") no-repeat;}
 
 .middle_content table{margin:0 auto;border-spacing: 20px;border-collapse: separate;}
 .middle_content table .input-medium{width:345px;}
 /*user_add end*/
+
+/*admin_header start*/
+.header a.exit{ margin-top:19px; margin-right:45px; font-size:16px; color:#FFF; padding-left:40px; background:url("../img/exit_1.png") no-repeat; }
+/*admin_header end*/
+
+ul.sidebar-menu.reset li a.active, ul.sidebar-menu.reset li a:hover, ul.sidebar-menu.reset li a:focus {
+    background: #35404d;
+    color: #fff;
+    display: block;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+ul.sidebar-menu.reset li {
+    margin-bottom: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+	position:relative;
+}
+ul.sidebar-menu.reset li i{ height:20px; width:20px; position:absolute; left: 26px; top: 12px; }
+ul.sidebar-menu.reset li .user{ background:url("../img/menu_icon_1.png") no-repeat 0% 0%;}
+ul.sidebar-menu.reset li .company{ background:url("../img/menu_icon_2.png") no-repeat 0% 0%;}
+ul.sidebar-menu.reset li .role{ background:url("../img/menu_icon_3.png") no-repeat 0% 0%;}
+ul.sidebar-menu.reset li .hx{ background:url("../img/menu_icon_4.png") no-repeat 0% 0%;}
+
+ul.sidebar-menu.reset li a.active i, ul.sidebar-menu.reset li a:hover i, ul.sidebar-menu.reset li a:focus i { background-position:0% 100%;}
+ul.sidebar-menu.reset ul.sub li{ padding-left:49px !important;}
+.panel-heading h2{font-size:16px;color:1c7ff4; margin-top:10px !important;}
+
+/*和许助手 start*/
+.hxzs_heading{padding:10px 15px; background-color:#FFF; }
+.hxzs_heading h2{ font-size:20px; color:1c7ff4; margin:10px 0; float:left; font-weight:normal; }
+.hxzs_heading a{ margin:3px 10px 0 0; }
+
+.zs_style{ float:left; margin:0 20px 20px 0; position:relative; }
+.zs_style span{ font-size:17px; color:#FFF; position:absolute; bottom:20px; left:80px; }
+/*和许助手 end*/
+
+.textarea textarea{height:200px; width:100%; padding:30px; border:none;}
+
+/*反馈信息 start*/
+.btn-xs{height:24px; width:24px; padding:4px 5px !important;}
+/*反馈信息 end*/

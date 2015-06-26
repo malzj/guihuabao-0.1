@@ -40,20 +40,16 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper mt80">
-            <div class="middle_content">
-                <div class="m_box">
-
-
-                        <header class="panel-heading">
-                            编辑公司
-                        </header>
-                        <g:form class="form-horizontal tasi-form" action="companyUpdate" method="post"  enctype= "multipart/form-data">
-                            <g:hiddenField name="id" value="${companyInstance?.id}" />
-                            <g:hiddenField name="version" value="${companyInstance?.version}" />
-
-                            <g:render template="companyForm" />
-                        </g:form>
-
+            <div class="hxzs_heading clearfix">
+                <h2>功能介绍</h2>
+                <g:link href="#" class="btn btn-danger" style="display:block;float:right;">删除</g:link>
+                <g:link href="#" class="btn btn-info" style="display:block;float:right;">保存</g:link>
+            </div>
+            <div class="mt25">
+                <div class="textarea">
+                    <form>
+                        <textarea name="gnjs"></textarea>
+                    </form>
                 </div>
             </div>
 

@@ -24,13 +24,15 @@
     <!-- Custom styles for this template -->
     <link href="${resource(dir: 'css', file: 'style.css')}" rel="stylesheet">
     <link href="${resource(dir: 'css', file: 'style-responsive.css')}" rel="stylesheet">
+
+    <link href="${resource(dir: 'css', file: 'ownset.css')}" rel="stylesheet">
 </head>
 
 <body>
 
 <section id="container" >
 <!--header start-->
-<g:render template="hearder" />
+<g:render template="header" />
 <!--header end-->
 <!--sidebar start-->
 <g:render template="sidebar" />
@@ -38,9 +40,8 @@
 <!--main content start-->
 <section id="main-content">
 <section class="wrapper">
-    <section class="panel">
-        <div class="row">
-            <div class="col-lg-12">
+    <div class="middle_content">
+        <div class="m_box">
 
                 <header class="panel-heading">
                     编辑用户
@@ -50,14 +51,11 @@
                         <g:hiddenField name="id" value="${userInstance?.id}" />
                         <g:hiddenField name="version" value="${userInstance?.version}" />
                         <g:render template="userForm" />
-
-                        <button type="submit" class="btn btn-info">保存</button>
                     </g:form>
                 </div>
-            </div>
         </div>
+    </div>
 
-    </section>
 </section>
 <!--main content end-->
 

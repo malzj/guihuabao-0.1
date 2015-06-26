@@ -24,20 +24,22 @@
     <!-- Custom styles for this template -->
     <link href="${resource(dir: 'css', file: 'style.css')}" rel="stylesheet">
     <link href="${resource(dir: 'css', file: 'style-responsive.css')}" rel="stylesheet">
+
+    <link href="${resource(dir: 'css', file: 'ownset.css')}" rel="stylesheet">
 </head>
 
 <body>
 
 <section id="container" >
 <!--header start-->
-<g:render template="hearder" />
+<g:render template="header" />
 <!--header end-->
 <!--sidebar start-->
 <g:render template="sidebar" />
 <!--sidebar end-->
 <!--main content start-->
 <section id="main-content">
-    <section class="wrapper">
+    <section class="wrapper mt80">
         <div class="row">
             <div class="col-lg-12">
                 <section class="panel">
@@ -69,7 +71,7 @@
                                 <td>${fieldValue(bean: companyInstance, field: "dateCreat")}</td>
 
                                 <td>
-                                    <g:link action="companyShow" id="${companyInstance?.id}" class="btn btn-success btn-xs"><i class="fa fa-check"></i></g:link>
+                                    <g:link action="companyShow" id="${companyInstance?.id}" class="btn btn-success btn-xs"><i class="fa fa-eye"></i></g:link>
                                     <g:link action="companyEdit" id="${companyInstance?.id}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></g:link>
                                     <g:link action="companyDelete" id="${companyInstance?.id}" class="btn btn-danger btn-xs" onclick="return confirm('确定删除？');"><i class="fa fa-trash-o "></i></g:link>
                                 </td>
@@ -105,27 +107,27 @@
 </section>
 
 <!-- js placed at the end of the document so the pages load faster -->
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script class="include" type="text/javascript" src="js/jquery.dcjqaccordion.2.7.js"></script>
-<script src="js/jquery.scrollTo.min.js"></script>
-<script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-<script src="js/jquery.sparkline.js" type="text/javascript"></script>
-<script src="assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
-<script src="js/owl.carousel.js" ></script>
-<script src="js/jquery.customSelect.min.js" ></script>
-<script src="js/respond.min.js" ></script>
+<script src="${resource(dir: 'js', file: 'jquery.js')}"></script>
+<script src="${resource(dir: 'js', file: 'bootstrap.min.js')}"></script>
+<script class="include" type="text/javascript" src="${resource(dir: 'js', file: 'jquery.dcjqaccordion.2.7.js')}"></script>
+<script src="${resource(dir: 'js', file: 'jquery.scrollTo.min.js')}"></script>
+<script src="${resource(dir: 'js', file: 'jquery.nicescroll.js')}" type="text/javascript"></script>
+<script src="${resource(dir: 'js', file: 'jquery.sparkline.js')}" type="text/javascript"></script>
+<script src="${resource(dir: 'assets/jquery-easy-pie-chart/', file: 'jquery.easy-pie-chart.js')}"></script>
+<script src="${resource(dir: 'js', file: 'owl.carousel.js')}" ></script>
+<script src="${resource(dir: 'js', file: 'jquery.customSelect.min.js')}" ></script>
+<script src="${resource(dir: 'js', file: 'respond.min.js')}" ></script>
 
 <!--right slidebar-->
-<script src="js/slidebars.min.js"></script>
+<script src="${resource(dir: 'js', file: 'slidebars.min.js')}"></script>
 
 <!--common script for all pages-->
-<script src="js/common-scripts.js"></script>
+<script src="${resource(dir: 'js', file: 'common-scripts.js')}"></script>
 
 <!--script for this page-->
-<script src="js/sparkline-chart.js"></script>
-<script src="js/easy-pie-chart.js"></script>
-<script src="js/count.js"></script>
+<script src="${resource(dir: 'js', file: 'sparkline-chart.js')}"></script>
+<script src="${resource(dir: 'js', file: 'easy-pie-chart.js')}"></script>
+<script src="${resource(dir: 'js', file: 'count.js')}"></script>
 
 %{--<script>--}%
 

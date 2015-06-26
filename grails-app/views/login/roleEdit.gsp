@@ -24,40 +24,36 @@
     <!-- Custom styles for this template -->
     <link href="${resource(dir: 'css', file: 'style.css')}" rel="stylesheet">
     <link href="${resource(dir: 'css', file: 'style-responsive.css')}" rel="stylesheet">
+
+    <link href="${resource(dir: 'css', file: 'ownset.css')}" rel="stylesheet">
 </head>
 
 <body>
 
 <section id="container" >
     <!--header start-->
-    <g:render template="hearder" />
+    <g:render template="header" />
     <!--header end-->
     <!--sidebar start-->
     <g:render template="sidebar" />
     <!--sidebar end-->
     <!--main content start-->
     <section id="main-content">
-        <section class="wrapper">
-            <section class="panel">
-                <div class="row">
-                    <div class="col-lg-12">
+        <section class="wrapper mt80">
+            <div class="middle_content">
+                <div class="m_box">
 
                         <header class="panel-heading">
                             编辑权限
                         </header>
-                        <div class="panel-body">
                             <g:form class="form-horizontal tasi-form" action="roleUpdate" method="post">
                                 <g:hiddenField name="id" value="${roleInstance?.id}" />
                                 <g:hiddenField name="version" value="${roleInstance?.version}" />
                                 <g:render template="roleForm" />
-
-                                <button type="submit" class="btn btn-info">保存</button>
                             </g:form>
-                        </div>
-                    </div>
                 </div>
+            </div>
 
-            </section>
         </section>
         <!--main content end-->
 

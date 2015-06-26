@@ -35,28 +35,24 @@
     <g:render template="header" />
     <!--header end-->
     <!--sidebar start-->
-    <g:render template="sidebar" />
+    <g:render template="siderbar" />
     <!--sidebar end-->
     <!--main content start-->
     <section id="main-content">
-        <section class="wrapper mt80">
+        <section class="wrapper">
             <div class="middle_content">
                 <div class="m_box">
-
-
-                        <header class="panel-heading">
-                            编辑公司
-                        </header>
-                        <g:form class="form-horizontal tasi-form" action="companyUpdate" method="post"  enctype= "multipart/form-data">
-                            <g:hiddenField name="id" value="${companyInstance?.id}" />
-                            <g:hiddenField name="version" value="${companyInstance?.version}" />
-
-                            <g:render template="companyForm" />
-                        </g:form>
-
+                    <header class="panel-heading">
+                        <span><i class="yh"></i>修改用户</span>
+                    </header>
+                    <g:form url="[controller:'front',action:'companyUserUpdate']">
+                        <g:hiddenField name="cid" value="${session.company.id}" />
+                        <g:hiddenField name="id" value="${companyUserInstance?.id}" />
+                        <g:hiddenField name="version" value="${companyUserInstance?.version}" />
+                        <g:render template="userForm" />
+                    </g:form>
                 </div>
             </div>
-
         </section>
         <!--main content end-->
 
