@@ -303,10 +303,17 @@ class LoginController {
     def funIntroduction(){
 
     }
+    def funIntroductionSave(){
+        def ss=params.introduction
+
+    }
     def feedback(){
 
     }
     def loginImg(){
+
+    }
+    def loginImgSave(){
 
     }
 }

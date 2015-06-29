@@ -96,7 +96,7 @@ ul.sidebar-menu.reset ul.sub li{ padding-left:49px !important;}
 /*∫Õ–Ì÷˙ ÷ start*/
 .hxzs_heading{padding:10px 15px; background-color:#FFF; }
 .hxzs_heading h2{ font-size:20px; color:1c7ff4; margin:10px 0; float:left; font-weight:normal; }
-.hxzs_heading a{ margin:3px 10px 0 0; }
+.hxzs_heading .btn{ margin:3px 10px 0 0; }
 
 .zs_style{ float:left; margin:0 20px 20px 0; position:relative; }
 .zs_style span{ font-size:17px; color:#FFF; position:absolute; bottom:20px; left:80px; }
