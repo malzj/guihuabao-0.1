@@ -305,7 +305,7 @@ class LoginController {
     }
     def funIntroductionSave(){
         def ss=params.introduction
-
+        print(ss)
     }
     def feedback(){
 
