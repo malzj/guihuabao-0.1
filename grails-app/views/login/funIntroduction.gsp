@@ -110,7 +110,6 @@
     <script>
         KindEditor.ready(function(K) {
             window.editor = K.create('#editor_id', {
-                uploadJson : '${resource(dir: 'keditor/jsp', file: 'upload_json.jsp')}',
                 fileManagerJson : '${resource(dir: 'keditor/jsp', file: 'file_manager_json.jsp')}',
                 allowFileManager : true,
                 allowImageUpload: true
