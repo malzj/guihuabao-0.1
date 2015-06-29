@@ -94,7 +94,7 @@
 
     <!--ueditor js-->
     <script type="text/javascript" charset="utf-8" src="${resource(dir: 'ueditor', file: 'ueditor.config.js')}"></script>
-    <script type="text/javascript" charset="utf-8" src="${resource(dir: 'ueditor', file: 'ueditor.all.min.js')}"> </script>
+    <script type="text/javascript" charset="utf-8" src="${resource(dir: 'ueditor', file: 'ueditor.all.js')}"> </script>
     <script type="text/javascript" charset="utf-8" src="${resource(dir: 'ueditor/lang/zh-cn/', file: 'zh-cn.js')}"></script>
 
     <script type="text/javascript">
@@ -102,30 +102,14 @@
         //实例化编辑器
         //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
         var ue = UE.getEditor('introduction');
+        var pathName= window.document.location.pathname;
+        var projectName = pathName.substring(0,pathName.substr(1).indexOf("/")+1);
+        projectName = (projectName=='guihuabao')?'/guihuabao':'';
+        var URL = window.UEDITOR_HOME_URL=projectName+"/web-app/ueditor";
+
 
     </script>
-    %{--<script>--}%
 
-    %{--//owl carousel--}%
-
-    %{--$(document).ready(function() {--}%
-    %{--$("#owl-demo").owlCarousel({--}%
-    %{--navigation : true,--}%
-    %{--slideSpeed : 300,--}%
-    %{--paginationSpeed : 400,--}%
-    %{--singleItem : true,--}%
-    %{--autoPlay:true--}%
-
-    %{--});--}%
-    %{--});--}%
-
-    %{--//custom select box--}%
-
-    %{--$(function(){--}%
-    %{--$('select.styled').customSelect();--}%
-    %{--});--}%
-
-    %{--</script>--}%
 
 </body>
 </html>

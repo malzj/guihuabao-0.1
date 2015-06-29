@@ -25,6 +25,7 @@ environments {
         dataSource {
             dbCreate = "create-drop" // one of 'create', 'create-drop','update'
             url = "jdbc:mysql://127.0.0.1/grails?useUnicode=true&characterEncoding=UTF-8"
+            url = "jdbc:mysql://127.0.0.1/grails?useUnicode=true&characterEncoding=UTF-8"
 
 
         }
