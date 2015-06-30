@@ -40,60 +40,19 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper mt80">
-                    <div class="hxzs_heading clearfix">
-                        <h2>和许助手</h2>
-                        <g:link action="bookCreate" class="btn btn-info" style="display:block;float:right;">新建助手</g:link>
-                    </div>
-                    <div class="mt25">
-                        <div class="zs_style">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_1.png')}" height="195" width="235" />
-                            </a>
-                            <span>服务体系</span>
-                        </div>
-                        <div class="zs_style">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_2.png')}" height="195" width="235" />
-                            </a>
-                            <span>盈利模式</span>
-                        </div>
-                        <div class="zs_style">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_3.png')}" height="195" width="235" />
-                            </a>
-                            <span>选址规划</span>
-                        </div>
-                        <div class="zs_style">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_4.png')}" height="195" width="235" />
-                            </a>
-                            <span>招商规划</span>
-                        </div>
-                        <div class="zs_style">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_5.png')}" height="195" width="235" />
-                            </a>
-                            <span>人力资源</span>
-                        </div>
-                        <div class="zs_style ml0">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_6.png')}" height="195" width="235" />
-                            </a>
-                            <span>财务体系</span>
-                        </div>
-                        <div class="zs_style ml0">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_7.png')}" height="195" width="235" />
-                            </a>
-                            <span>领导体系</span>
-                        </div>
-                        <div class="zs_style ml0">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_8.png')}" height="195" width="235" />
-                            </a>
-                            <span>员工手册</span>
-                        </div>
-                    </div>
+            <div class="hxzs_heading clearfix">
+                <h2>系统通知</h2>
+                <g:link class="btn btn-danger" style="display:block;float:right;">删除</g:link>
+                <button onclick="form1.submit()" class="btn btn-info" style="display:block;float:right;">保存</button>
+            </div>
+            <div class="mt25">
+                <div class="textarea">
+                    <g:form name="form1" id="form1" action="informSave" method="post" enctype="multipart/form-data">
+                    %{--<script id="introduction"  name="introduction" type="text/plain" style="width:100%;height:500px;"></script>--}%
+                        <textarea id="editor_id" name="content" style="width:100%;height:500px;"></textarea>
+                    </g:form>
+                </div>
+            </div>
 
         </section>
         <!--main content end-->
@@ -133,6 +92,17 @@
     <script src="${resource(dir: 'js', file: 'easy-pie-chart.js')}"></script>
     <script src="${resource(dir: 'js', file: 'count.js')}"></script>
 
+    <!--keditor js-->
+    <script charset="utf-8" src="${resource(dir: 'keditor', file: 'kindeditor.js')}"></script>
+    <script charset="utf-8" src="${resource(dir: 'keditor/lang', file: 'zh_CN.js')}"></script>
+    <script>
+        KindEditor.ready(function(K) {
+            window.editor = K.create('#editor_id', {
+                fileManagerJson : '${resource(dir: 'keditor/jsp', file: 'file_manager_json.jsp')}',
+                allowFileManager : true,
+            });
+        });
+    </script>
     %{--<script>--}%
 
     %{--//owl carousel--}%

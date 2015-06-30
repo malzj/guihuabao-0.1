@@ -40,61 +40,40 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper mt80">
-                    <div class="hxzs_heading clearfix">
-                        <h2>和许助手</h2>
-                        <g:link action="bookCreate" class="btn btn-info" style="display:block;float:right;">新建助手</g:link>
-                    </div>
-                    <div class="mt25">
-                        <div class="zs_style">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_1.png')}" height="195" width="235" />
-                            </a>
-                            <span>服务体系</span>
-                        </div>
-                        <div class="zs_style">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_2.png')}" height="195" width="235" />
-                            </a>
-                            <span>盈利模式</span>
-                        </div>
-                        <div class="zs_style">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_3.png')}" height="195" width="235" />
-                            </a>
-                            <span>选址规划</span>
-                        </div>
-                        <div class="zs_style">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_4.png')}" height="195" width="235" />
-                            </a>
-                            <span>招商规划</span>
-                        </div>
-                        <div class="zs_style">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_5.png')}" height="195" width="235" />
-                            </a>
-                            <span>人力资源</span>
-                        </div>
-                        <div class="zs_style ml0">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_6.png')}" height="195" width="235" />
-                            </a>
-                            <span>财务体系</span>
-                        </div>
-                        <div class="zs_style ml0">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_7.png')}" height="195" width="235" />
-                            </a>
-                            <span>领导体系</span>
-                        </div>
-                        <div class="zs_style ml0">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_8.png')}" height="195" width="235" />
-                            </a>
-                            <span>员工手册</span>
-                        </div>
-                    </div>
+            <div class="middle_content">
+                <div class="m_box">
 
+                    <header class="panel-heading">
+                        新建助手
+                    </header>
+
+                        <table>
+                            <tr>
+                                <td>名称：</td>
+                                <td width="345"><input name="bookName" class="form-control form-control-inline input-medium default-date-picker" type="text" value="${bookInstance?.bookName}"></td>
+                            </tr>
+                            <tr>
+                                <td>封面：</td>
+                                <td>
+                                    <input id="up_img" name="bookImg" type="file" value="${bookInstance?.bookImg}" />
+                                    <div id="imgdiv" class="zsimg"><img id="imgShow" /></div>
+                                    <span>上传封面：（232*196）</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>创建时间：</td>
+                                <td><g:fieldValue bean="${bookInstance}" field="dateCreate"/> </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <g:link action="hxhelper" class="btn btn-info">返回助手</g:link>
+                                    <g:link action="syllabusCreate" class="btn btn-info">新建大纲</g:link>
+                                </td>
+                            </tr>
+                        </table>
+                </div>
+            </div>
         </section>
         <!--main content end-->
 
@@ -155,6 +134,13 @@
     %{--});--}%
 
     %{--</script>--}%
+    <!--上传图片预览 js-->
+    <script src="${resource(dir: 'js', file: 'uploadPreview.js')}"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            new uploadPreview({ UpBtn: "up_img", DivShow: "imgdiv", ImgShow: "imgShow" });
+        }
+    </script>
 
 </body>
 </html>

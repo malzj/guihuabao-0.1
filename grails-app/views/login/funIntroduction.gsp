@@ -49,7 +49,7 @@
                 <div class="textarea">
                     <g:form name="form1" id="form1" action="funIntroductionSave" method="post" enctype="multipart/form-data">
                     %{--<script id="introduction"  name="introduction" type="text/plain" style="width:100%;height:500px;"></script>--}%
-                        <textarea id="editor_id" name="content" style="width:700px;height:300px;"></textarea>
+                        <textarea id="editor_id" name="content" style="width:100%;height:500px;"></textarea>
                     </g:form>
                 </div>
             </div>
@@ -92,18 +92,6 @@
     <script src="${resource(dir: 'js', file: 'easy-pie-chart.js')}"></script>
     <script src="${resource(dir: 'js', file: 'count.js')}"></script>
 
-    <!--ueditor js-->
-    %{--<script type="text/javascript" charset="utf-8" src="${resource(dir: 'ueditor', file: 'ueditor.config.js')}"></script>--}%
-    %{--<script type="text/javascript" charset="utf-8" src="${resource(dir: 'ueditor', file: 'ueditor.all.min.js')}"> </script>--}%
-    %{--<script type="text/javascript" charset="utf-8" src="${resource(dir: 'ueditor/lang/zh-cn/', file: 'zh-cn.js')}"></script>--}%
-
-    %{--<script type="text/javascript">--}%
-
-        %{--//实例化编辑器--}%
-        %{--//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例--}%
-        %{--var ue = UE.getEditor('introduction');--}%
-
-    %{--</script>--}%
     <!--keditor js-->
     <script charset="utf-8" src="${resource(dir: 'keditor', file: 'kindeditor.js')}"></script>
     <script charset="utf-8" src="${resource(dir: 'keditor/lang', file: 'zh_CN.js')}"></script>
@@ -112,7 +100,6 @@
             window.editor = K.create('#editor_id', {
                 fileManagerJson : '${resource(dir: 'keditor/jsp', file: 'file_manager_json.jsp')}',
                 allowFileManager : true,
-                allowImageUpload: true
             });
         });
     </script>

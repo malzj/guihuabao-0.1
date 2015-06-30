@@ -57,9 +57,9 @@
                     <span>功能介绍</span>
                 </div>
                 <div class="zs_style">
-                    <a href="#">
+                    <g:link action="inform">
                         <img src="${resource(dir: 'img', file: 'sz_img_1.png')}" height="195" width="235" />
-                    </a>
+                    </g:link>
                     <span>系统通知</span>
                 </div>
                 <div class="zs_style">
@@ -69,15 +69,15 @@
                     <span>反馈意见</span>
                 </div>
                 <div class="zs_style">
-                    <a href="#">
+                    <g:link action="version">
                         <img src="${resource(dir: 'img', file: 'sz_img_1.png')}" height="195" width="235" />
-                    </a>
+                    </g:link>
                     <span>版本更新</span>
                 </div>
                 <div class="zs_style">
-                    <a href="#">
+                    <g:link action="clause">
                         <img src="${resource(dir: 'img', file: 'sz_img_1.png')}" height="195" width="235" />
-                    </a>
+                    </g:link>
                     <span>使用条款</span>
                 </div>
 

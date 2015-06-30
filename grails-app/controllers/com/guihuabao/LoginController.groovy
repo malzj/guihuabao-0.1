@@ -294,12 +294,10 @@ class LoginController {
         }
     }
 
-    def hxhelper(){
-
-    }
     def hxset(){
 
     }
+    //功能介绍
     def funIntroduction(){
 
     }
@@ -307,13 +305,93 @@ class LoginController {
         def ss=params.introduction
         print(ss)
     }
+    //反馈
     def feedback(){
 
     }
+    //登录图片
     def loginImg(){
 
     }
     def loginImgSave(){
 
+    }
+    //系统通知
+    def inform(){
+
+    }
+    def informSave(){
+
+    }
+    //版本更新
+    def version(){
+
+    }
+    def versionSave(){
+
+    }
+    //使用条款
+    def clause(){
+
+    }
+    def clauseSave(){
+
+    }
+
+    //和许助手
+    def hxhelper(){
+
+    }
+    def bookCreate(){
+        [bookInstance: new Book(params)]
+    }
+    def bookSave(){
+        def bookInstance = new Book(params)
+        def  filePath
+        def  fileName
+
+        MultipartFile f = request.getFile('bookImg')
+        if(!f.empty) {
+            fileName=f.getOriginalFilename()
+            filePath="web-app/images/"
+            f.transferTo(new File(filePath+fileName))
+        }
+
+
+        bookInstance.bookImg=fileName
+        if(!bookInstance.save(flush: true)){
+            render(view: "bookCreate",model: [bookInstance: bookInstance])
+        }
+
+        flash.message =message(code: 'default.created.message', args: [message(code: 'book.label', default: 'Book'), bookInstance.id])
+        redirect(action: "bookShow", id:bookInstance.id, params: [bookName: bookInstance.bookName])
+    }
+    def bookShow(Long id) {
+        def bookInstance = Book.get(id)
+        if (!bookInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'book.label', default: 'Book'), id])
+            redirect(action: "roleList")
+            return
+        }
+
+        [bookInstance: bookInstance]
+    }
+    //书籍大纲
+    def syllabusList(Integer max){
+        params.max = Math.min(max ?: 10, 100)
+        [syllabusInstanceList: Syllabus.list(params), syllabusInstanceTotal: Syllabus.count()]
+    }
+    def syllabusCreate(){
+        [syllabusInstance: new Syllabus(params)]
+    }
+    def syllabusSave(){
+        def syllabusInstance = new Syllabus(params)
+        if (!syllabusInstance.save(flush: true)) {
+            render(view: "syllabusCreate", model: [syllabusInstance: syllabusInstance])
+            return
+        }
+
+        flash.message = message(code: 'default.created.message', args: [message(code: 'syllabus.label', default: 'Syllabus'), syllabusInstance.id])
+        redirect(action: "syllShow", id: syllabusInstance.id)
     }
 }

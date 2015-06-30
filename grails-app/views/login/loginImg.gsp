@@ -114,7 +114,7 @@
     %{--});--}%
 
     %{--</script>--}%
-
+    <!--上传图片预览 js-->
     <script type="text/javascript">
         window.onload = function () {
             new uploadPreview({ UpBtn: "up_img", DivShow: "imgdiv", ImgShow: "imgShow" });

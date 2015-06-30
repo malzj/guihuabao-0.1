@@ -112,3 +112,7 @@ ul.sidebar-menu.reset ul.sub li{ padding-left:49px !important;}
 /*反馈信息 start*/
 .btn-xs{height:24px; width:24px; padding:4px 5px !important;}
 /*反馈信息 end*/
+
+/*新建助手 start*/
+.zsimg{margin:15px 0; width:232px; height:196px; overflow:hidden; background-color:#666;}
+/*新建助手 end*/

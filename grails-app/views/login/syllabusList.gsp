@@ -40,60 +40,32 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper mt80">
-                    <div class="hxzs_heading clearfix">
-                        <h2>和许助手</h2>
-                        <g:link action="bookCreate" class="btn btn-info" style="display:block;float:right;">新建助手</g:link>
-                    </div>
-                    <div class="mt25">
-                        <div class="zs_style">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_1.png')}" height="195" width="235" />
-                            </a>
-                            <span>服务体系</span>
-                        </div>
-                        <div class="zs_style">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_2.png')}" height="195" width="235" />
-                            </a>
-                            <span>盈利模式</span>
-                        </div>
-                        <div class="zs_style">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_3.png')}" height="195" width="235" />
-                            </a>
-                            <span>选址规划</span>
-                        </div>
-                        <div class="zs_style">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_4.png')}" height="195" width="235" />
-                            </a>
-                            <span>招商规划</span>
-                        </div>
-                        <div class="zs_style">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_5.png')}" height="195" width="235" />
-                            </a>
-                            <span>人力资源</span>
-                        </div>
-                        <div class="zs_style ml0">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_6.png')}" height="195" width="235" />
-                            </a>
-                            <span>财务体系</span>
-                        </div>
-                        <div class="zs_style ml0">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_7.png')}" height="195" width="235" />
-                            </a>
-                            <span>领导体系</span>
-                        </div>
-                        <div class="zs_style ml0">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_8.png')}" height="195" width="235" />
-                            </a>
-                            <span>员工手册</span>
-                        </div>
-                    </div>
+            <div class="hxzs_heading clearfix">
+                <h2>书籍大纲</h2>
+                <g:link action="syllabusCreate" class="btn btn-info" style="display:block;float:right;">新建大纲</g:link>
+                <g:link action="hxhelper" class="btn btn-info" style="display:block;float:right;">返回助手</g:link>
+            </div>
+            <div class="content mt25">
+                <table class="table table-striped table-advance table-hover">
+                    <tr class="even">
+                        <th>编号</th>
+                        <th>大纲名称</th>
+                        <th>操作</th>
+                    </tr>
+                    <g:each in="${syllarbusInstanceList}" status="i" var="syllarbusInstance">
+                    <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+                        <td>${fieldValue(bean: syllarbusInstance, field: "id")}</td>
+                        <td>${fieldValue(bean: syllarbusInstance, field: "syllabusName")}</td>
+                        <td>
+                            <g:link action="syllarbusShow" id="${syllarbusInstance?.id}" class="btn btn-success btn-xs"><i class="fa fa-eye"></i></g:link>
+                            <g:link action="syllarbusEdit" id="${syllarbusInstance?.id}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></g:link>
+                            <g:link action="syllarbusDelete" id="${syllarbusInstance?.id}" class="btn btn-danger btn-xs" onclick="return confirm('确定删除？');"><i class="fa fa-trash-o "></i></g:link>
+                        </td>
+                    </tr>
+                    </g:each>
+                </table>
+
+            </div>
 
         </section>
         <!--main content end-->
@@ -132,8 +104,6 @@
     <script src="${resource(dir: 'js', file: 'sparkline-chart.js')}"></script>
     <script src="${resource(dir: 'js', file: 'easy-pie-chart.js')}"></script>
     <script src="${resource(dir: 'js', file: 'count.js')}"></script>
-
-    %{--<script>--}%
 
     %{--//owl carousel--}%
 
