@@ -343,14 +343,60 @@ class LoginController {
 
     }
     //反馈
-    def feedback(){
+    def feedback(Integer max){
+
+            params.max = Math.min(max ?: 10, 100)
+            [feedbackInstanceList: Feedback.list(params), feedbackInstanceTotal: Feedback.count()]
 
     }
     //登录图片
-    def loginImg(){
+    def loginImg(Long id){
+        def loginImg= IndexImg.get(id)
+        [loginImg:loginImg]
+
 
     }
-    def loginImgSave(){
+    def loginImgSave(Long id, Long version){
+        def loginimg = IndexImg.get(id)
+        def  filePath
+        def    fileName
+
+        MultipartFile f = request.getFile('file1')
+        if(!f.empty) {
+            fileName=f.getOriginalFilename()
+            filePath="web-app/images/"
+            f.transferTo(new File(filePath+fileName))
+            loginimg.img=fileName
+        }
+
+
+
+        if (!loginimg) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'company.label', default: 'Company'), id])
+            redirect(action: "loginImg", id: loginimg.id)
+            return
+        }
+
+        if (version != null) {
+            if (loginimg.version > version) {
+                loginimg.errors.rejectValue("version", "default.optimistic.locking.failure",
+                        [message(code: 'company.label', default: 'Company')] as Object[],
+                        "Another user has updated this Company while you were editing")
+                render(view: "companyEdit", model: [companyInstance: loginimg])
+                return
+            }
+        }
+
+        loginimg.properties = params
+
+        if (!loginimg.save(flush: true)) {
+            render(view: "companyEdit", model: [companyInstance: loginimg])
+            return
+        }
+
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'company.label', default: 'Company'), loginimg.id])
+        redirect(action: "loginImg", id: loginimg.id)
+
 
     }
     //系统通知
@@ -391,7 +437,7 @@ class LoginController {
         }
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'company.label', default: 'Company'), inform.id])
-        redirect(action: "inform", id: inform.id)
+        redirect(action: "loginImg", id: inform.id)
 
     }
     //版本更新

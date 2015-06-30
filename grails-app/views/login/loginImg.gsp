@@ -42,14 +42,17 @@
         <section class="wrapper mt80">
             <div class="hxzs_heading clearfix">
                 <h2>功能介绍</h2>
-                <g:link  onclick="form1.submit();" class="btn btn-info" style="display:block;float:right;">保存</g:link>
+            <g:form  name="form1" id="form1" url="[controller:'login',action:'loginImgSave']" method="post"  enctype= "multipart/form-data">
+                <button  type="submit" class="btn btn-info" style="display:block;float:right;">保存</button>
             </div>
             <div class="mt25">
                 <div class="login_img">
-                    <g:form  name="form1" id="form1" url="[controller:'login',action:'loginImgSave']" method="post"  enctype= "multipart/form-data">
-                        <input type="file" id="up_img" />
+
+                        <input type="file" id="up_img" name="file1" value="${loginImg.img}"/>
+                <g:hiddenField name="id" value="${loginImg?.id}" />
+                <g:hiddenField name="version" value="${loginImg?.version}" />
                     </g:form>
-                    <div id="imgdiv"><img id="imgShow" width="300" /></div>
+                    <div id="imgdiv"><img id="imgShow" width="300" src="${resource(dir: 'images', file: ''+loginImg.img+'')}" /></div>
                 </div>
             </div>
 
