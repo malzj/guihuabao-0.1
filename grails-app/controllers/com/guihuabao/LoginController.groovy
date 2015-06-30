@@ -1,5 +1,6 @@
 package com.guihuabao
 
+import grails.converters.JSON
 import org.springframework.dao.DataIntegrityViolationException
 
 import org.springframework.web.multipart.MultipartFile
@@ -298,12 +299,48 @@ class LoginController {
 
     }
     //功能介绍
-    def funIntroduction(){
+    def funIntroduction(Long id){
+            def funIntroduction = FunIntroduction.get(id)
+            if (!funIntroduction) {
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'company.label', default: 'Company'), id])
+                redirect(action: "list")
+                return
+            }
+            [funIntroduction: funIntroduction]
+        }
 
-    }
-    def funIntroductionSave(){
-        def ss=params.introduction
-        print(ss)
+
+    def funIntroductionSave(Long id, Long version){
+        def s=params
+        def ss=params.content
+        def funIntroduction = FunIntroduction.get(id)
+        if (!funIntroduction) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'company.label', default: 'Company'), id])
+            redirect(action: "list")
+            return
+        }
+
+        if (version != null) {
+            if (funIntroduction.version > version) {
+                funIntroduction.errors.rejectValue("version", "default.optimistic.locking.failure",
+                        [message(code: 'company.label', default: 'Company')] as Object[],
+                        "Another user has updated this Company while you were editing")
+                render(view: "edit", model: [funIntroduction: funIntroduction])
+                return
+            }
+        }
+
+        funIntroduction.properties = params
+
+
+        if (!funIntroduction.save(flush: true)) {
+            render(view: "edit", model: [funIntroduction: funIntroduction])
+            return
+        }
+
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'company.label', default: 'Company'), funIntroduction.id])
+        redirect(action: "funIntroduction", id: funIntroduction.id)
+
     }
     //反馈
     def feedback(){
@@ -317,24 +354,127 @@ class LoginController {
 
     }
     //系统通知
-    def inform(){
+    def inform(Long id){
+        def inform = Inform.get(id)
+        if (!inform) {
+//            flash.message = message(code: 'default.not.found.message', args: [message(code: 'company.label', default: 'Company'), id])
+//            redirect(action: "list")
+            return
+        }
+        [inform: inform]
 
     }
-    def informSave(){
+    def informSave(Long id, Long version){
+        def inform = Inform.get(id)
+        if (!inform) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'company.label', default: 'Company'), id])
+            redirect(action: "list")
+            return
+        }
+
+        if (version != null) {
+            if (inform.version > version) {
+                inform.errors.rejectValue("version", "default.optimistic.locking.failure",
+                        [message(code: 'company.label', default: 'Company')] as Object[],
+                        "Another user has updated this Company while you were editing")
+                render(view: "edit", model: [funIntroduction: inform])
+                return
+            }
+        }
+
+        inform.properties = params
+
+
+        if (!inform.save(flush: true)) {
+            render(view: "edit", model: [funIntroduction: inform])
+            return
+        }
+
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'company.label', default: 'Company'), inform.id])
+        redirect(action: "inform", id: inform.id)
 
     }
     //版本更新
-    def version(){
+    def version(Long id){
+        def banben = Banben.get(id)
+        if (!banben) {
+//            flash.message = message(code: 'default.not.found.message', args: [message(code: 'company.label', default: 'Company'), id])
+//            redirect(action: "list")
+            return
+        }
+        [banben: banben]
 
     }
-    def versionSave(){
+    def banbenSave(Long id, Long version){
+        def banben = Banben.get(id)
+        if (!banben) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'company.label', default: 'Company'), id])
+            redirect(action: "list")
+            return
+        }
+
+        if (version != null) {
+            if (banben.version > version) {
+                banben.errors.rejectValue("version", "default.optimistic.locking.failure",
+                        [message(code: 'company.label', default: 'Company')] as Object[],
+                        "Another user has updated this Company while you were editing")
+                render(view: "edit", model: [funIntroduction: banben])
+                return
+            }
+        }
+
+        banben.properties = params
+
+
+        if (!banben.save(flush: true)) {
+            render(view: "edit", model: [funIntroduction: banben])
+            return
+        }
+
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'company.label', default: 'Company'), inform.id])
+        redirect(action: "version", id: banben.id)
+
 
     }
     //使用条款
-    def clause(){
+    def clause(Long id){
+        def clause = Clause.get(id)
+        if (!clause) {
+//            flash.message = message(code: 'default.not.found.message', args: [message(code: 'company.label', default: 'Company'), id])
+//            redirect(action: "list")
+            return
+        }
+        [clause: clause]
 
     }
-    def clauseSave(){
+    def clauseSave(Long id, Long version){
+        def clause = Clause.get(id)
+        if (!clause) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'company.label', default: 'Company'), id])
+            redirect(action: "list")
+            return
+        }
+
+        if (version != null) {
+            if (clause.version > version) {
+                clause.errors.rejectValue("version", "default.optimistic.locking.failure",
+                        [message(code: 'company.label', default: 'Company')] as Object[],
+                        "Another user has updated this Company while you were editing")
+                render(view: "edit", model: [funIntroduction: clause])
+                return
+            }
+        }
+
+        clause.properties = params
+
+
+        if (!clause.save(flush: true)) {
+            render(view: "edit", model: [funIntroduction: clause])
+            return
+        }
+
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'company.label', default: 'Company'), clause.id])
+        redirect(action: "clause", id: clause.id)
 
     }
 
@@ -393,5 +533,26 @@ class LoginController {
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'syllabus.label', default: 'Syllabus'), syllabusInstance.id])
         redirect(action: "syllShow", id: syllabusInstance.id)
+    }
+    def upload(){
+
+        def rs=[:]
+        def  filePath
+        def  fileName
+        MultipartFile f = params.imgFile
+        if(!f.empty) {
+            fileName=f.getOriginalFilename()
+            filePath="web-app/images/"
+            f.transferTo(new File(filePath+fileName))
+        }
+        def web='/guihuabao/static/images/'+fileName
+        def url=filePath+fileName
+        rs=[error:0,url:web]
+
+        if (params.callback) {
+            render "${params.callback}(${rs as JSON})"
+        } else
+            render rs as JSON
+
     }
 }

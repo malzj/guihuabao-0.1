@@ -40,33 +40,27 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper mt80">
-            <div class="hxzs_heading clearfix">
-                <h2>系统通知</h2>
+        <div class="hxzs_heading clearfix">
+            <h2>系统通知</h2>
+            <g:form  action="informSave" method="post" enctype="multipart/form-data">
                 <g:link class="btn btn-danger" style="display:block;float:right;">删除</g:link>
-                <button onclick="form1.submit()" class="btn btn-info" style="display:block;float:right;">保存</button>
-            </div>
-            <div class="mt25">
-                <div class="textarea">
-                    <g:form name="form1" id="form1" action="informSave" method="post" enctype="multipart/form-data">
-                    %{--<script id="introduction"  name="introduction" type="text/plain" style="width:100%;height:500px;"></script>--}%
-                        <textarea id="editor_id" name="content" style="width:100%;height:500px;"></textarea>
-                    </g:form>
+                <button type="submit" class="btn btn-info" style="display:block;float:right;">保存</button>
                 </div>
-            </div>
+                <div class="mt25">
+                    <div class="textarea">
+
+            %{--<script id="introduction"  name="introduction" type="text/plain" style="width:100%;height:500px;"></script>--}%
+                <textarea id="editor_id" name="introduction" style="width:100%;height:500px;">${inform.introduction}</textarea>
+
+                <g:hiddenField name="id" value="${inform?.id}" />
+                <g:hiddenField name="version" value="${inform?.version}" />
+
+            </g:form>
+        </div>
+        </div>
 
         </section>
-        <!--main content end-->
 
-        <!--footer start-->
-        %{--<footer class="site-footer">--}%
-        %{--<div class="text-center">--}%
-        %{--2013 &copy; FlatLab by VectorLab.--}%
-        %{--<a href="index.html#" class="go-top">--}%
-        %{--<i class="fa fa-angle-up"></i>--}%
-        %{--</a>--}%
-        %{--</div>--}%
-        %{--</footer>--}%
-        <!--footer end-->
     </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
@@ -96,35 +90,28 @@
     <script charset="utf-8" src="${resource(dir: 'keditor', file: 'kindeditor.js')}"></script>
     <script charset="utf-8" src="${resource(dir: 'keditor/lang', file: 'zh_CN.js')}"></script>
     <script>
+
         KindEditor.ready(function(K) {
-            window.editor = K.create('#editor_id', {
+            var editor1 = K.create('textarea[name="introduction"]', {
+//                cssPath : '../plugins/code/prettify.css',
+                cssPath : '${resource(dir: 'keditor/plugins/code', file: 'prettify.css')}',
+//                uploadJson : '../jsp/upload_json.jsp',
+                uploadJson : '../upload/',
+//                fileManagerJson : '../jsp/file_manager_json.jsp',
                 fileManagerJson : '${resource(dir: 'keditor/jsp', file: 'file_manager_json.jsp')}',
                 allowFileManager : true,
-            });
+                afterCreate : function() {
+                    this.sync();
+//                    document.forms['example'].submit();
+                },
+                afterBlur:function(){
+                    this.sync();
+//                    document.forms['example'].submit();
+                }
+            })
+
         });
     </script>
-    %{--<script>--}%
-
-    %{--//owl carousel--}%
-
-    %{--$(document).ready(function() {--}%
-    %{--$("#owl-demo").owlCarousel({--}%
-    %{--navigation : true,--}%
-    %{--slideSpeed : 300,--}%
-    %{--paginationSpeed : 400,--}%
-    %{--singleItem : true,--}%
-    %{--autoPlay:true--}%
-
-    %{--});--}%
-    %{--});--}%
-
-    %{--//custom select box--}%
-
-    %{--$(function(){--}%
-    %{--$('select.styled').customSelect();--}%
-    %{--});--}%
-
-    %{--</script>--}%
 
 </body>
 </html>

@@ -5,5 +5,6 @@ class FunIntroduction {
     Date dateCreate
     static constraints = {
         introduction(nullable: true)
+        dateCreate(nullable: true)
     }
 }

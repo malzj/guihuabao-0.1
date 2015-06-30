@@ -2,7 +2,7 @@
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
 
-// grails.config.locations = [ "classpath:${appName}-config.properties",
+//grails.config.locations = [ "classpath:${appName}-config.properties",
 //                             "classpath:${appName}-config.groovy",
 //                             "file:${userHome}/.grails/${appName}-config.properties",
 //                             "file:${userHome}/.grails/${appName}-config.groovy"]
@@ -52,6 +52,8 @@ grails.enable.native2ascii = true
 grails.spring.bean.packages = []
 // whether to disable processing of multi part requests
 grails.web.disable.multipart=false
+////定义地址
+//grails.web.url="http://localhost:8080"
 
 // request parameters to mask when logging exceptions
 grails.exceptionresolver.params.exclude = ['password']
