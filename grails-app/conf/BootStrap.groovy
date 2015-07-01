@@ -1,6 +1,7 @@
 import com.guihuabao.Banben
 import com.guihuabao.Clause
 import com.guihuabao.FunIntroduction
+import com.guihuabao.IndexImg
 import com.guihuabao.Inform
 import com.guihuabao.User
 
@@ -64,6 +65,18 @@ class BootStrap {
                     print(2)
             )
         }
+        def indexImg = IndexImg.findAll()
+        if(!indexImg){
+            indexImg=new IndexImg()
+            indexImg.dateCreate=new Date()
+            indexImg.img=""
+            if(indexImg.save(flush: true)){
+                print(1)
+            }else (
+                    print(2)
+            )
+        }
+
 
 
         def destroy = {

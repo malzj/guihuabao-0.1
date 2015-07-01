@@ -51,20 +51,29 @@
                         <th>反馈内容</th>
                         <th>操作</th>
                     </tr>
-                    <tr class="odd">
-                        <td>4</td>
-                        <td>hexuadmin</td>
-                        <td>反馈内容</td>
-                        <td>
+                    <g:each in="${feedbackInstanceList}" status="i" var="feedbackInstance">
+                        <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+
+                            %{--<td><g:link action="show" id="${feedbackInstance.id}">${fieldValue(bean: feedbackInstance, field: "content")}</g:link></td>--}%
+                            <td>${fieldValue(bean: feedbackInstance, field: "id")}</td>
+                            <td>${fieldValue(bean: feedbackInstance, field: "username")}</td>
+                            <td>${fieldValue(bean: feedbackInstance, field: "content")}</td>
+
+                            %{--<td>${fieldValue(bean: feedbackInstance, field: "userId")}</td>--}%
+                            <td>
                             <a href="/guihuabao/login/userShow/4" class="btn btn-success btn-xs"><i class="fa fa-eye"></i></a>
-                            <a href="/guihuabao/login/userEdit/4" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
-                            <a href="/guihuabao/login/userDelete/4" class="btn btn-danger btn-xs" onClick="return confirm('确定删除？');"><i class="fa fa-trash-o "></i></a>
+
+                            <g:link  action="feedbackdelete" id="${feedbackInstance.id}" class="btn btn-danger btn-xs" onClick="return confirm('确定删除？');"><i class="fa fa-trash-o "></i></g:link>
                         </td>
-                    </tr>
+                        </tr>
+                    </g:each>
+
                 </table>
 
             </div>
-
+            <div class="pagination">
+                <g:paginate total="${feedbackInstanceTotal}" />
+            </div>
         </section>
         <!--main content end-->
 

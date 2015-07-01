@@ -56,6 +56,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="guihuabao-grailsPlugins" />
+    <orderEntry type="library" name="grails-2.2.4" level="application" />
   </component>
 </module>
 

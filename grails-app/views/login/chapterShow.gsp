@@ -50,13 +50,13 @@
                     </header>
                     <table>
                         <tr>
-                            <td>名称：</td>
+                            <td>章节名称：</td>
                             <td width="345"><g:fieldValue bean="${bookInstance}" field="bookName"/></td>
                         </tr>
                         <tr>
                             <td>封面：</td>
                             <td>
-                                <div id="imgdiv" class="zsimg"><img id="imgShow" src="${resource(dir: 'images', file: ''+bookInstance.bookImg+'')}" /></div>
+                                <g:fieldValue bean="${bookInstance}" field="bookName"/>
                             </td>
                         </tr>
                         <tr>
@@ -107,7 +107,7 @@
     <script src="${resource(dir: 'js', file: 'easy-pie-chart.js')}"></script>
     <script src="${resource(dir: 'js', file: 'count.js')}"></script>
 
-    
+
 
 </body>
 </html>
