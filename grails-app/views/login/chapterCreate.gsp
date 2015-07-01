@@ -40,18 +40,33 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper mt80">
-            <g:form class="form-horizontal tasi-form" url="[controller:'login',action:'chapterSave']" method="post"  enctype= "multipart/form-data">
-                <div class="hxzs_heading clearfix">
-                    <h2><g:fieldValue bean="${contentInstance}" field="title"/></h2>
-                    <button type="submit" class="btn btn-info f-r">保存</button>
-                </div>
-                <div class="mt25">
-                    <div class="textarea">
-                        <textarea name="content"></textarea>
-                    </div>
+            <div class="middle_content">
+                <div class="m_box">
+                    <g:form class="form-horizontal tasi-form" url="[controller:'login',action:'chapterSave']" method="post"  enctype= "multipart/form-data">
+                        <header class="panel-heading">
+                            新建章节
+                        </header>
 
+                        <table>
+                            <tr>
+                                <td>名称：</td>
+                                <td width="345"><input name="chapterName" class="form-control form-control-inline input-medium default-date-picker" type="text" value="${chapterInstance?.syllabusName}"></td>
+                            </tr>
+                            <tr>
+                                <td>备注：</td>
+                                <td><input name="remark" class="form-control form-control-inline input-medium default-date-picker" type="text" value="${chapterInstance?.remark}"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <button type="submit" class="btn btn-info">保存</button>
+                                    <button class="btn btn-info">返回</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </g:form>
                 </div>
-            </g:form>
+            </div>
         </section>
         <!--main content end-->
 

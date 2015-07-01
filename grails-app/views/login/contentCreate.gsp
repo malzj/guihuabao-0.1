@@ -40,33 +40,18 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper mt80">
-            <div class="middle_content">
-                <div class="m_box">
-                    <g:form class="form-horizontal tasi-form" url="[controller:'login',action:'chapterSave']" method="post"  enctype= "multipart/form-data">
-                    <header class="panel-heading">
-                        新建章节
-                    </header>
-
-                        <table>
-                            <tr>
-                                <td>名称：</td>
-                                <td width="345"><input name="chapterName" class="form-control form-control-inline input-medium default-date-picker" type="text" value="${chapterInstance?.syllabusName}"></td>
-                            </tr>
-                            <tr>
-                                <td>备注：</td>
-                                <td><input name="remark" class="form-control form-control-inline input-medium default-date-picker" type="text" value="${chapterInstance?.remark}"></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <button type="submit" class="btn btn-info">保存</button>
-                                    <button class="btn btn-info">返回</button>
-                                </td>
-                            </tr>
-                        </table>
-                    </g:form>
+            <g:form class="form-horizontal tasi-form" url="[controller:'login',action:'chapterSave']" method="post"  enctype= "multipart/form-data">
+                <div class="hxzs_heading clearfix">
+                    <h2><g:fieldValue bean="${contentInstance}" field="title"/></h2>
+                    <button type="submit" class="btn btn-info f-r">保存</button>
                 </div>
-            </div>
+                <div class="mt25">
+                    <div class="textarea">
+                        <textarea id="editor_id" name="introduction" style="width:100%;height:500px;">${contentInstance.introduction}</textarea>
+                    </div>
+
+                </div>
+            </g:form>
         </section>
         <!--main content end-->
 
@@ -105,28 +90,31 @@
     <script src="${resource(dir: 'js', file: 'easy-pie-chart.js')}"></script>
     <script src="${resource(dir: 'js', file: 'count.js')}"></script>
 
-    %{--<script>--}%
+    <!--keditor js-->
+    <script charset="utf-8" src="${resource(dir: 'keditor', file: 'kindeditor.js')}"></script>
+    <script charset="utf-8" src="${resource(dir: 'keditor/lang', file: 'zh_CN.js')}"></script>
+    <script>
 
-    %{--//owl carousel--}%
+        KindEditor.ready(function(K) {
+            var editor1 = K.create('textarea[name="introduction"]', {
+//                cssPath : '../plugins/code/prettify.css',
+                cssPath : '${resource(dir: 'keditor/plugins/code', file: 'prettify.css')}',
+//                uploadJson : '../jsp/upload_json.jsp',
+                uploadJson : '../upload/',
+//                fileManagerJson : '../jsp/file_manager_json.jsp',
+                fileManagerJson : '${resource(dir: 'keditor/jsp', file: 'file_manager_json.jsp')}',
+                allowFileManager : true,
+                afterCreate : function() {
+                    this.sync();
+//                    document.forms['example'].submit();
+                },
+                afterBlur:function(){
+                    this.sync();
+//                    document.forms['example'].submit();
+                }
+            })
 
-    %{--$(document).ready(function() {--}%
-    %{--$("#owl-demo").owlCarousel({--}%
-    %{--navigation : true,--}%
-    %{--slideSpeed : 300,--}%
-    %{--paginationSpeed : 400,--}%
-    %{--singleItem : true,--}%
-    %{--autoPlay:true--}%
-
-    %{--});--}%
-    %{--});--}%
-
-    %{--//custom select box--}%
-
-    %{--$(function(){--}%
-    %{--$('select.styled').customSelect();--}%
-    %{--});--}%
-
-    %{--</script>--}%
-
+        });
+    </script>
 </body>
 </html>
