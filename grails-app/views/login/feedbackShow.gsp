@@ -44,43 +44,34 @@
                 <div class="m_box">
 
                     <header class="panel-heading">
-                        新建大纲
+                        反馈
                     </header>
 
-                    <g:form class="form-horizontal tasi-form" url="[controller:'login',action:'syllabusSave']" method="post"  enctype= "multipart/form-data">
-                        <table>
-                            <tr>
-                                <td>名称：</td>
-                                <td width="345"><input name="syllabusName" class="form-control form-control-inline input-medium default-date-picker" type="text" value="${syllabusInstance?.syllabusName}"></td>
-                            </tr>
-                            <tr>
-                                <td>备注：</td>
-                                <td><input name="remark" class="form-control form-control-inline input-medium default-date-picker" type="text" value="${syllabusInstance?.remark}"></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <button type="submit" class="btn btn-info">保存</button>
-                                    <button class="btn btn-info">返回</button>
-                                </td>
-                            </tr>
-                        </table>
-                    </g:form>
+                    <table>
+                        <tr>
+                            <td>用户名：</td>
+                            <td width="345"><g:fieldValue bean="${userInstance}" field="name"/></td>
+                        </tr>
+                        <tr>
+                            <td>反馈内容：</td>
+                            <td><g:fieldValue bean="${userInstance}" field="username"/></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td align="right">
+                                    <g:link controller="login" action="userEdit" id="${userInstance?.id}" class="btn btn-info">返回</g:link>
+                            </td>
+                        </tr>
+                    </table>
+
+
                 </div>
             </div>
+
         </section>
         <!--main content end-->
 
-        <!--footer start-->
-        %{--<footer class="site-footer">--}%
-        %{--<div class="text-center">--}%
-        %{--2013 &copy; FlatLab by VectorLab.--}%
-        %{--<a href="index.html#" class="go-top">--}%
-        %{--<i class="fa fa-angle-up"></i>--}%
-        %{--</a>--}%
-        %{--</div>--}%
-        %{--</footer>--}%
-        <!--footer end-->
+
     </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
@@ -106,28 +97,7 @@
     <script src="${resource(dir: 'js', file: 'easy-pie-chart.js')}"></script>
     <script src="${resource(dir: 'js', file: 'count.js')}"></script>
 
-    %{--<script>--}%
 
-    %{--//owl carousel--}%
-
-    %{--$(document).ready(function() {--}%
-    %{--$("#owl-demo").owlCarousel({--}%
-    %{--navigation : true,--}%
-    %{--slideSpeed : 300,--}%
-    %{--paginationSpeed : 400,--}%
-    %{--singleItem : true,--}%
-    %{--autoPlay:true--}%
-
-    %{--});--}%
-    %{--});--}%
-
-    %{--//custom select box--}%
-
-    %{--$(function(){--}%
-    %{--$('select.styled').customSelect();--}%
-    %{--});--}%
-
-    %{--</script>--}%
 
 </body>
 </html>

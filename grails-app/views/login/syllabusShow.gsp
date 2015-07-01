@@ -43,29 +43,28 @@
             <div class="middle_content">
                 <div class="m_box">
 
-                    <header class="panel-heading">
-                        新建大纲
+                    <header class="panel-heading clearfix">
+                        大纲
                     </header>
-
-                    <g:form class="form-horizontal tasi-form" url="[controller:'login',action:'syllabusSave']" method="post"  enctype= "multipart/form-data">
-                        <table>
-                            <tr>
-                                <td>名称：</td>
-                                <td width="345"><input name="syllabusName" class="form-control form-control-inline input-medium default-date-picker" type="text" value="${syllabusInstance?.syllabusName}"></td>
-                            </tr>
-                            <tr>
-                                <td>备注：</td>
-                                <td><input name="remark" class="form-control form-control-inline input-medium default-date-picker" type="text" value="${syllabusInstance?.remark}"></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <button type="submit" class="btn btn-info">保存</button>
-                                    <button class="btn btn-info">返回</button>
-                                </td>
-                            </tr>
-                        </table>
-                    </g:form>
+                    <table>
+                        <tr>
+                            <td>名称：</td>
+                            <td width="345"><g:fieldValue bean="${syllabusInstance}" field="syllabusName"/></td>
+                        </tr>
+                        <tr>
+                            <td>封面：</td>
+                            <td>
+                                <g:fieldValue bean="${syllabusInstance}" field="remark"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <g:link action="syllabusList" class="btn btn-info">返回</g:link>
+                                <g:link action="chapterCreate" class="btn btn-info">新建章节</g:link>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </section>
@@ -128,6 +127,13 @@
     %{--});--}%
 
     %{--</script>--}%
+    <!--上传图片预览 js-->
+    <script src="${resource(dir: 'js', file: 'uploadPreview.js')}"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            new uploadPreview({ UpBtn: "up_img", DivShow: "imgdiv", ImgShow: "imgShow" });
+        }
+    </script>
 
 </body>
 </html>
