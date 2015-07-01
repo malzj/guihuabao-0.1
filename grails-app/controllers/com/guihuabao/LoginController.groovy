@@ -636,7 +636,13 @@ class LoginController {
     }
 
     //内容
-    def contentList(Integer max){
+    def contentList(Integer max,Long id){
+        params.max = Math.min(max ?: 10, 100)
+        def   contentInstanceList=Content.findAllByChapter(Chapter.get(id),params)
+        def contentInstanceTotal=Content.countByChapter(Chapter.get(id))
+
+        [contentInstanceList: contentInstanceList, contentInstanceTotal: contentInstanceTotal,chapterId: id,syllabusId: Chapter.get(id).syllabus.id]
+
 
     }
     def contentCreate(Long id){

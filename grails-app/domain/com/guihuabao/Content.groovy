@@ -3,12 +3,12 @@ package com.guihuabao
 class Content {
 
     String title
-    String content
+    String introduction
     Date dateCreate
     static belongsTo = [chapter: Chapter]
     static constraints = {
         title(nullable: true)
-        content(nullable: true)
+        introduction(nullable: true)
         dateCreate(nullable: true)
     }
 }
