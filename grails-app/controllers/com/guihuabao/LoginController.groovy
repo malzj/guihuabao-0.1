@@ -544,6 +544,13 @@ class LoginController {
 
         [syllabusInstance: syllabusInstance]
     }
+    //章节
+    def chapterList(Integer max){
+
+    }
+    def chapterShow(Long id) {
+
+    }
     def upload(){
 
         def rs=[:]
