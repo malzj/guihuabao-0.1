@@ -47,7 +47,7 @@
             <div class="mt25">
             <g:each in="${bookInstanceList}" status="i" var="bookInstance">
                 <div class="zs_style">
-                    <g:link href="#">
+                    <g:link controller="login" action="bookShow" id="${bookInstance.id}">
                         <img src="${resource(dir: 'images', file: ''+bookInstance.bookImg+'')}" height="195" width="235" />
                     </g:link>
                     <span>${bookInstance.bookName}</span>

@@ -57,6 +57,7 @@
                                 <td>备注：</td>
                                 <td><input name="remark" class="form-control form-control-inline input-medium default-date-picker" type="text" value="${syllabusInstance?.remark}"></td>
                             </tr>
+                            <g:hiddenField name="bookId" value="${bookId}"></g:hiddenField>
                             <tr>
                                 <td></td>
                                 <td>

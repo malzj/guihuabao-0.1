@@ -564,15 +564,21 @@ class LoginController {
         [bookInstance: bookInstance]
     }
     //书籍大纲
-    def syllabusList(Integer max){
+    def syllabusList(Integer max,Long id){
         params.max = Math.min(max ?: 10, 100)
-        [syllabusInstanceList: Syllabus.list(params), syllabusInstanceTotal: Syllabus.count()]
+         def   syll=Syllabus.findAllByBook(Book.get(id),params)
+        def sy=Syllabus.countByBook(Book.get(id))
+        [syllabusInstanceList: syll, syllabusInstanceTotal: sy,bookId:id]
     }
-    def syllabusCreate(){
-        [syllabusInstance: new Syllabus(params)]
+    def syllabusCreate(Long id){
+
+        [syllabusInstance: new Syllabus(params),bookId:id]
     }
     def syllabusSave(){
+        def id= params.bookId
         def syllabusInstance = new Syllabus(params)
+        syllabusInstance.book=Book.get(params.bookId)
+        syllabusInstance.dateCreate=new Date()
         if (!syllabusInstance.save(flush: true)) {
             render(view: "syllabusCreate", model: [syllabusInstance: syllabusInstance])
             return
