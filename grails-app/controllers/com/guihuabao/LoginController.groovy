@@ -575,7 +575,7 @@ class LoginController {
         [syllabusInstance: new Syllabus(params),bookId:id]
     }
     def syllabusSave(){
-        def id= params.bookId
+       
         def syllabusInstance = new Syllabus(params)
         syllabusInstance.book=Book.get(params.bookId)
         syllabusInstance.dateCreate=new Date()
