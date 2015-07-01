@@ -62,9 +62,8 @@
                         <tr>
                             <td></td>
                             <td>
-                                <g:link action="syllabusList" class="btn btn-info">返回</g:link>
-                                <g:link action="chapterCreate" class="btn btn-info">新建章节</g:link>
-                                <g:link action="chapterList" class="btn btn-info">章节列表</g:link>
+                                <g:link action="syllabusList" id="${syllabusInstance.book.id}" class="btn btn-info">返回</g:link>
+                                <g:link action="chapterCreate" id="${syllabusInstance.id}" class="btn btn-info">新建章节</g:link>
                             </td>
                         </tr>
                     </table>
