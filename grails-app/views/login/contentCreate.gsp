@@ -46,6 +46,12 @@
                     <button type="submit" class="btn btn-info f-r">保存</button>
                 </div>
                 <div class="mt25">
+                    <div class="form-group">
+                        <label class="col-lg-3 col-sm-3 control-label">标题：</label>
+                        <div class="col-lg-10">
+                            <input class="form-control" type="text" name="title" />
+                        </div>
+                    </div>
                     <div class="textarea">
                         <textarea id="editor_id" name="introduction" style="width:100%;height:500px;">${contentInstance.introduction}</textarea>
                     </div>
