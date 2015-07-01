@@ -525,8 +525,9 @@ class LoginController {
     }
 
     //和许助手
-    def hxhelper(){
-
+    def hxhelper(Integer max){
+        params.max = Math.min(max ?: 10, 100)
+        [bookInstanceList: Book.list(params), bookInstanceTotal: Book.count()]
     }
     def bookCreate(){
         [bookInstance: new Book(params)]
@@ -598,7 +599,10 @@ class LoginController {
             redirect(action: "show", id: id)
         }
     }
-
+       def feedbackShow(Long id){
+           def feedback= Feedback.get(id)
+           [feedback:feedback]
+       }
 
     def upload(){
 
