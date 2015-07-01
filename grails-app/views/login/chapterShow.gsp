@@ -43,29 +43,30 @@
             <div class="middle_content">
                 <div class="m_box">
 
-                    <header class="panel-heading">
-                        新建大纲
+                    <header class="panel-heading clearfix">
+                        新建助手
+                        <g:link action="bookEdit" class="btn btn-info" style="display:block;float:right;">修改</g:link>
+                        <g:link action="bookDelete" class="btn btn-info" style="display:block;float:right;">删除</g:link>
                     </header>
-
-                    <g:form class="form-horizontal tasi-form" url="[controller:'login',action:'syllabusSave']" method="post"  enctype= "multipart/form-data">
-                        <table>
-                            <tr>
-                                <td>名称：</td>
-                                <td width="345"><input name="syllabusName" class="form-control form-control-inline input-medium default-date-picker" type="text" value="${syllabusInstance?.syllabusName}"></td>
-                            </tr>
-                            <tr>
-                                <td>备注：</td>
-                                <td><input name="remark" class="form-control form-control-inline input-medium default-date-picker" type="text" value="${syllabusInstance?.remark}"></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <button type="submit" class="btn btn-info">保存</button>
-                                    <button class="btn btn-info">返回</button>
-                                </td>
-                            </tr>
-                        </table>
-                    </g:form>
+                    <table>
+                        <tr>
+                            <td>章节名称：</td>
+                            <td width="345"><g:fieldValue bean="${bookInstance}" field="bookName"/></td>
+                        </tr>
+                        <tr>
+                            <td>封面：</td>
+                            <td>
+                                <g:fieldValue bean="${bookInstance}" field="bookName"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <g:link action="hxhelper" class="btn btn-info">返回</g:link>
+                                <g:link action="syllabusCreate" class="btn btn-info">新建大纲</g:link>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </section>
@@ -106,28 +107,7 @@
     <script src="${resource(dir: 'js', file: 'easy-pie-chart.js')}"></script>
     <script src="${resource(dir: 'js', file: 'count.js')}"></script>
 
-    %{--<script>--}%
 
-    %{--//owl carousel--}%
-
-    %{--$(document).ready(function() {--}%
-    %{--$("#owl-demo").owlCarousel({--}%
-    %{--navigation : true,--}%
-    %{--slideSpeed : 300,--}%
-    %{--paginationSpeed : 400,--}%
-    %{--singleItem : true,--}%
-    %{--autoPlay:true--}%
-
-    %{--});--}%
-    %{--});--}%
-
-    %{--//custom select box--}%
-
-    %{--$(function(){--}%
-    %{--$('select.styled').customSelect();--}%
-    %{--});--}%
-
-    %{--</script>--}%
 
 </body>
 </html>

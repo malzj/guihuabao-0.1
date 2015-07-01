@@ -579,7 +579,24 @@ class LoginController {
         }
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'syllabus.label', default: 'Syllabus'), syllabusInstance.id])
-        redirect(action: "syllShow", id: syllabusInstance.id)
+        redirect(action: "syllabusShow", id: syllabusInstance.id)
+    }
+    def syllabusShow(Long id) {
+        def syllabusInstance = Syllabus.get(id)
+        if (!syllabusInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'syllabus.label', default: 'Syllabus'), id])
+            redirect(action: "syllabusList")
+            return
+        }
+
+        [syllabusInstance: syllabusInstance]
+    }
+    //章节
+    def chapterList(Integer max){
+
+    }
+    def chapterShow(Long id) {
+
     }
     def feedbackdelete(Long id) {
         def feedbackInstance = Feedback.get(id)

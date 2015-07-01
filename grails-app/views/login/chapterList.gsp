@@ -40,34 +40,33 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper mt80">
-            <div class="middle_content">
-                <div class="m_box">
-
-                    <header class="panel-heading">
-                        新建大纲
-                    </header>
-
-                    <g:form class="form-horizontal tasi-form" url="[controller:'login',action:'syllabusSave']" method="post"  enctype= "multipart/form-data">
-                        <table>
-                            <tr>
-                                <td>名称：</td>
-                                <td width="345"><input name="syllabusName" class="form-control form-control-inline input-medium default-date-picker" type="text" value="${syllabusInstance?.syllabusName}"></td>
-                            </tr>
-                            <tr>
-                                <td>备注：</td>
-                                <td><input name="remark" class="form-control form-control-inline input-medium default-date-picker" type="text" value="${syllabusInstance?.remark}"></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <button type="submit" class="btn btn-info">保存</button>
-                                    <button class="btn btn-info">返回</button>
-                                </td>
-                            </tr>
-                        </table>
-                    </g:form>
-                </div>
+            <div class="hxzs_heading clearfix">
+                <h2>书籍章节</h2>
+                <g:link action="chapterCreate" class="btn btn-info" style="display:block;float:right;">新建章节</g:link>
+                <g:link action="syllabusList" class="btn btn-info" style="display:block;float:right;">返回大纲</g:link>
             </div>
+            <div class="content mt25">
+                <table class="table table-striped table-advance table-hover">
+                    <tr class="even">
+                        <th>编号</th>
+                        <th>章节名称</th>
+                        <th>操作</th>
+                    </tr>
+                    <g:each in="${chapterInstanceList}" status="i" var="chapterInstance">
+                        <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+                            <td>${fieldValue(bean: chapterInstance, field: "id")}</td>
+                            <td>${fieldValue(bean: chapterInstance, field: "chapterName")}</td>
+                            <td>
+                                <g:link action="chapterShow" id="${chapterInstance?.id}" class="btn btn-success btn-xs"><i class="fa fa-eye"></i></g:link>
+                                <g:link action="chapterEdit" id="${chapterInstance?.id}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></g:link>
+                                <g:link action="chapterDelete" id="${chapterInstance?.id}" class="btn btn-danger btn-xs" onclick="return confirm('确定删除？');"><i class="fa fa-trash-o "></i></g:link>
+                            </td>
+                        </tr>
+                    </g:each>
+                </table>
+
+            </div>
+
         </section>
         <!--main content end-->
 
@@ -105,8 +104,6 @@
     <script src="${resource(dir: 'js', file: 'sparkline-chart.js')}"></script>
     <script src="${resource(dir: 'js', file: 'easy-pie-chart.js')}"></script>
     <script src="${resource(dir: 'js', file: 'count.js')}"></script>
-
-    %{--<script>--}%
 
     %{--//owl carousel--}%
 
