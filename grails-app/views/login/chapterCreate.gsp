@@ -57,6 +57,7 @@
                                 <td><input name="remark" class="form-control form-control-inline input-medium default-date-picker" type="text" value="${chapterInstance?.remark}"></td>
                             </tr>
                             <tr>
+                                <g:hiddenField name="syllabusId" value="${syllabusId}"></g:hiddenField>
                                 <td></td>
                                 <td>
                                     <button type="submit" class="btn btn-info">保存</button>

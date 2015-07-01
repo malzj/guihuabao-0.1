@@ -9,5 +9,6 @@ class Content {
     static constraints = {
         title(nullable: true)
         content(nullable: true)
+        dateCreate(nullable: true)
     }
 }
