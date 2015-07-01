@@ -58,16 +58,13 @@
                             <td>${fieldValue(bean: feedbackInstance, field: "id")}</td>
                             <td>${fieldValue(bean: feedbackInstance, field: "username")}</td>
                             <td>${fieldValue(bean: feedbackInstance, field: "content")}</td>
-                            <a href="/guihuabao/login/userShow/4" class="btn btn-success btn-xs"><i class="fa fa-eye"></i></a>
-                            %{--<td>${fieldValue(bean: feedbackInstance, field: "userId")}</td>--}%
-                            <g:form>
-                                <fieldset class="buttons">
-                                    <g:hiddenField name="id" value="${feedbackInstance?.id}" />
 
-                                    <g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-                                </fieldset>
-                            </g:form>
-                            <g:link href="/guihuabao/login/userDelete/4" class="btn btn-danger btn-xs" onClick="return confirm('确定删除？');"><i class="fa fa-trash-o "></i></g:link>
+                            %{--<td>${fieldValue(bean: feedbackInstance, field: "userId")}</td>--}%
+                            <td>
+                            <a href="/guihuabao/login/userShow/4" class="btn btn-success btn-xs"><i class="fa fa-eye"></i></a>
+
+                            <g:link  action="feedbackdelete" id="${feedbackInstance.id}" class="btn btn-danger btn-xs" onClick="return confirm('确定删除？');"><i class="fa fa-trash-o "></i></g:link>
+                        </td>
                         </tr>
                     </g:each>
 

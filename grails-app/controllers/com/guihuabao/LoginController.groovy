@@ -580,6 +580,26 @@ class LoginController {
         flash.message = message(code: 'default.created.message', args: [message(code: 'syllabus.label', default: 'Syllabus'), syllabusInstance.id])
         redirect(action: "syllShow", id: syllabusInstance.id)
     }
+    def feedbackdelete(Long id) {
+        def feedbackInstance = Feedback.get(id)
+        if (!feedbackInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'feedback.label', default: 'Feedback'), id])
+            redirect(controller: "login",action: "feedback")
+            return
+        }
+
+        try {
+            feedbackInstance.delete(flush: true)
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'feedback.label', default: 'Feedback'), id])
+            redirect(controller: "login",action: "feedback")
+        }
+        catch (DataIntegrityViolationException e) {
+            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'feedback.label', default: 'Feedback'), id])
+            redirect(action: "show", id: id)
+        }
+    }
+
+
     def upload(){
 
         def rs=[:]

@@ -85,14 +85,14 @@ class FeedbackController {
         def feedbackInstance = Feedback.get(id)
         if (!feedbackInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'feedback.label', default: 'Feedback'), id])
-            redirect(action: "list")
+            redirect(controller: "login",action: "feedback")
             return
         }
 
         try {
             feedbackInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'feedback.label', default: 'Feedback'), id])
-            redirect(action: "list")
+            redirect(controller: "login",action: "feedback")
         }
         catch (DataIntegrityViolationException e) {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'feedback.label', default: 'Feedback'), id])
