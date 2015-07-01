@@ -40,35 +40,33 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper mt80">
-            <div class="middle_content">
-                <div class="m_box">
-
-                    <header class="panel-heading clearfix">
-                        大纲
-                        <g:link action="syllabusEdit" class="btn btn-info" style="display:block;float:right;">修改</g:link>
-                        <g:link action="syllabusDelete" class="btn btn-info" style="display:block;float:right;">删除</g:link>
-                    </header>
-                    <table>
-                        <tr>
-                            <td>名称：</td>
-                            <td width="345"><g:fieldValue bean="${syllabusInstance}" field="syllabusName"/></td>
-                        </tr>
-                        <tr>
-                            <td>封面：</td>
-                            <td>
-                                <g:fieldValue bean="${syllabusInstance}" field="remark"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <g:link action="syllabusList" class="btn btn-info">返回</g:link>
-                                <g:link action="chapterCreate" class="btn btn-info">新建章节</g:link>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+            <div class="hxzs_heading clearfix">
+                <h2>书籍内容</h2>
+                <g:link action="contentCreate" class="btn btn-info" style="display:block;float:right;">新建内容</g:link>
+                <g:link action="chapterList" class="btn btn-info" style="display:block;float:right;">返回章节</g:link>
             </div>
+            <div class="content mt25">
+                <table class="table table-striped table-advance table-hover">
+                    <tr class="even">
+                        <th>编号</th>
+                        <th>标题名称</th>
+                        <th>操作</th>
+                    </tr>
+                    <g:each in="${contentInstanceList}" status="i" var="contentInstance">
+                        <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+                            <td>${fieldValue(bean: contentInstance, field: "id")}</td>
+                            <td>${fieldValue(bean: contentInstance, field: "contentName")}</td>
+                            <td>
+                                <g:link action="contentShow" id="${contentInstance?.id}" class="btn btn-success btn-xs"><i class="fa fa-eye"></i></g:link>
+                                <g:link action="contentEdit" id="${contentInstance?.id}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></g:link>
+                                <g:link action="contentDelete" id="${contentInstance?.id}" class="btn btn-danger btn-xs" onclick="return confirm('确定删除？');"><i class="fa fa-trash-o "></i></g:link>
+                            </td>
+                        </tr>
+                    </g:each>
+                </table>
+
+            </div>
+
         </section>
         <!--main content end-->
 
@@ -107,8 +105,6 @@
     <script src="${resource(dir: 'js', file: 'easy-pie-chart.js')}"></script>
     <script src="${resource(dir: 'js', file: 'count.js')}"></script>
 
-    %{--<script>--}%
-
     %{--//owl carousel--}%
 
     %{--$(document).ready(function() {--}%
@@ -129,13 +125,6 @@
     %{--});--}%
 
     %{--</script>--}%
-    <!--上传图片预览 js-->
-    <script src="${resource(dir: 'js', file: 'uploadPreview.js')}"></script>
-    <script type="text/javascript">
-        window.onload = function () {
-            new uploadPreview({ UpBtn: "up_img", DivShow: "imgdiv", ImgShow: "imgShow" });
-        }
-    </script>
 
 </body>
 </html>

@@ -64,6 +64,7 @@
                             <td>
                                 <g:link action="hxhelper" class="btn btn-info">返回</g:link>
                                 <g:link action="syllabusCreate" class="btn btn-info">新建大纲</g:link>
+                                <g:link action="syllabusList" class="btn btn-info">大纲列表</g:link>
                             </td>
                         </tr>
                     </table>

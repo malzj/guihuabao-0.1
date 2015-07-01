@@ -40,35 +40,18 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper mt80">
-            <div class="middle_content">
-                <div class="m_box">
-
-                    <header class="panel-heading clearfix">
-                        大纲
-                        <g:link action="syllabusEdit" class="btn btn-info" style="display:block;float:right;">修改</g:link>
-                        <g:link action="syllabusDelete" class="btn btn-info" style="display:block;float:right;">删除</g:link>
-                    </header>
-                    <table>
-                        <tr>
-                            <td>名称：</td>
-                            <td width="345"><g:fieldValue bean="${syllabusInstance}" field="syllabusName"/></td>
-                        </tr>
-                        <tr>
-                            <td>封面：</td>
-                            <td>
-                                <g:fieldValue bean="${syllabusInstance}" field="remark"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <g:link action="syllabusList" class="btn btn-info">返回</g:link>
-                                <g:link action="chapterCreate" class="btn btn-info">新建章节</g:link>
-                            </td>
-                        </tr>
-                    </table>
+            <g:form class="form-horizontal tasi-form" url="[controller:'login',action:'chapterSave']" method="post"  enctype= "multipart/form-data">
+                <div class="hxzs_heading clearfix">
+                    <h2><g:fieldValue bean="${contentInstance}" field="title"/></h2>
+                    <button type="submit" class="btn btn-info f-r">保存</button>
                 </div>
-            </div>
+                <div class="mt25">
+                    <div class="textarea">
+                        <textarea name="content"></textarea>
+                    </div>
+
+                </div>
+            </g:form>
         </section>
         <!--main content end-->
 
@@ -129,13 +112,6 @@
     %{--});--}%
 
     %{--</script>--}%
-    <!--上传图片预览 js-->
-    <script src="${resource(dir: 'js', file: 'uploadPreview.js')}"></script>
-    <script type="text/javascript">
-        window.onload = function () {
-            new uploadPreview({ UpBtn: "up_img", DivShow: "imgdiv", ImgShow: "imgShow" });
-        }
-    </script>
 
 </body>
 </html>

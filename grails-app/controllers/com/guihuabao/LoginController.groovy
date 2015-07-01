@@ -595,7 +595,21 @@ class LoginController {
     def chapterList(Integer max){
 
     }
+    def chapterCreate(){
+
+    }
     def chapterShow(Long id) {
+
+    }
+
+    //内容
+    def contentList(Integer max){
+
+    }
+    def contentCreate(){
+
+    }
+    def contentShow(Long id) {
 
     }
     def feedbackdelete(Long id) {
