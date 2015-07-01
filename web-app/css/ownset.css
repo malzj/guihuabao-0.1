@@ -51,11 +51,12 @@ body{padding:0;margin:0;}
 
 /*user_add start*/
 .middle_content{ position:relative; width:100%; height:100%;}
-.middle_content .m_box{width:800px;padding-bottom:20px;background-color:#FFF; border-radius:4px;-webkit-box-shadow:0px 0px 25px 15px #d5d5d2;box-shadow:0px 0px 25px 15px #d5d5d2; position:absolute; top:10%; left:21%;}
+.middle_content .m_box{width:800px;padding-bottom:20px;background-color:#FFF; border-radius:4px;-webkit-box-shadow:0px 0px 25px 15px #d5d5d2;box-shadow:0px 0px 25px 15px #d5d5d2; position:absolute; top:5%; left:21%;}
 .middle_content .panel-heading{height:45px; overflow: hidden;border-bottom:1px #d2d2d2 solid;background-color:#fff;margin-bottom:30px;}
 .middle_content .panel-heading span{font-size:16px;color:#666;}
 .middle_content .panel-heading span{margin:0 0 0 12px; padding-top:9px;}
 .middle_content .panel-heading span .yh{display:inline-block; height:21px; width:30px; background:url("../img/yh.png") no-repeat;}
+.middle_content .panel-heading .btn{ margin-left:10px; padding:2px 12px; }
 
 .middle_content table{margin:0 auto;border-spacing: 20px;border-collapse: separate;}
 .middle_content table .input-medium{width:345px;}

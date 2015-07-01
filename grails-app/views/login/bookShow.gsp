@@ -43,35 +43,30 @@
             <div class="middle_content">
                 <div class="m_box">
 
-                    <header class="panel-heading">
+                    <header class="panel-heading clearfix">
                         新建助手
+                        <g:link action="bookEdit" class="btn btn-info" style="display:block;float:right;">修改</g:link>
+                        <g:link action="bookDelete" class="btn btn-info" style="display:block;float:right;">删除</g:link>
                     </header>
-
-                        <table>
-                            <tr>
-                                <td>名称：</td>
-                                <td width="345"><input name="bookName" class="form-control form-control-inline input-medium default-date-picker" type="text" value="${bookInstance?.bookName}"></td>
-                            </tr>
-                            <tr>
-                                <td>封面：</td>
-                                <td>
-                                    <input id="up_img" name="bookImg" type="file" value="${bookInstance?.bookImg}" />
-                                    <div id="imgdiv" class="zsimg"><img id="imgShow" /></div>
-                                    <span>上传封面：（232*196）</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>创建时间：</td>
-                                <td><g:fieldValue bean="${bookInstance}" field="dateCreate"/> </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <g:link action="hxhelper" class="btn btn-info">返回助手</g:link>
-                                    <g:link action="syllabusCreate" class="btn btn-info">新建大纲</g:link>
-                                </td>
-                            </tr>
-                        </table>
+                    <table>
+                        <tr>
+                            <td>名称：</td>
+                            <td width="345"><g:fieldValue bean="${bookInstance}" field="bookName"/></td>
+                        </tr>
+                        <tr>
+                            <td>封面：</td>
+                            <td>
+                                <div id="imgdiv" class="zsimg"><img id="imgShow" src="${resource(dir: 'images', file: ''+bookInstance.bookImg+'')}" /></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <g:link action="hxhelper" class="btn btn-info">返回</g:link>
+                                <g:link action="syllabusCreate" class="btn btn-info">新建大纲</g:link>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </section>
