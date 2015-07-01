@@ -44,26 +44,26 @@
                 <div class="m_box">
 
                     <header class="panel-heading clearfix">
-                        新建助手
-                        <g:link action="bookEdit" class="btn btn-info" style="display:block;float:right;">修改</g:link>
-                        <g:link action="bookDelete" class="btn btn-info" style="display:block;float:right;">删除</g:link>
+                        书籍章节
+                        <g:link action="chapterEdit" class="btn btn-info" style="display:block;float:right;">修改</g:link>
+                        <g:link action="chapterDelete" class="btn btn-info" style="display:block;float:right;">删除</g:link>
                     </header>
                     <table>
                         <tr>
                             <td>章节名称：</td>
-                            <td width="345"><g:fieldValue bean="${bookInstance}" field="bookName"/></td>
+                            <td width="345"><g:fieldValue bean="${chapterInstance}" field="chapterName"/></td>
                         </tr>
                         <tr>
-                            <td>封面：</td>
+                            <td>备注：</td>
                             <td>
-                                <g:fieldValue bean="${bookInstance}" field="bookName"/>
+                                <g:fieldValue bean="${chapterInstance}" field="remark"/>
                             </td>
                         </tr>
                         <tr>
                             <td></td>
                             <td>
-                                <g:link action="hxhelper" class="btn btn-info">返回</g:link>
-                                <g:link action="syllabusCreate" class="btn btn-info">新建大纲</g:link>
+                                <g:link action="chapterList" class="btn btn-info">返回</g:link>
+                                <g:link action="contentCreate" class="btn btn-info">新建内容</g:link>
                             </td>
                         </tr>
                     </table>
