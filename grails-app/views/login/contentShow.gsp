@@ -49,10 +49,11 @@
                         <g:link action="contentDelete" class="btn btn-info" style="display:block;float:right;">删除</g:link>
                     </header>
                     <div id="content_page">
-                        <g:fieldValue bean="${bookInstance}" field="content"/>
+                        %{--<g:fieldValue bean="${content}" field="introduction"/>--}%
+                        ${content.introduction}
                     </div>
                     <div id="content_btn">
-                        <g:link action="contentList" class="btn btn-info">返回</g:link>
+                        <g:link action="contentList" id="${content.chapter.id}" class="btn btn-info">返回</g:link>
                     </div>
                 </div>
             </div>

@@ -42,8 +42,8 @@
         <section class="wrapper mt80">
             <div class="hxzs_heading clearfix">
                 <h2>书籍章节</h2>
-                <g:link action="chapterCreate" class="btn btn-info" style="display:block;float:right;">新建章节</g:link>
-                <g:link action="syllabusList" class="btn btn-info" style="display:block;float:right;">返回大纲</g:link>
+                <g:link action="chapterCreate" id="${syllabusId}" class="btn btn-info" style="display:block;float:right;">新建章节</g:link>
+                <g:link action="syllabusList" id="${bookId}" class="btn btn-info" style="display:block;float:right;">返回大纲</g:link>
             </div>
             <div class="content mt25">
                 <table class="table table-striped table-advance table-hover">

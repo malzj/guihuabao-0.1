@@ -42,8 +42,8 @@
         <section class="wrapper mt80">
             <div class="hxzs_heading clearfix">
                 <h2>书籍内容</h2>
-                <g:link action="contentCreate" class="btn btn-info" style="display:block;float:right;">新建内容</g:link>
-                <g:link action="chapterList" class="btn btn-info" style="display:block;float:right;">返回章节</g:link>
+                <g:link action="contentCreate" id="${chapterId}" class="btn btn-info" style="display:block;float:right;">新建内容</g:link>
+                <g:link action="chapterList" id="${syllabusId}" class="btn btn-info" style="display:block;float:right;">返回章节</g:link>
             </div>
             <div class="content mt25">
                 <table class="table table-striped table-advance table-hover">
@@ -55,7 +55,7 @@
                     <g:each in="${contentInstanceList}" status="i" var="contentInstance">
                         <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
                             <td>${fieldValue(bean: contentInstance, field: "id")}</td>
-                            <td>${fieldValue(bean: contentInstance, field: "contentName")}</td>
+                            <td>${fieldValue(bean: contentInstance, field: "title")}</td>
                             <td>
                                 <g:link action="contentShow" id="${contentInstance?.id}" class="btn btn-success btn-xs"><i class="fa fa-eye"></i></g:link>
                                 <g:link action="contentEdit" id="${contentInstance?.id}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></g:link>

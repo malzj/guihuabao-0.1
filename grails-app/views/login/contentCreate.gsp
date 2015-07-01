@@ -40,11 +40,16 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper mt80">
-            <g:form class="form-horizontal tasi-form" url="[controller:'login',action:'chapterSave']" method="post"  enctype= "multipart/form-data">
+            <g:form class="form-horizontal tasi-form" url="[controller:'login',action:'contentSave']" method="post"  enctype= "multipart/form-data">
+
                 <div class="hxzs_heading clearfix">
-                    <h2><g:fieldValue bean="${contentInstance}" field="title"/></h2>
-                    <button type="submit" class="btn btn-info f-r">保存</button>
+                    %{--<header class="panel-heading">--}%
+                        <h2>新建内容</h2>
+                        <button type="submit" class="btn btn-info f-r">保存</button>
+                    %{--</header>--}%
+
                 </div>
+                <g:hiddenField name="chapterId" value="${chapterId}"></g:hiddenField>
                 <div class="mt25">
                     <div class="form-group">
                         <label class="col-lg-3 col-sm-3 control-label">标题：</label>
@@ -53,7 +58,7 @@
                         </div>
                     </div>
                     <div class="textarea">
-                        <textarea id="editor_id" name="introduction" style="width:100%;height:500px;">${contentInstance.introduction}</textarea>
+                        <textarea id="editor_id" name="introduction" style="width:100%;height:500px;"></textarea>
                     </div>
 
                 </div>

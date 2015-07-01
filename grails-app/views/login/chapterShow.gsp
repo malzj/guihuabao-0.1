@@ -51,38 +51,27 @@
                     <table>
                         <tr>
                             <td>章节名称：</td>
-                            <td width="345"><g:fieldValue bean="${chapterInstance}" field="chapterName"/></td>
+                            <td width="345"><g:fieldValue bean="${chapter}" field="chapterName"/></td>
                         </tr>
                         <tr>
                             <td>备注：</td>
                             <td>
-                                <g:fieldValue bean="${chapterInstance}" field="remark"/>
+                                <g:fieldValue bean="${chapter}" field="remark"/>
                             </td>
                         </tr>
                         <tr>
                             <td></td>
                             <td>
-                                <g:link action="chapterList" class="btn btn-info">返回</g:link>
-                                <g:link action="contentCreate" class="btn btn-info">新建内容</g:link>
-                                <g:link action="contentList" class="btn btn-info">内容列表</g:link>
+                                <g:link action="chapterList" id="${chapter.syllabus.id}" class="btn btn-info">返回</g:link>
+                                <g:link action="contentCreate" id="${chapter.id}" class="btn btn-info">新建内容</g:link>
+                                <g:link action="contentList" id="${chapter.id}" class="btn btn-info">内容列表</g:link>
                             </td>
                         </tr>
                     </table>
                 </div>
             </div>
         </section>
-        <!--main content end-->
 
-        <!--footer start-->
-        %{--<footer class="site-footer">--}%
-        %{--<div class="text-center">--}%
-        %{--2013 &copy; FlatLab by VectorLab.--}%
-        %{--<a href="index.html#" class="go-top">--}%
-        %{--<i class="fa fa-angle-up"></i>--}%
-        %{--</a>--}%
-        %{--</div>--}%
-        %{--</footer>--}%
-        <!--footer end-->
     </section>
 
     <!-- js placed at the end of the document so the pages load faster -->

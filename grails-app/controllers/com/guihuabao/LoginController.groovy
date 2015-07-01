@@ -575,7 +575,7 @@ class LoginController {
         [syllabusInstance: new Syllabus(params),bookId:id]
     }
     def syllabusSave(){
-       
+
         def syllabusInstance = new Syllabus(params)
         syllabusInstance.book=Book.get(params.bookId)
         syllabusInstance.dateCreate=new Date()
@@ -598,25 +598,78 @@ class LoginController {
         [syllabusInstance: syllabusInstance]
     }
     //章节
-    def chapterList(Integer max){
+    def chapterList(Integer max,Long id){
+        params.max = Math.min(max ?: 10, 100)
+        def syllabus= Syllabus.get(id)
+        def chapterInstanceList=Chapter.findAllBySyllabus(syllabus,params)
+        def chapterInstanceTotal=Chapter.countBySyllabus(syllabus)
+
+        [chapterInstanceList: chapterInstanceList, chapterInstanceTotal: chapterInstanceTotal,bookId:syllabus.book.id,syllabusId:id]
+    }
+    def chapterCreate(Long id){
+        [chapterInstance: new Syllabus(params),syllabusId:id]
 
     }
-    def chapterCreate(){
+    def chapterSave(){
+        def chapter = new Chapter(params)
+        chapter.syllabus=Syllabus.get(params.syllabusId)
+        chapter.dateCreate=new Date()
+        if (!chapter.save(flush: true)) {
+            render(view: "syllabusCreate", model: [chapter: chapter])
+            return
+        }
 
+        flash.message = message(code: 'default.created.message', args: [message(code: 'syllabus.label', default: 'Syllabus'), chapter.id])
+        redirect(action: "chapterShow", id: chapter.id)
     }
     def chapterShow(Long id) {
+        def chapter = Chapter.get(id)
+        if (!chapter) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'syllabus.label', default: 'Syllabus'), id])
+            redirect(action: "syllabusList")
+            return
+        }
+
+        [chapter: chapter]
+
 
     }
 
     //内容
-    def contentList(Integer max){
+    def contentList(Integer max,Long id){
+        params.max = Math.min(max ?: 10, 100)
+        def   contentInstanceList=Content.findAllByChapter(Chapter.get(id),params)
+        def contentInstanceTotal=Content.countByChapter(Chapter.get(id))
+
+        [contentInstanceList: contentInstanceList, contentInstanceTotal: contentInstanceTotal,chapterId: id,syllabusId: Chapter.get(id).syllabus.id]
+
 
     }
-    def contentCreate(){
+    def contentCreate(Long id){
+        [contentInstance: new Content(params),chapterId:id]
+    }
+    def contentSave(){
+        def contentInstance = new Content(params)
+        contentInstance.chapter=Chapter.get(params.chapterId)
+        contentInstance.dateCreate=new Date()
+        if (!contentInstance.save(flush: true)) {
+            render(view: "create", model: [contentInstance: contentInstance])
+            return
+        }
+
+        flash.message = message(code: 'default.created.message', args: [message(code: 'content.label', default: 'Content'), contentInstance.id])
+        redirect(action: "contentShow", id: contentInstance.id)
 
     }
     def contentShow(Long id) {
+        def content = Content.get(id)
+        if (!content) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'syllabus.label', default: 'Syllabus'), id])
+            redirect(action: "syllabusList")
+            return
+        }
 
+        [content: content]
     }
     def feedbackdelete(Long id) {
         def feedbackInstance = Feedback.get(id)
