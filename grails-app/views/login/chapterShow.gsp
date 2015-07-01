@@ -64,6 +64,7 @@
                             <td>
                                 <g:link action="chapterList" class="btn btn-info">返回</g:link>
                                 <g:link action="contentCreate" class="btn btn-info">新建内容</g:link>
+                                <g:link action="contentList" class="btn btn-info">内容列表</g:link>
                             </td>
                         </tr>
                     </table>
