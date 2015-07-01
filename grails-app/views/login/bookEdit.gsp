@@ -43,31 +43,39 @@
             <div class="middle_content">
                 <div class="m_box">
 
-                    <header class="panel-heading clearfix">
-                        大纲
-                        <g:link action="syllabusEdit" class="btn btn-info" style="display:block;float:right;">修改</g:link>
-                        <g:link action="syllabusDelete" class="btn btn-info" style="display:block;float:right;">删除</g:link>
+                    <header class="panel-heading">
+                        编辑助手
                     </header>
-                    <table>
-                        <tr>
-                            <td>名称：</td>
-                            <td width="345"><g:fieldValue bean="${syllabusInstance}" field="syllabusName"/></td>
-                        </tr>
-                        <tr>
-                            <td>封面：</td>
-                            <td>
-                                <g:fieldValue bean="${syllabusInstance}" field="remark"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <g:link action="syllabusList" id="${syllabusInstance.book.id}" class="btn btn-info">返回</g:link>
-                                <g:link action="chapterCreate" id="${syllabusInstance.id}" class="btn btn-info">新建章节</g:link>
-                                <g:link action="chapterList" id="${syllabusInstance.id}" class="btn btn-info">章节列表</g:link>
-                            </td>
-                        </tr>
-                    </table>
+
+                    <g:form class="form-horizontal tasi-form" url="[controller:'login',action:'bookSave']" method="post"  enctype= "multipart/form-data">
+                        <g:hiddenField name="id" value="${bookInstance?.id}" />
+                        <g:hiddenField name="version" value="${bookInstance?.version}" />
+                        <table>
+                            <tr>
+                                <td>名称：</td>
+                                <td width="345"><input name="bookName" class="form-control form-control-inline input-medium default-date-picker" type="text" value="${bookInstance?.bookName}"></td>
+                            </tr>
+                            <tr>
+                                <td>封面：</td>
+                                <td>
+                                    <input id="up_img" name="bookImg" type="file" value="${bookInstance?.bookImg}" />
+                                    <div id="imgdiv" class="zsimg"><img id="imgShow" /></div>
+                                    <span>上传封面：（232*196）</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>创建时间：</td>
+                                <td><g:datePicker name="dateCreate" precision="day" value="${bookInstance?.dateCreate}" /> </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <button type="submit" class="btn btn-info">保存</button>
+                                    <button class="btn btn-info">返回</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </g:form>
                 </div>
             </div>
         </section>

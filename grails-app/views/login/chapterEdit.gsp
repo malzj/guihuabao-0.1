@@ -42,32 +42,31 @@
         <section class="wrapper mt80">
             <div class="middle_content">
                 <div class="m_box">
+                    <g:form class="form-horizontal tasi-form" url="[controller:'login',action:'chapterSave']" method="post"  enctype= "multipart/form-data">
+                        <g:hiddenField name="id" value="${chapterInstance?.id}" />
+                        <g:hiddenField name="version" value="${chapterInstance?.version}" />
+                        <header class="panel-heading">
+                            编辑章节
+                        </header>
 
-                    <header class="panel-heading clearfix">
-                        大纲
-                        <g:link action="syllabusEdit" class="btn btn-info" style="display:block;float:right;">修改</g:link>
-                        <g:link action="syllabusDelete" class="btn btn-info" style="display:block;float:right;">删除</g:link>
-                    </header>
-                    <table>
-                        <tr>
-                            <td>名称：</td>
-                            <td width="345"><g:fieldValue bean="${syllabusInstance}" field="syllabusName"/></td>
-                        </tr>
-                        <tr>
-                            <td>封面：</td>
-                            <td>
-                                <g:fieldValue bean="${syllabusInstance}" field="remark"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <g:link action="syllabusList" id="${syllabusInstance.book.id}" class="btn btn-info">返回</g:link>
-                                <g:link action="chapterCreate" id="${syllabusInstance.id}" class="btn btn-info">新建章节</g:link>
-                                <g:link action="chapterList" id="${syllabusInstance.id}" class="btn btn-info">章节列表</g:link>
-                            </td>
-                        </tr>
-                    </table>
+                        <table>
+                            <tr>
+                                <td>名称：</td>
+                                <td width="345"><input name="chapterName" class="form-control form-control-inline input-medium default-date-picker" type="text" value="${chapterInstance?.syllabusName}"></td>
+                            </tr>
+                            <tr>
+                                <td>备注：</td>
+                                <td><input name="remark" class="form-control form-control-inline input-medium default-date-picker" type="text" value="${chapterInstance?.remark}"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <button type="submit" class="btn btn-info">保存</button>
+                                    <button class="btn btn-info">返回</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </g:form>
                 </div>
             </div>
         </section>
@@ -130,13 +129,6 @@
     %{--});--}%
 
     %{--</script>--}%
-    <!--上传图片预览 js-->
-    <script src="${resource(dir: 'js', file: 'uploadPreview.js')}"></script>
-    <script type="text/javascript">
-        window.onload = function () {
-            new uploadPreview({ UpBtn: "up_img", DivShow: "imgdiv", ImgShow: "imgShow" });
-        }
-    </script>
 
 </body>
 </html>
