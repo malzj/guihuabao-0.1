@@ -44,70 +44,23 @@
                         <h2>和许助手</h2>
                         <g:link action="bookCreate" class="btn btn-info" style="display:block;float:right;">新建助手</g:link>
                     </div>
-                    <div class="mt25">
-                        <div class="zs_style">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_1.png')}" height="195" width="235" />
-                            </a>
-                            <span>服务体系</span>
-                        </div>
-                        <div class="zs_style">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_2.png')}" height="195" width="235" />
-                            </a>
-                            <span>盈利模式</span>
-                        </div>
-                        <div class="zs_style">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_3.png')}" height="195" width="235" />
-                            </a>
-                            <span>选址规划</span>
-                        </div>
-                        <div class="zs_style">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_4.png')}" height="195" width="235" />
-                            </a>
-                            <span>招商规划</span>
-                        </div>
-                        <div class="zs_style">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_5.png')}" height="195" width="235" />
-                            </a>
-                            <span>人力资源</span>
-                        </div>
-                        <div class="zs_style ml0">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_6.png')}" height="195" width="235" />
-                            </a>
-                            <span>财务体系</span>
-                        </div>
-                        <div class="zs_style ml0">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_7.png')}" height="195" width="235" />
-                            </a>
-                            <span>领导体系</span>
-                        </div>
-                        <div class="zs_style ml0">
-                            <a href="#">
-                                <img src="${resource(dir: 'img', file: 'zs_img_8.png')}" height="195" width="235" />
-                            </a>
-                            <span>员工手册</span>
-                        </div>
-                    </div>
+            <div class="mt25">
+            <g:each in="${bookInstanceList}" status="i" var="bookInstance">
+                <div class="zs_style">
+                    <g:link href="#">
+                        <img src="${resource(dir: 'images', file: ''+bookInstance.bookImg+'')}" height="195" width="235" />
+                    </g:link>
+                    <span>${bookInstance.bookName}</span>
+                </div>
+
+
+                </tr>
+            </g:each>
+                </div>
+
 
         </section>
-        <!--main content end-->
 
-        <!--footer start-->
-        %{--<footer class="site-footer">--}%
-        %{--<div class="text-center">--}%
-        %{--2013 &copy; FlatLab by VectorLab.--}%
-        %{--<a href="index.html#" class="go-top">--}%
-        %{--<i class="fa fa-angle-up"></i>--}%
-        %{--</a>--}%
-        %{--</div>--}%
-        %{--</footer>--}%
-        <!--footer end-->
     </section>
 
     <!-- js placed at the end of the document so the pages load faster -->

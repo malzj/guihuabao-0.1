@@ -61,7 +61,7 @@
 
                             %{--<td>${fieldValue(bean: feedbackInstance, field: "userId")}</td>--}%
                             <td>
-                            <a href="/guihuabao/login/userShow/4" class="btn btn-success btn-xs"><i class="fa fa-eye"></i></a>
+                            <g:link action="feedbackShow" id="${feedbackInstance.id}" class="btn btn-success btn-xs"><i class="fa fa-eye"></i></g:link>
 
                             <g:link  action="feedbackdelete" id="${feedbackInstance.id}" class="btn btn-danger btn-xs" onClick="return confirm('确定删除？');"><i class="fa fa-trash-o "></i></g:link>
                         </td>

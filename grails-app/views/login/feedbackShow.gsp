@@ -50,16 +50,16 @@
                     <table>
                         <tr>
                             <td>用户名：</td>
-                            <td width="345"><g:fieldValue bean="${userInstance}" field="name"/></td>
+                            <td width="345"><g:fieldValue bean="${feedback}" field="username"/></td>
                         </tr>
                         <tr>
                             <td>反馈内容：</td>
-                            <td><g:fieldValue bean="${userInstance}" field="username"/></td>
+                            <td><g:fieldValue bean="${feedback}" field="content"/></td>
                         </tr>
                         <tr>
                             <td></td>
                             <td align="right">
-                                    <g:link controller="login" action="userEdit" id="${userInstance?.id}" class="btn btn-info">返回</g:link>
+                                    <g:link controller="login" action="feedback"  class="btn btn-info">返回</g:link>
                             </td>
                         </tr>
                     </table>
