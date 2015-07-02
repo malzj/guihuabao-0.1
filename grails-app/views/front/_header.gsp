@@ -6,7 +6,7 @@
             <ul>
                 <li><a href="javascript:;"><i class="fa fa-bell"></i>消息<span class="badge bg-important">5</span></a></li>
                 <li>|</li>
-                <li><i class="fa fa-cog"></i>设置<a href="javascript:;" class="fa fa-chevron-down"></a></li>
+                <li><g:link action="personalSet" ><i class="fa fa-cog"></i>设置</g:link></li>
                 <li>|</li>
                 <li><a href="javascript:;"><i></i>安全退出</a></li>
             </ul>

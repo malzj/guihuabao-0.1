@@ -6,15 +6,10 @@
         </div>
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-            <li class="sub-menu dcjq-parent-li">
-                <a class="dcjq-parent" href="javascript:;">
+            <li>
+                <g:link controller="front" action="personalSet">
                     <span>个人设置</span>
-                    <span class="dcjq-icon"></span>
-                </a>
-                <ul style="display: block;" class="sub">
-                    <li><a href="#">和许助手</a></li>
-                    <li><a href="#">和许设置</a></li>
-                </ul>
+                </g:link>
             </li>
             <li class="sub-menu dcjq-parent-li">
                 <a class="dcjq-parent" href="javascript:;">

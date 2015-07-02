@@ -42,17 +42,10 @@
         <section class="wrapper">
             <div class="info_content">
                 <div class="info_title">
-                    帮助与反馈
+                    个人设置
                 </div>
                 <div class="text">
-                    <g:form >
-                        <g:hiddenField name="userId"></g:hiddenField>
-                        <g:hiddenField name="userName"></g:hiddenField>
-                        <div>
-                            <textarea name="content"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-info">保存</button>
-                    </g:form>
+
                 </div>
             </div>
         </section>

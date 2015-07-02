@@ -289,4 +289,8 @@ class FrontController {
     def feedback(){
 
     }
+    //个人设置
+    def personalSet(){
+
+    }
 }
