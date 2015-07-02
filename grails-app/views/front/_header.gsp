@@ -24,7 +24,7 @@
             <li><a href="javascript:;"><i class="app"></i>应用</a></li>
             <li><a href="javascript:;"><i class="ht"></i>后台</a></li>
         </ul>
-        <a href="javascript:;" class="f-r zs"><i></i>和许助手</a>
+        <g:link action="hxhelper" class="f-r zs"><i></i>和许助手</g:link>
     </div>
 </header>
 <!--header end-->
