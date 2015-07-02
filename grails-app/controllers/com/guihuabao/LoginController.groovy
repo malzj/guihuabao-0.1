@@ -693,7 +693,79 @@ class LoginController {
            def feedback= Feedback.get(id)
            [feedback:feedback]
        }
+    def bookdelete(Long id){
+        def bookInstance = Book.get(id)
+        if (!bookInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'book.label', default: 'Book'), id])
+            redirect(action: "hxhelper")
+            return
+        }
 
+        try {
+            bookInstance.delete(flush: true)
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'book.label', default: 'Book'), id])
+            redirect(action: "hxhelper")
+        }
+        catch (DataIntegrityViolationException e) {
+            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'book.label', default: 'Book'), id])
+            redirect(action: "show", id: id)
+        }
+    }
+    def syllabusDelete(Long id){
+        def syllabusInstance = Syllabus.get(id)
+
+        if (!syllabusInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'syllabus.label', default: 'Syllabus'), id])
+            redirect(action: "syllabusList",id: syllabusInstance.book.id)
+            return
+        }
+
+        try {
+            syllabusInstance.delete(flush: true)
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'syllabus.label', default: 'Syllabus'), id])
+            redirect(action: "syllabusList",id: syllabusInstance.book.id)
+        }
+        catch (DataIntegrityViolationException e) {
+            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'syllabus.label', default: 'Syllabus'), id])
+            redirect(action: "show", id: id)
+        }
+    }
+    def charterDelete(Long id){
+        def chapterInstance = Chapter.get(id)
+        if (!chapterInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'chapter.label', default: 'Chapter'), id])
+            redirect(action: "chapterList" ,id:chapterInstance.syllabus.id)
+            return
+        }
+
+        try {
+            chapterInstance.delete(flush: true)
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'chapter.label', default: 'Chapter'), id])
+            redirect(action: "chapterList" ,id:chapterInstance.syllabus.id)
+        }
+        catch (DataIntegrityViolationException e) {
+            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'chapter.label', default: 'Chapter'), id])
+            redirect(action: "show", id: id)
+        }
+    }
+    def contentDelete(Long id){
+        def contentInstance = Content.get(id)
+        if (!contentInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'content.label', default: 'Content'), id])
+            redirect(action: "contentList",id: contentInstance.chapter.id)
+            return
+        }
+
+        try {
+            contentInstance.delete(flush: true)
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'content.label', default: 'Content'), id])
+            redirect(action: "contentList",id: contentInstance.chapter.id)
+        }
+        catch (DataIntegrityViolationException e) {
+            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'content.label', default: 'Content'), id])
+            redirect(action: "show", id: id)
+        }
+    }
     def upload(){
 
         def rs=[:]
@@ -714,5 +786,90 @@ class LoginController {
         } else
             render rs as JSON
 
+    }
+    def bookEdit(Long id){
+        def bookInstance = Book.get(id)
+        [bookInstance: bookInstance]
+    }
+    def bookUpdate(Long id, Long version){
+        def bookInstance = Book.get(id)
+        def a =params
+        def  filePath
+        def  fileName
+
+        MultipartFile f = request.getFile('bookImg1')
+        if(!f.empty) {
+            fileName=f.getOriginalFilename()
+            filePath="web-app/images/"
+            f.transferTo(new File(filePath+fileName))
+         bookInstance.bookImg=fileName
+        }
+
+
+
+        if (!bookInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'book.label', default: 'Book'), id])
+            redirect(action: "bookShow", id: bookInstance.id)
+            return
+        }
+
+        if (version != null) {
+            if (bookInstance.version > version) {
+                bookInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+                        [message(code: 'book.label', default: 'Book')] as Object[],
+                        "Another user has updated this Book while you were editing")
+                render(view: "edit", model: [bookInstance: bookInstance])
+                return
+            }
+        }
+
+        bookInstance.properties = params
+
+
+        if (!bookInstance.save(flush: true)) {
+            render(view: "edit", model: [bookInstance: bookInstance])
+            return
+        }
+
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'book.label', default: 'Book'), bookInstance.id])
+        redirect(action: "bookShow", id: bookInstance.id)
+
+    }
+    def syllabusEdit(Long id){
+        def syllabusInstance = Syllabus.get(id)
+        if (!syllabusInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'syllabus.label', default: 'Syllabus'), id])
+            redirect(action: "list")
+            return
+        }
+        [syllabusInstance: syllabusInstance]
+    }
+    def syllabusUpdate(Long id,Long version){
+        def syllabusInstance = Syllabus.get(id)
+        if (!syllabusInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'syllabus.label', default: 'Syllabus'), id])
+            redirect(action: "list")
+            return
+        }
+
+        if (version != null) {
+            if (syllabusInstance.version > version) {
+                syllabusInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+                        [message(code: 'syllabus.label', default: 'Syllabus')] as Object[],
+                        "Another user has updated this Syllabus while you were editing")
+                render(view: "edit", model: [syllabusInstance: syllabusInstance])
+                return
+            }
+        }
+
+        syllabusInstance.properties = params
+
+        if (!syllabusInstance.save(flush: true)) {
+            render(view: "edit", model: [syllabusInstance: syllabusInstance])
+            return
+        }
+
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'syllabus.label', default: 'Syllabus'), syllabusInstance.id])
+        redirect(action: "syllabusShow", id: syllabusInstance.id)
     }
 }

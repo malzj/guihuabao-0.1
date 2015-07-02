@@ -47,7 +47,7 @@
                         编辑大纲
                     </header>
 
-                    <g:form class="form-horizontal tasi-form" url="[controller:'login',action:'syllabusSave']" method="post"  enctype= "multipart/form-data">
+                    <g:form class="form-horizontal tasi-form" url="[controller:'login',action:'syllabusUpdate']" method="post"  enctype= "multipart/form-data">
                         <g:hiddenField name="id" value="${syllabusInstance?.id}" />
                         <g:hiddenField name="version" value="${syllabusInstance?.version}" />
                         <table>
@@ -59,7 +59,7 @@
                                 <td>备注：</td>
                                 <td><input name="remark" class="form-control form-control-inline input-medium default-date-picker" type="text" value="${syllabusInstance?.remark}"></td>
                             </tr>
-                            <g:hiddenField name="bookId" value="${bookId}"></g:hiddenField>
+                            %{--<g:hiddenField name="bookId" value="${bookId}"></g:hiddenField>--}%
                             <tr>
                                 <td></td>
                                 <td>

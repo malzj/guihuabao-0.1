@@ -59,7 +59,7 @@
                             <td>
                                 <g:link action="chapterShow" id="${chapterInstance?.id}" class="btn btn-success btn-xs"><i class="fa fa-eye"></i></g:link>
                                 <g:link action="chapterEdit" id="${chapterInstance?.id}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></g:link>
-                                <g:link action="chapterDelete" id="${chapterInstance?.id}" class="btn btn-danger btn-xs" onclick="return confirm('确定删除？');"><i class="fa fa-trash-o "></i></g:link>
+                                <g:link action="charterDelete" id="${chapterInstance?.id}" class="btn btn-danger btn-xs" onclick="return confirm('确定删除？');"><i class="fa fa-trash-o "></i></g:link>
                             </td>
                         </tr>
                     </g:each>
