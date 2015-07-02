@@ -47,7 +47,7 @@
                         编辑助手
                     </header>
 
-                    <g:form class="form-horizontal tasi-form" url="[controller:'login',action:'bookSave']" method="post"  enctype= "multipart/form-data">
+                    <g:form class="form-horizontal tasi-form" url="[controller:'login',action:'bookUpdate']" method="post"  enctype= "multipart/form-data">
                         <g:hiddenField name="id" value="${bookInstance?.id}" />
                         <g:hiddenField name="version" value="${bookInstance?.version}" />
                         <table>
@@ -58,8 +58,8 @@
                             <tr>
                                 <td>封面：</td>
                                 <td>
-                                    <input id="up_img" name="bookImg" type="file" value="${bookInstance?.bookImg}" />
-                                    <div id="imgdiv" class="zsimg"><img id="imgShow" /></div>
+                                    <input id="up_img" name="bookImg1" type="file" />
+                                    <div id="imgdiv" class="zsimg"><img id="imgShow" src="${resource(dir: 'images', file: ''+bookInstance.bookImg+'')}" /></div>
                                     <span>上传封面：（232*196）</span>
                                 </td>
                             </tr>

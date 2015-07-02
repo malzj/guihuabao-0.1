@@ -46,9 +46,11 @@
                     <header class="panel-heading clearfix">
                         书籍内容
                         <g:link action="contentEdit" class="btn btn-info" style="display:block;float:right;">修改</g:link>
-                        <g:link action="contentDelete" class="btn btn-info" style="display:block;float:right;">删除</g:link>
+                        <g:link action="contentDelete" id="${content.id}" class="btn btn-info" style="display:block;float:right;" onclick="return confirm('确定删除？');">删除</g:link>
                     </header>
+                    <div id="">标题：${content.title}</div>
                     <div id="content_page">
+
                         %{--<g:fieldValue bean="${content}" field="introduction"/>--}%
                         ${content.introduction}
                     </div>
@@ -58,18 +60,7 @@
                 </div>
             </div>
         </section>
-        <!--main content end-->
 
-        <!--footer start-->
-        %{--<footer class="site-footer">--}%
-        %{--<div class="text-center">--}%
-        %{--2013 &copy; FlatLab by VectorLab.--}%
-        %{--<a href="index.html#" class="go-top">--}%
-        %{--<i class="fa fa-angle-up"></i>--}%
-        %{--</a>--}%
-        %{--</div>--}%
-        %{--</footer>--}%
-        <!--footer end-->
     </section>
 
     <!-- js placed at the end of the document so the pages load faster -->

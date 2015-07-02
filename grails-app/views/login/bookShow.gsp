@@ -44,9 +44,9 @@
                 <div class="m_box">
 
                     <header class="panel-heading clearfix">
-                        新建助手
-                        <g:link action="bookEdit" class="btn btn-info" style="display:block;float:right;">修改</g:link>
-                        <g:link action="bookDelete" class="btn btn-info" style="display:block;float:right;">删除</g:link>
+                        查看助手
+                        <g:link action="bookEdit" id="${bookInstance.id}" class="btn btn-info" style="display:block;float:right;">修改</g:link>
+                        <g:link action="bookdelete" id="${bookInstance.id}" class="btn btn-info" style="display:block;float:right;" onClick="return confirm('确定删除？');">删除</g:link>
                     </header>
                     <table>
                         <tr>
@@ -71,18 +71,7 @@
                 </div>
             </div>
         </section>
-        <!--main content end-->
 
-        <!--footer start-->
-        %{--<footer class="site-footer">--}%
-        %{--<div class="text-center">--}%
-        %{--2013 &copy; FlatLab by VectorLab.--}%
-        %{--<a href="index.html#" class="go-top">--}%
-        %{--<i class="fa fa-angle-up"></i>--}%
-        %{--</a>--}%
-        %{--</div>--}%
-        %{--</footer>--}%
-        <!--footer end-->
     </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
