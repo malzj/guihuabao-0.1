@@ -51,7 +51,7 @@
                         <div>
                             <textarea name="content"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-info">保存</button>
+                        <button type="submit" class="btn btn-info mt20">保存</button>
                     </g:form>
                 </div>
             </div>
