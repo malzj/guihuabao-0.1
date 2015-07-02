@@ -226,4 +226,21 @@ class FrontController {
         flash.message = message(code: 'default.created.message', args: [message(code: 'companyRole.label', default: 'companyRole'), companyRoleInstance.id])
         redirect(action: "companyRoleShow", id: companyRoleInstance.id)
     }
+    //和许助手
+    def hxhelper(Integer max){
+        params.max = Math.min(max ?: 10, 100)
+        [bookInstanceList: Book.list(params), bookInstanceTotal: Book.count()]
+    }
+    def book(Integer max,Long id){
+        def syll = Syllabus.findAllByBook(Book.get(id),params)
+        def sy = Syllabus.countByBook(Book.get(id))
+        def bookInstance = Book.get(id)
+        if(!bookInstance){
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'book.label', default: 'Book'), id])
+            redirect(action: "hxhelper")
+            return
+        }
+
+        [bookInstance: bookInstance,syllabusInstanceList: syll, syllabusInstanceTotal: sy]
+    }
 }

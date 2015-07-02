@@ -35,29 +35,41 @@
     <g:render template="header" />
     <!--header end-->
     <!--sidebar start-->
-    <g:render template="sidebar" />
+    <g:render template="siderbar" />
     <!--sidebar end-->
     <!--main content start-->
     <section id="main-content">
-        <section class="wrapper mt80">
-                    <div class="hxzs_heading clearfix">
-                        <h2>和许助手</h2>
-                        <g:link action="bookCreate" class="btn btn-info" style="display:block;float:right;">新建助手</g:link>
+        <section class="wrapper">
+            <div class="hxzs_content clearfix">
+                <div class="book_list">
+                    <h2><g:fieldValue bean="${bookInstance}" field="bookName"/></h2>
+                    <dl>
+                        <g:each in="${syllabusInstanceList}" status="i" var="syllabusInstance">
+                        <dt>${syllabusInstance.syllabusName}</dt>
+                            <g:each in="${syllabusInstance.chapters}" status="a" var="chapterInstance">
+                            <dd><span>${chapterInstance.chapterName}</span></dd>
+                            </g:each>
+                        </g:each>
+                    </dl>
+                </div>
+                <div class="book_show">
+                    <div class="top clearfix">
+                        <div class="address f-l">
+                            和许助手>盈利模式>第一章
+                        </div>
+                        <div class="pick_page f-r">
+                            <a class="single_page"><i></i>单页</a>
+                            <a class="double_page"><i></i>双页</a>
+                            <a class="pre_page ml25">上一页</a>
+                            <a class="next_page">下一页</a>
+                        </div>
                     </div>
-            <div class="mt25">
-            <g:each in="${bookInstanceList}" status="i" var="bookInstance">
-                <div class="zs_style">
-                    <g:link controller="login" action="bookShow" id="${bookInstance.id}">
-                        <img src="${resource(dir: 'images', file: ''+bookInstance.bookImg+'')}" height="195" width="235" />
-                    </g:link>
-                    <span>${bookInstance.bookName}</span>
+                    <div class="page b-k"></div>
+                    <div class="page b-k ml20"></div>
                 </div>
-            </g:each>
-                <img src="${resource(dir: 'img', file: 'add.png')}" height="195" width="235" />
-                </div>
-
-
+            </div>
         </section>
+        <!--main content end-->
 
     </section>
 
@@ -83,7 +95,6 @@
     <script src="${resource(dir: 'js', file: 'sparkline-chart.js')}"></script>
     <script src="${resource(dir: 'js', file: 'easy-pie-chart.js')}"></script>
     <script src="${resource(dir: 'js', file: 'count.js')}"></script>
-
 
 </body>
 </html>

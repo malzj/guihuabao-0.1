@@ -35,29 +35,26 @@
     <g:render template="header" />
     <!--header end-->
     <!--sidebar start-->
-    <g:render template="sidebar" />
+    <g:render template="siderbar" />
     <!--sidebar end-->
     <!--main content start-->
     <section id="main-content">
-        <section class="wrapper mt80">
-                    <div class="hxzs_heading clearfix">
-                        <h2>和许助手</h2>
-                        <g:link action="bookCreate" class="btn btn-info" style="display:block;float:right;">新建助手</g:link>
-                    </div>
+        <section class="wrapper">
+            <div class="hxzs_heading clearfix">
+                <h2>和许助手</h2>
+            </div>
             <div class="mt25">
-            <g:each in="${bookInstanceList}" status="i" var="bookInstance">
-                <div class="zs_style">
-                    <g:link controller="login" action="bookShow" id="${bookInstance.id}">
-                        <img src="${resource(dir: 'images', file: ''+bookInstance.bookImg+'')}" height="195" width="235" />
-                    </g:link>
-                    <span>${bookInstance.bookName}</span>
-                </div>
-            </g:each>
-                <img src="${resource(dir: 'img', file: 'add.png')}" height="195" width="235" />
-                </div>
-
-
+                <g:each in="${bookInstanceList}" status="i" var="bookInstance">
+                    <div class="zs_style">
+                        <g:link controller="front" action="book" id="${bookInstance.id}">
+                            <img src="${resource(dir: 'images', file: ''+bookInstance.bookImg+'')}" height="195" width="235" />
+                        </g:link>
+                        <span>${bookInstance.bookName}</span>
+                    </div>
+                </g:each>
+            </div>
         </section>
+        <!--main content end-->
 
     </section>
 
@@ -83,7 +80,6 @@
     <script src="${resource(dir: 'js', file: 'sparkline-chart.js')}"></script>
     <script src="${resource(dir: 'js', file: 'easy-pie-chart.js')}"></script>
     <script src="${resource(dir: 'js', file: 'count.js')}"></script>
-
 
 </body>
 </html>
