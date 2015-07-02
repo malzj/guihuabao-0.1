@@ -45,7 +45,7 @@
 
                     <header class="panel-heading clearfix">
                         书籍内容
-                        <g:link action="contentEdit" class="btn btn-info" style="display:block;float:right;">修改</g:link>
+                        <g:link action="contentEdit" id="${content.id}" class="btn btn-info" style="display:block;float:right;">修改</g:link>
                         <g:link action="contentDelete" id="${content.id}" class="btn btn-info" style="display:block;float:right;" onclick="return confirm('确定删除？');">删除</g:link>
                     </header>
                     <div id="">标题：${content.title}</div>

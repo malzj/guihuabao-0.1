@@ -689,7 +689,7 @@ class LoginController {
             redirect(action: "show", id: id)
         }
     }
-       def feedbackShow(Long id){
+    def feedbackShow(Long id){
            def feedback= Feedback.get(id)
            [feedback:feedback]
        }
@@ -871,5 +871,82 @@ class LoginController {
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'syllabus.label', default: 'Syllabus'), syllabusInstance.id])
         redirect(action: "syllabusShow", id: syllabusInstance.id)
+    }
+    def chapterEdit(Long id){
+        def chapterInstance = Chapter.get(id)
+        if (!chapterInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'chapter.label', default: 'Chapter'), id])
+            redirect(action: "list")
+            return
+        }
+
+        [chapterInstance: chapterInstance]
+    }
+    def chapterUpdate(Long id,Long version){
+        def chapterInstance = Chapter.get(id)
+        if (!chapterInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'chapter.label', default: 'Chapter'), id])
+            redirect(action: "list")
+            return
+        }
+
+        if (version != null) {
+            if (chapterInstance.version > version) {
+                chapterInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+                        [message(code: 'chapter.label', default: 'Chapter')] as Object[],
+                        "Another user has updated this Chapter while you were editing")
+                render(view: "edit", model: [chapterInstance: chapterInstance])
+                return
+            }
+        }
+
+        chapterInstance.properties = params
+
+        if (!chapterInstance.save(flush: true)) {
+            render(view: "edit", model: [chapterInstance: chapterInstance])
+            return
+        }
+
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'chapter.label', default: 'Chapter'), chapterInstance.id])
+        redirect(action: "chapterShow", id: chapterInstance.id)
+    }
+    def contentEdit(Long id){
+            def contentInstance = Content.get(id)
+            if (!contentInstance) {
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'content.label', default: 'Content'), id])
+                redirect(action: "list")
+                return
+            }
+            [contentInstance: contentInstance]
+
+    }
+    def contentUpdate(Long id, Long version){
+        def contentInstance = Content.get(id)
+        if (!contentInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'content.label', default: 'Content'), id])
+            redirect(action: "list")
+            return
+        }
+
+        if (version != null) {
+            if (contentInstance.version > version) {
+                contentInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+                        [message(code: 'content.label', default: 'Content')] as Object[],
+                        "Another user has updated this Content while you were editing")
+                render(view: "edit", model: [contentInstance: contentInstance])
+                return
+            }
+        }
+
+        contentInstance.properties = params
+
+        if (!contentInstance.save(flush: true)) {
+            render(view: "edit", model: [contentInstance: contentInstance])
+            return
+        }
+
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'content.label', default: 'Content'), contentInstance.id])
+        redirect(action: "contentShow", id: contentInstance.id)
+
     }
 }
