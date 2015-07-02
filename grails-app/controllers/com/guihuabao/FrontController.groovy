@@ -243,4 +243,50 @@ class FrontController {
 
         [bookInstance: bookInstance,syllabusInstanceList: syll, syllabusInstanceTotal: sy]
     }
+    //系统设置
+
+    //功能介绍
+    def funIntroduction(Long id){
+        def funIntroduction = FunIntroduction.get(id)
+        if (!funIntroduction) {
+//            flash.message = message(code: 'default.not.found.message', args: [message(code: 'company.label', default: 'Company'), id])
+            redirect(action: "list")
+            return
+        }
+        [funIntroduction: funIntroduction]
+    }
+    //系统通知
+    def inform(Long id){
+        def informInstance = Inform.get(id)
+        if (!informInstance) {
+//            flash.message = message(code: 'default.not.found.message', args: [message(code: 'company.label', default: 'Company'), id])
+            redirect(action: "list")
+            return
+        }
+        [informInstance: informInstance]
+    }
+    //检查版本
+    def banben(Long id){
+        def banbenInstance = Banben.get(id)
+        if (!banbenInstance) {
+//            flash.message = message(code: 'default.not.found.message', args: [message(code: 'company.label', default: 'Company'), id])
+            redirect(action: "list")
+            return
+        }
+        [banbenInstance: banbenInstance]
+    }
+    //使用条款
+    def clause(Long id){
+        def clauseInstance = Banben.get(id)
+        if (!clauseInstance) {
+//            flash.message = message(code: 'default.not.found.message', args: [message(code: 'company.label', default: 'Company'), id])
+            redirect(action: "list")
+            return
+        }
+        [clauseInstance: clauseInstance]
+    }
+    //帮助与反馈
+    def feedback(){
+
+    }
 }
