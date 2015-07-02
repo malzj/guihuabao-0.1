@@ -24,7 +24,7 @@
                 <ul style="display: block;" class="sub">
                     <li><g:link action="funIntroduction" id="1">功能介绍</g:link></li>
                     <li><g:link action="inform" id="1">系统通知</g:link></li>
-                    <li><g:link action="funIntroduction">帮助与反馈</g:link></li>
+                    <li><g:link action="feedback">帮助与反馈</g:link></li>
                     <li><g:link action="banben" id="1">检查更新版本</g:link></li>
                     <li><g:link action="clause" id="1">使用条款</g:link></li>
                 </ul>
