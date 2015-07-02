@@ -40,7 +40,7 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper mt80">
-            <g:form class="form-horizontal tasi-form" url="[controller:'login',action:'chapterSave']" method="post"  enctype= "multipart/form-data">
+            <g:form class="form-horizontal tasi-form" url="[controller:'login',action:'contentUpdate']" method="post"  enctype= "multipart/form-data">
                 <g:hiddenField name="id" value="${contentInstance?.id}" />
                 <g:hiddenField name="version" value="${contentInstance?.version}" />
                 <div class="hxzs_heading clearfix">

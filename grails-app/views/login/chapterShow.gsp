@@ -45,7 +45,7 @@
 
                     <header class="panel-heading clearfix">
                         书籍章节
-                        <g:link action="chapterEdit" class="btn btn-info" style="display:block;float:right;">修改</g:link>
+                        <g:link action="chapterEdit" id="${chapter.id}" class="btn btn-info" style="display:block;float:right;">修改</g:link>
                         <g:link action="charterDelete" id="${chapter.id}" class="btn btn-info" style="display:block;float:right;" onclick="return confirm('确定删除？');">删除</g:link>
                     </header>
                     <table>

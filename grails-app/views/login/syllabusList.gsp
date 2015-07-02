@@ -58,7 +58,7 @@
                         <td>${fieldValue(bean: syllarbusInstance, field: "syllabusName")}</td>
                         <td>
                             <g:link action="syllabusShow" id="${syllarbusInstance?.id}" class="btn btn-success btn-xs"><i class="fa fa-eye"></i></g:link>
-                            <g:link action="" id="${syllarbusInstance?.id}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></g:link>
+                            <g:link action="syllabusEdit" id="${syllarbusInstance?.id}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></g:link>
                             <g:link action="syllabusDelete" id="${syllarbusInstance?.id}" class="btn btn-danger btn-xs" onclick="return confirm('确定删除？');"><i class="fa fa-trash-o "></i></g:link>
                         </td>
                     </tr>

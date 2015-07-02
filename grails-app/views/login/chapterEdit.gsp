@@ -42,7 +42,7 @@
         <section class="wrapper mt80">
             <div class="middle_content">
                 <div class="m_box">
-                    <g:form class="form-horizontal tasi-form" url="[controller:'login',action:'chapterSave']" method="post"  enctype= "multipart/form-data">
+                    <g:form class="form-horizontal tasi-form" url="[controller:'login',action:'chapterUpdate']" method="post"  enctype= "multipart/form-data">
                         <g:hiddenField name="id" value="${chapterInstance?.id}" />
                         <g:hiddenField name="version" value="${chapterInstance?.version}" />
                         <header class="panel-heading">
@@ -52,7 +52,7 @@
                         <table>
                             <tr>
                                 <td>名称：</td>
-                                <td width="345"><input name="chapterName" class="form-control form-control-inline input-medium default-date-picker" type="text" value="${chapterInstance?.syllabusName}"></td>
+                                <td width="345"><input name="chapterName" class="form-control form-control-inline input-medium default-date-picker" type="text" value="${chapterInstance?.chapterName}"></td>
                             </tr>
                             <tr>
                                 <td>备注：</td>
