@@ -1,10 +1,10 @@
 <!--header start-->
 <header class="header">
     <div class="top">
-        <div class="t_left">你好Oscar，上次登录规划宝，今日2015年4月20日 星期三</div>
+        <div class="t_left">你好${session.user.username}</div>
         <div class="t_right">
             <ul>
-                <li><a href="javascript:;"><i class="fa fa-bell"></i>消息<span class="badge bg-important">5</span></a></li>
+                <li><a href="javascript:;"><i class="fa fa-bell"></i>&nbsp;&nbsp;消息<span class="tsh bg-important">5</span></a></li>
                 <li>|</li>
                 <li><g:link action="personalSet" ><i class="fa fa-cog"></i>设置</g:link></li>
                 <li>|</li>

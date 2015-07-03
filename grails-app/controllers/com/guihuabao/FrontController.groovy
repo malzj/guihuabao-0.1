@@ -1,6 +1,8 @@
 package com.guihuabao
 
+import grails.converters.JSON
 import org.springframework.dao.DataIntegrityViolationException
+import org.springframework.web.multipart.MultipartFile
 
 class FrontController {
 
@@ -78,6 +80,7 @@ class FrontController {
     }
     def companyUserUpdate(Long id, Long version) {
         def companyUserInstance = CompanyUser.get(id)
+
         if (!companyUserInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'companyUser.label', default: 'CompanyUser'), id])
             redirect(action: "companyUserList")
@@ -354,6 +357,107 @@ class FrontController {
     }
     //个人设置
     def personalSet(){
+        def userInstance = CompanyUser.get(session.user.id)
+        def bumen = Bumen.findByCidAndId(session.company.id,session.user.bid)
+        def role = Role.findById(session.user.pid)
+        if(!userInstance){
+            redirect(action: "login")
+        }
+        [userInstance: userInstance,bumen: bumen,role: role]
+    }
+    def personalUpdate(Long id, Long version){
+        def companyUserInstance = CompanyUser.get(id)
+        def filePath
+        def fileName
+        MultipartFile f = request.getFile('file1')
+        if(!f.empty) {
+            fileName=f.getOriginalFilename()
+            filePath="web-app/images/"
+            f.transferTo(new File(filePath+fileName))
+        }
 
+        if(fileName){
+        companyUserInstance.img=fileName
+        }
+        if (!companyUserInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'companyUser.label', default: 'CompanyUser'), id])
+            redirect(action: "personalSet")
+            return
+        }
+
+        if (version != null) {
+            if (companyUserInstance.version > version) {
+                companyUserInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+                        [message(code: 'companyUser.label', default: 'CompanyUser')] as Object[],
+                        "Another user has updated this User while you were editing")
+                render(view: "personalSet", model: [companyUserInstance: companyUserInstance])
+                return
+            }
+        }
+
+        companyUserInstance.properties = params
+
+        if (!companyUserInstance.save(flush: true)) {
+            render(view: "personalSet", model: [companyUserInstance: companyUserInstance])
+            return
+        }
+
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'companyUser.label', default: 'CompanyUser'), companyUserInstance.id])
+        redirect(action: "personalSet", id: companyUserInstance.id)
+    }
+    //修改密码
+    def checkPassword(){
+        def rs =[:]
+        def user = CompanyUser.get(session.user.id)
+        def password = params.oldpassword
+        if (user.password==password){
+            rs.msg=true
+        }else {
+            rs.msg=false
+        }
+
+
+        if (params.callback) {
+            render "${params.callback}(${rs as JSON})"
+        } else
+            render rs as JSON
+    }
+
+    def passwordUpdate(){
+        def rs =[:]
+        def password = params.oldpassword
+        def userInstance = CompanyUser.get(session.user.id)
+        def newpassword = params.newpassword
+        def version = params.version.toLong()
+
+//        if (!userInstance) {
+//            flash.message = message(code: 'default.not.found.message', args: [message(code: 'bumen.label', default: 'Bumen'), id])
+//            redirect(action: "personalSet")
+//            return
+//        }
+
+        if (version != null) {
+            if (userInstance.version > version) {
+                userInstance.errors.rejectValue("user", "default.optimistic.locking.failure",
+                        [message(code: 'user.label', default: 'user')] as Object[],
+                        "Another user has updated this User while you were editing")
+                render(view: "personalSet", model: [userInstance: userInstance])
+                return
+            }
+        }
+
+        if (userInstance.password==password&&(!newpassword.empty)){
+            userInstance.password = newpassword
+            if (userInstance.save(flush: true)) {
+                rs.msg=true
+            }
+        }else {
+            rs.msg=false
+        }
+
+        if (params.callback) {
+            render "${params.callback}(${rs as JSON})"
+        } else
+            render rs as JSON
     }
 }
