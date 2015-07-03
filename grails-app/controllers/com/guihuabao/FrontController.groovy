@@ -232,16 +232,61 @@ class FrontController {
         [bookInstanceList: Book.list(params), bookInstanceTotal: Book.count()]
     }
     def book(Integer max,Long id){
-        def syll = Syllabus.findAllByBook(Book.get(id),params)
-        def sy = Syllabus.countByBook(Book.get(id))
+        params.max = Math.min(max ?: 2, 100)
+        params<<[sort: "id",order: "asc"]
+        def offset = 0;
+        if (params.offset>0){
+            offset =params.offset
+        }
+        params<<[offset:offset]
+        def syll = Syllabus.findAllByBook(Book.get(id),[sort:"id", order:"asc"])
         def bookInstance = Book.get(id)
+        def syllabus  = Syllabus.findByBook(Book.get(id))
+        def chapter = Chapter.findBySyllabus(syllabus)
+        def contentlist = Content.findAllByChapter(chapter,params)
+        def contentsize= Content.countByChapter(chapter)
+        def content=""
+        def content1 =""
+
+        if(contentlist.size()>0){
+            content= contentlist.get(0).introduction
+            if (contentlist.size()>1){
+                content1=contentlist.get(1).introduction
+            }
+        }
         if(!bookInstance){
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'book.label', default: 'Book'), id])
             redirect(action: "hxhelper")
             return
         }
 
-        [bookInstance: bookInstance,syllabusInstanceList: syll, syllabusInstanceTotal: sy]
+        [bookInstance: bookInstance,syllabusInstanceList: syll,content:content,content1:content1,contentsize:contentsize,bookId:id,offset: offset,syllabusname:syllabus.syllabusName,chaptername:chapter.chapterName]
+    }
+    def chapterBook(Integer max,Long id){
+        params.max = Math.min(max ?: 2, 100)
+        params<<[sort: "id",order: "asc"]
+        def offset = 0;
+        if (params.offset>0){
+            offset =params.offset
+        }
+        params<<[offset:offset]
+        def chapter = Chapter.get(id)
+        def syllabus=chapter.syllabus
+        def bookId=chapter.syllabus.book.id
+        def syllabusInstanceList = Syllabus.findAllByBook(Book.get(bookId),[sort:"id", order:"asc"])
+        def bookInstance = Book.get(bookId)
+        def contentlist = Content.findAllByChapter(chapter,params)
+        def contentsize= Content.countByChapter(chapter)
+        def content=""
+        def content1 =""
+
+        if(contentlist.size()>0){
+            content= contentlist.get(0).introduction
+            if (contentlist.size()>1){
+                content1=contentlist.get(1).introduction
+            }
+        }
+        [bookInstance: bookInstance,content:content,content1:content1,contentsize:contentsize,syllabusInstanceList:syllabusInstanceList,bookId: chapter.id,offset: offset,syllabusname:syllabus.syllabusName,chaptername:chapter.chapterName]
     }
     //系统设置
 
@@ -286,8 +331,26 @@ class FrontController {
         [clauseInstance: clauseInstance]
     }
     //帮助与反馈
-    def feedback(){
+    def feedback(String id){
+       def a=id
+      if (a){
+          [msg:"已提交"]
+      }else {
+         [msg:""]
+      }
+    }
+    def feedbackSave(){
 
+        def feedbackInstance = new Feedback(params)
+        feedbackInstance.userId=session.user.id
+        feedbackInstance.username=session.user.username
+        if (!feedbackInstance.save(flush: true)) {
+            render(view: "create", model: [feedbackInstance: feedbackInstance])
+            return
+        }
+
+        flash.message = message(code: 'default.created.message', args: [message(code: 'feedback.label', default: 'Feedback'), feedbackInstance.id])
+        redirect(action: "feedback", id: feedbackInstance.id,msg:"已提交")
     }
     //个人设置
     def personalSet(){

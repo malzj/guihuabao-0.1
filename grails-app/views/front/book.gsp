@@ -1,4 +1,5 @@
 <%--
+<%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 15-6-16
@@ -46,26 +47,28 @@
                     <dl>
                         <g:each in="${syllabusInstanceList}" status="i" var="syllabusInstance">
                         <dt>${syllabusInstance.syllabusName}</dt>
-                            <g:each in="${syllabusInstance.chapters}" status="a" var="chapterInstance">
-                            <dd><span>${chapterInstance.chapterName}</span></dd>
+                            <g:each in="${com.guihuabao.Chapter.findAllBySyllabus(syllabusInstance,[sort:"id", order:"asc"])}" status="a" var="chapterInstance">
+                            <g:link action="chapterBook" id="${chapterInstance.id}"><dd><span>${chapterInstance.chapterName}</span></dd></g:link>
                             </g:each>
                         </g:each>
                     </dl>
                 </div>
+
                 <div class="book_show">
                     <div class="top clearfix">
                         <div class="address f-l">
-                            和许助手>盈利模式>第一章
+                            和许助手>${syllabusname}>${chaptername}
                         </div>
                         <div class="pick_page f-r">
-                            <a class="single_page"><i></i>单页</a>
-                            <a class="double_page"><i></i>双页</a>
-                            <a class="pre_page ml25">上一页</a>
-                            <a class="next_page">下一页</a>
+                            %{--<a class="single_page"><i></i>单页</a>--}%
+                            %{--<a class="double_page"><i></i>双页</a>--}%
+
+                            <g:if test="${offset.toInteger() != 0}"><g:link action="book" id="${bookId}"  params="[offset:offset.toInteger()-2]"  class="pre_page ml25" >上一页</g:link> </g:if>
+                           <g:if test="${offset.toInteger() < contentsize.toInteger()/2+1}"> <g:link action="book" id="${bookId}" params="[offset:offset.toInteger()+2]" class="next_page">下一页</g:link></g:if>
                         </div>
                     </div>
-                    <div class="page b-k"></div>
-                    <div class="page b-k ml20"></div>
+                    <div class="page b-k">${content}</div>
+                    <div class="page b-k ml20">${content1}</div>
                 </div>
             </div>
         </section>
