@@ -73,7 +73,7 @@
                         </div>
                         <div class="pick_page f-r">
                             <a class="this_week">本周</a>
-                            <button class="rbtn btn-blue ml25">保存</button>
+                            <button class="rbtn btn-blue ml25">预览</button>
                         </div>
                     </div>
                     <form>
