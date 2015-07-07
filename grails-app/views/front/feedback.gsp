@@ -45,9 +45,9 @@
                     帮助与反馈
                 </div>
                 <div class="text">
-                    <g:form >
-                        <g:hiddenField name="userId"></g:hiddenField>
-                        <g:hiddenField name="userName"></g:hiddenField>
+                    <g:form  action="feedbackSave">
+                        %{--<g:hiddenField name="userId"></g:hiddenField>--}%
+                        %{--<g:hiddenField name="userName"></g:hiddenField>--}%
                         <div>
                             <textarea name="content"></textarea>
                         </div>
@@ -55,6 +55,7 @@
                     </g:form>
                 </div>
             </div>
+            ${msg}
         </section>
         <!--main content end-->
 

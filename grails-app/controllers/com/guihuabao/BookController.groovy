@@ -11,7 +11,7 @@ class BookController {
     }
 
     def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
+        params.max = Math.min(max ?: 1, 100)
         [bookInstanceList: Book.list(params), bookInstanceTotal: Book.count()]
     }
 
