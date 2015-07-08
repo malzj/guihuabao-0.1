@@ -4,6 +4,8 @@ import grails.converters.JSON
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.web.multipart.MultipartFile
 
+import java.text.SimpleDateFormat
+
 class FrontController {
 
     def index() {
@@ -461,10 +463,37 @@ class FrontController {
             render rs as JSON
     }
     //周报
-    def zhoubao(){
-        print(1)
-        def date = new Date()
-        def info = Zhoubao.findByYearAndMouthAndWeek()
-        [info: info]
+    def myReport(){
+        Calendar c = Calendar.getInstance()
+        def year = c.get(Calendar.YEAR)
+        def month =c.get(Calendar.MONTH)
+        def week = c.get(Calendar.WEEK_OF_MONTH)
+        def month1=["一","二","三","四","五","六","七","八","九","十","十一","十二"]
+        def week1=[1,2,3,4]
+
+        def myReportInfo =Zhoubao.findByYearAndMonthAndWeek(year,month,week)
+        [myReportInfo: myReportInfo,year: year,month: month,week: week,month1:month1,week1:week1]
+    }
+    def xsReport(){
+
+    }
+    def replyReport(){
+
+    }
+    def reportShow(){
+        Calendar c = Calendar.getInstance()
+        def year = c.get(Calendar.YEAR)
+        def month =c.get(Calendar.MONTH)
+        def week = c.get(Calendar.WEEK_OF_MONTH)
+        def month1=["一","二","三","四","五","六","七","八","九","十","十一","十二"]
+        def week1=[1,2,3,4]
+        if(params.year==year||params.month==month||params.week==week){
+            redirect(action: "myReport")
+            return
+        }
+
+        def myReportInfo =Zhoubao.findByYearAndMonthAndWeek(params.year,params.month,params.week)
+
+        [myReportInfo: myReportInfo,year: year,month: month,week: week,month1:month1,week1:week1]
     }
 }

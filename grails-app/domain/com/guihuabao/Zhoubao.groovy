@@ -1,8 +1,11 @@
 package com.guihuabao
 
 class Zhoubao {
+    String uid
+    String username
+    String cid
     String year
-    String mouth
+    String month
     String week
     String performance
     String xinde
@@ -10,8 +13,11 @@ class Zhoubao {
     String cooperate
     Date dateCreate
     static constraints = {
+        uid(nullable: true)
+        username(nullable: true)
+        cid(nullable: true)
         year(nullable: true)
-        mouth(nullable: true)
+        month(nullable: true)
         week(nullable: true)
         performance(nullable: true)
         xinde(nullable: true)
