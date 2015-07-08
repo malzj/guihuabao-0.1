@@ -27,7 +27,7 @@ environments {
             username = "root"
             password = "123456"
             dbCreate = "update"
-            url = "jdbc:mysql://127.0.0.1:3306/guihuabao?useUnicode=true&amp;characterEncoding=UTF8 "
+            url = "jdbc:mysql://10.4.26.93:3306/guihuabao?useUnicode=true&amp;characterEncoding=UTF8 "
             pooled = true
             properties {
                 maxActive = -1
