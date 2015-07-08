@@ -460,4 +460,11 @@ class FrontController {
         } else
             render rs as JSON
     }
+    //周报
+    def zhoubao(){
+        print(1)
+        def date = new Date()
+        def info = Zhoubao.findByYearAndMouthAndWeek()
+        [info: info]
+    }
 }
