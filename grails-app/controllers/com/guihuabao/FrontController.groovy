@@ -463,6 +463,7 @@ class FrontController {
             render rs as JSON
     }
     //周报
+    //我的报告
     def myReport(){
         Calendar c = Calendar.getInstance()
         def year = c.get(Calendar.YEAR)
@@ -474,12 +475,6 @@ class FrontController {
         def myReportInfo =Zhoubao.findByYearAndMonthAndWeek(year,month,week)
         [myReportInfo: myReportInfo,year: year,month: month,week: week,month1:month1,week1:week1]
     }
-    def xsReport(){
-
-    }
-    def replyReport(){
-
-    }
     def reportShow(){
         Calendar c = Calendar.getInstance()
         def year = c.get(Calendar.YEAR)
@@ -487,13 +482,120 @@ class FrontController {
         def week = c.get(Calendar.WEEK_OF_MONTH)
         def month1=["一","二","三","四","五","六","七","八","九","十","十一","十二"]
         def week1=[1,2,3,4]
-        if(params.year==year||params.month==month||params.week==week){
+        def n_year=params.year.toInteger()
+        def n_month=params.month.toInteger()
+        def n_week=params.week.toInteger()
+        if(n_year==year&&n_month==month&&n_week==week){
             redirect(action: "myReport")
             return
         }
 
-        def myReportInfo =Zhoubao.findByYearAndMonthAndWeek(params.year,params.month,params.week)
+        def myReportInfo =Zhoubao.findByUidAndCidAndYearAndMonthAndWeek(session.user.id,session.company.id,n_year,n_month,n_week)
 
-        [myReportInfo: myReportInfo,year: year,month: month,week: week,month1:month1,week1:week1]
+        [myReportInfo: myReportInfo,year: n_year,month: n_month,week: n_week,month1:month1,week1:week1]
     }
+
+    def reportUpdate(Long id, Long cid, Long version){
+        def myReportInfo = Zhoubao.findByIdAndCid(id,cid)
+        def filePath
+        def fileName
+        MultipartFile f = request.getFile('file1')
+        if(!f.empty) {
+            fileName=f.getOriginalFilename()
+            filePath="web-app/uploadfile/"
+            f.transferTo(new File(filePath+fileName))
+        }
+
+        if(fileName){
+            myReportInfo.uploadFile=fileName
+        }
+        if (!myReportInfo) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'zhoubao.label', default: 'Zhoubao'), id])
+            redirect(action: "myReport")
+            return
+        }
+
+        if (version != null) {
+            if (myReportInfo.version > version) {
+                myReportInfo.errors.rejectValue("version", "default.optimistic.locking.failure",
+                        [message(code: 'zhoubao.label', default: 'Zhoubao')] as Object[],
+                        "Another user has updated this User while you were editing")
+                render(view: "myReport", model: [myReportInfo: myReportInfo])
+                return
+            }
+        }
+        myReportInfo.submit = 1
+        myReportInfo.properties = params
+
+        if (!myReportInfo.save(flush: true)) {
+            render(view: "myReport", model: [myReportInfo: myReportInfo])
+            return
+        }
+
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'zhoubao.label', default: 'Zhoubao'), myReportInfo.id])
+        redirect(action: "myReport", id: myReportInfo.id)
+    }
+    //周报ajax保存
+    def reportSave(Long id, Long version){
+        def myReportInfo
+        def rs =[:]
+
+        if (!id) {
+            myReportInfo = new Zhoubao(params)
+            myReportInfo.dateCreate = new Date()
+            myReportInfo.submit = 0
+        }else {
+            myReportInfo = Zhoubao.get(id)
+        }
+
+        if (version != null) {
+            if (myReportInfo.version > version) {
+                myReportInfo.errors.rejectValue("version", "default.optimistic.locking.failure",
+                        [message(code: 'zhoubao.label', default: 'Zhoubao')] as Object[],
+                        "Another user has updated this User while you were editing")
+                render(view: "myReport", model: [myReportInfo: myReportInfo])
+                return
+            }
+        }
+        myReportInfo.properties = params
+        if (myReportInfo.save(flush: true)) {
+            rs.msg = true
+        }else{
+            rs.msg = false
+        }
+
+
+        if (params.callback) {
+            render "${params.callback}(${rs as JSON})"
+        } else
+            render rs as JSON
+    }
+    //周报ajax预览
+    def ylReport(){
+        def reportInfo = Zhoubao.get(params.id)
+        def rs = [:]
+
+        rs<<[reportInfo:reportInfo]
+        if (params.callback) {
+            render "${params.callback}(${rs as JSON})"
+        } else
+            render rs as JSON
+    }
+    //下属报告
+    def xsReport(){
+        def upid = session.user.pid
+        def ubid = session.user.bid
+        def xsReportInfo
+        if(upid==1){
+            xsReportInfo =
+            render(view: "myReport", model: [xsReportInfo: xsReportInfo])
+        }else{
+
+        }
+    }
+    //回复我的
+    def replyReport(){
+
+    }
+
 }

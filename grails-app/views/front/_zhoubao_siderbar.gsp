@@ -7,21 +7,23 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
             <li>
-                <a href="/guihuabao/login/userList">
+                <g:link action="myReport">
                     <span>我的报告</span>
-                </a>
+                </g:link>
             </li>
+            <g:if test="${session.user.pid==1||session.user.pid==2}">
             <li>
-                <a href="/guihuabao/login/companyList">
+                <g:link action="xsReport">
                     <span>下属报告</span>
                     <em class="f-r">7</em>
-                </a>
+                </g:link>
             </li>
+            </g:if>
             <li>
-                <a href="/guihuabao/login/roleList">
+                <g:link action="replyReport">
                     <span>回复我的</span>
                     <em class="f-r">0</em>
-                </a>
+                </g:link>
             </li>
         </ul>
         <!-- sidebar menu end-->

@@ -56,7 +56,7 @@
                 <th>用户名</th>
                 <th>电话</th>
                 <th>公司</th>
-                <th>权限</th>
+                <th>角色</th>
                 <th>操作</th>
             </tr>
             <g:each in="${companyUserInstanceList}" status="i" var="companyUserInstance">
@@ -69,7 +69,7 @@
 
                     <td>${fieldValue(bean: companyUserInstance, field: "phone")}</td>
                     <td>${fieldValue(bean: companyUserInstance, field: "cid")}</td>
-                    <td>${fieldValue(bean: companyUserInstance, field: "rid")}</td>
+                    <td>${fieldValue(bean: companyUserInstance, field: "pid")}</td>
                     <td>
                         <g:link action="companyUserShow" id="${companyUserInstance?.id}" class="btn btn-success btn-xs"><i class="fa fa-eye"></i></g:link>
                         <g:link action="companyUserEdit" id="${companyUserInstance?.id}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></g:link>

@@ -3,14 +3,14 @@ package com.guihuabao
 class CompanyUser {
     String username
     String password
-    String cid
-    String rid
-    String pid
+    Integer cid
+    Integer rid
+    Integer pid
     String name
     String img
     String sex
     String phone
-    String bid
+    Integer bid
     Date dateCreat
 
     static constraints = {

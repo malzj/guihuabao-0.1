@@ -4,11 +4,11 @@ class User {
     String name
     String city
     String phone
-    String cid
+    Integer cid
     String address
     String username
     String password
-    String rid
+    Integer rid
     Date dateCreat
 
     static constraints = {

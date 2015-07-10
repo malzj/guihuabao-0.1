@@ -44,37 +44,41 @@
                 <div class="book_list">
                     <h2>
                         <select id="year" name="year">
-                            <option value="2014" selected="selected">2014</option>
-                            <option value="2015" selected="selected">2015</option>
+                            <option value="2014" <g:if test="${year==2014}">selected="selected"</g:if>>2014</option>
+                            <option value="2015" <g:if test="${year==2015}">selected="selected"</g:if>>2015</option>
                         </select>
                     </h2>
                     <div class="menu_side">
                         <ul class="menu">
-                            <li>
-                                <span>1月</span>
-                                <ul class="weeks">
-                                    <li class="active"><span>第1周</span></li>
-                                    <li><span>第2周</span></li>
-                                    <li><span>第3周</span></li>
-                                    <li><span>第4周</span></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <span>2月</span>
-                                <ul class="weeks">
-                                    <li><span>第1周</span></li>
-                                    <li><span>第2周</span></li>
-                                    <li><span>第3周</span></li>
-                                    <li><span>第4周</span></li>
-                                </ul>
-                            </li>
+                        %{--<g:while test="${i<12}">--}%
+                        %{--<%i++%>--}%
+                            <g:each status="k" in="${month1}" var="s" >
+                                <li>
+                                    <span>${s}月</span>
+                                    <ul class="weeks <g:if test="${s==month1[month]}">on</g:if>">
+                                        <g:each in="${week1}" var="i">
+                                            <li <g:if test="${i==week&&s==month1[month]}">class="active"</g:if> ><a href="javascript:;" data-month="${k}" data-week="${i}"><span>第${i}周</span></a></li>
+                                        </g:each>
+                                    </ul>
+                                </li>
+                            </g:each>
+                        %{--</g:while>--}%
+                        %{--<li>--}%
+                        %{--<span>2月</span>--}%
+                        %{--<ul class="weeks">--}%
+                        %{--<li><span>第1周</span></li>--}%
+                        %{--<li><span>第2周</span></li>--}%
+                        %{--<li><span>第3周</span></li>--}%
+                        %{--<li><span>第4周</span></li>--}%
+                        %{--</ul>--}%
+                        %{--</li>--}%
                         </ul>
                     </div>
                 </div>
                 <div class="zhoubao">
                     <div class="top clearfix">
                         <div class="address f-l">
-                            oscar第1周的工作报告
+                            ${reportInfo?.username}第${week}周的工作报告
                         </div>
                         <div class="pick_page f-r">
                             <a class="this_week">上一周</a>
@@ -153,9 +157,13 @@
             $(".menu>li>span").click(function(){
                 $(this).next(".weeks").toggle();
             })
-            $(".weeks>li>span").click(function(){
-                $(".weeks li").removeAttr("class")
-                $(this).parent().attr("class","active")
+            $(".weeks>li>a").click(function(){
+                $(".weeks li").removeAttr("class");
+                $(this).parent().attr("class","active");
+                var n_year = $("#year").val();
+                var n_month = $(this).attr("data-month");
+                var n_week = $(this).attr("data-week");
+                window.location.href = '${webRequest.baseUrl}/front/xsReport?year='+n_year+'&month='+n_month+'&week='+n_week;
             })
             $(".zhoubao .reply_box .reply").click(function(){
                 $(".zhoubao .reply_box .shuru").toggle();

@@ -22,7 +22,7 @@
             <li><a href="javascript:;"><i class="rw"></i>任务</a></li>
             <li><g:link action="myReport"><i class="bg"></i>报告</g:link></li>
             <li><a href="javascript:;"><i class="app"></i>应用</a></li>
-            <li><a href="javascript:;"><i class="ht"></i>后台</a></li>
+            <li><g:link action="companyUserList" ><i class="ht"></i>后台</g:link></li>
         </ul>
         <g:link action="hxhelper" class="f-r zs"><i></i>和许助手</g:link>
     </div>

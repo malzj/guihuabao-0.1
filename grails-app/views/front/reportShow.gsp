@@ -84,7 +84,6 @@
                             <a class="this_week">本周</a>
                         </div>
                     </div>
-                    <form>
                         <div class="hang">
                             <h4 class="chx">本周工作成效</h4>
                             <p>${myReportInfo?.performance}</p>
@@ -102,9 +101,14 @@
                             <p>${myReportInfo?.cooperate}</p>
                         </div>
                         <div class="hang">
-                            <span class="f-l">附件：</span><div class="xuxian"><input type="file" /></div>
+                            <span class="f-l">附件：</span><a href="${resource(dir: 'uploadfile', file: ''+myReportInfo?.uploadFile+'')}">${myReportInfo?.uploadFile}</a>
                         </div>
-                    </form>
+                        <g:form url="[controller:'front',action:'reportUpdate']" method="post"  enctype= "multipart/form-data">
+                            <g:hiddenField name="id" value="${myReportInfo?.id}" />
+                            <g:hiddenField name="version" value="${myReportInfo?.version}" />
+                            <g:hiddenField name="cid" value="${session.company.id}" />
+                            <button class="f-r rbtn btn-blue mt25">提交</button>
+                        </g:form>
 
                 </div>
             </div>

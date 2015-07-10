@@ -1,9 +1,10 @@
 package com.guihuabao
 
 class Zhoubao {
-    String uid
+    Integer uid
     String username
-    String cid
+    Integer bid
+    Integer cid
     String year
     String month
     String week
@@ -11,10 +12,13 @@ class Zhoubao {
     String xinde
     String plan
     String cooperate
+    String uploadFile
+    Integer submit
     Date dateCreate
     static constraints = {
         uid(nullable: true)
         username(nullable: true)
+        bid(nullable: true)
         cid(nullable: true)
         year(nullable: true)
         month(nullable: true)
@@ -23,6 +27,8 @@ class Zhoubao {
         xinde(nullable: true)
         plan(nullable: true)
         cooperate(nullable: true)
+        uploadFile(nullable: true)
+        submit(nullable: true)
         dateCreate(nullable: true)
     }
 
