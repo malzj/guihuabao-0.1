@@ -116,14 +116,20 @@ class LoginController {
     }
     def companySave(){
         def companyInstance = new Company(params)
-        def  filePath
+
         def    fileName
 
         MultipartFile f = request.getFile('file1')
         if(!f.empty) {
             fileName=f.getOriginalFilename()
-            filePath="web-app/images/"
-            f.transferTo(new File(filePath+fileName))
+
+
+            def webRootDir = servletContext.getRealPath("/")
+            println webRootDir
+            def userDir = new File(webRootDir, "/images/")
+            userDir.mkdirs()
+            f.transferTo( new File( userDir, f.originalFilename))
+
         }
 
 
@@ -774,7 +780,7 @@ class LoginController {
         MultipartFile f = params.imgFile
         if(!f.empty) {
             fileName=f.getOriginalFilename()
-            filePath="web-app/images/"
+            filePath="/web-app/images/"
             f.transferTo(new File(filePath+fileName))
         }
         def web='/guihuabao/static/images/'+fileName
