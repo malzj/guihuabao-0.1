@@ -14,7 +14,9 @@ class Zhoubao {
     String cooperate
     String uploadFile
     Integer submit
+    Integer reply
     Date dateCreate
+    static hasMany = [replyReport: ReplyReport]
     static constraints = {
         uid(nullable: true)
         username(nullable: true)
@@ -29,6 +31,7 @@ class Zhoubao {
         cooperate(nullable: true)
         uploadFile(nullable: true)
         submit(nullable: true)
+        reply(nullable: true)
         dateCreate(nullable: true)
     }
 

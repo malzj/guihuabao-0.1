@@ -53,9 +53,9 @@
             <tr class="even">
                 <th>#编号</th>
                 <th>姓名</th>
-                <th>用户名</th>
                 <th>电话</th>
                 <th>公司</th>
+                <th>部门</th>
                 <th>角色</th>
                 <th>操作</th>
             </tr>
@@ -65,10 +65,9 @@
 
                     <td><g:link controller="front" action="companyUserShow" id="${companyUserInstance?.id}">${fieldValue(bean: companyUserInstance, field: "name")}</g:link></td>
 
-                    <td>${fieldValue(bean: companyUserInstance, field: "username")}</td>
-
                     <td>${fieldValue(bean: companyUserInstance, field: "phone")}</td>
                     <td>${fieldValue(bean: companyUserInstance, field: "cid")}</td>
+                    <td>${fieldValue(bean: companyUserInstance, field: "bid")}</td>
                     <td>${fieldValue(bean: companyUserInstance, field: "pid")}</td>
                     <td>
                         <g:link action="companyUserShow" id="${companyUserInstance?.id}" class="btn btn-success btn-xs"><i class="fa fa-eye"></i></g:link>

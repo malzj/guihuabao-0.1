@@ -4,6 +4,10 @@
         <td width="345"><input class="form-control form-control-inline input-medium default-date-picker" type="text" name="name"  value="${companyUserInstance?.name}" /></td>
     </tr>
     <tr>
+        <td>用户名：</td>
+        <td width="345"><input class="form-control form-control-inline input-medium default-date-picker" type="text" name="username"  value="${companyUserInstance?.username}" /></td>
+    </tr>
+    <tr>
         <td>密码：</td>
         <td><input class="form-control form-control-inline input-medium default-date-picker" type="text" name="password"  value="${companyUserInstance?.password}" /></td>
     </tr>

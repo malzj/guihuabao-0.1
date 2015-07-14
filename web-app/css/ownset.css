@@ -64,7 +64,7 @@ body{padding:0;margin:0;}
 
 /*user_add start*/
 .middle_content{ position:relative; width:100%; height:100%;}
-.middle_content .m_box{width:800px;padding-bottom:20px;background-color:#FFF; border-radius:4px;-webkit-box-shadow:0px 0px 25px 15px #d5d5d2;box-shadow:0px 0px 25px 15px #d5d5d2; position:absolute; top:5%; left:21%;}
+.middle_content .m_box{width:800px; min-height:500px; padding-bottom:20px;background-color:#FFF; border-radius:4px;-webkit-box-shadow:0px 0px 25px 15px #d5d5d2;box-shadow:0px 0px 25px 15px #d5d5d2; position:absolute; top:5%; left:21%;}
 .middle_content .panel-heading{height:45px; overflow: hidden;border-bottom:1px #d2d2d2 solid;background-color:#fff;margin-bottom:30px;}
 .middle_content .panel-heading span{font-size:16px;color:#666;}
 .middle_content .panel-heading span{margin:0 0 0 12px; padding-top:9px;}
@@ -202,6 +202,10 @@ ul.sidebar-menu.reset ul.sub li a{padding-left:0 !important;}
 .popup_box .m_box .content{ margin:0 20px; }
 
 /*下属报告*/
+.xsreport{ margin:0 25px; }
+.xsreport li{ float:left; margin:0 0 20px 30px; position:relative; }
+.xsreport li a{ display:block; width:90px; height:90px; border-radius:50px; border:1px solid #d0d0d0; }
+.xsreport li span{ display:block; margin:34px auto; width:45px; /*position:absolute; top:50px; left:50px*/}
 .hxzs_content .zhoubao .discuss h4{ background:url("../img/dis_icon.png") no-repeat 0% -27%;}
 .hxzs_content .zhoubao.reset{ width:100%; border-left:none; }
 .hxzs_content .zhoubao .reply_box{ font-size:12px; padding-bottom:15px; border-bottom:1px solid #d2d2d2; }
@@ -209,5 +213,9 @@ ul.sidebar-menu.reset ul.sub li a{padding-left:0 !important;}
 .hxzs_content .zhoubao .reply_box .reply{ margin-left:20px; padding:5px 0 5px 20px; background:url("../img/dis_icon.png") no-repeat 0% 116%;}
 
 /*回复我的*/
+.zblist li{height:72px; padding-top:25px; margin:0 5px; border-bottom:1px solid #d2d2d2;}
+.zblist li img{ float:left; }
+.zblist li .text h4{ font-size:14px; color:#1c7ef3; margin:0 0 4px;}
+.zblist li .text{ margin-left:40px; }
 .zhoubao .reply_box .shuru{ margin-top:10px; padding:10px; background-color:#f2f2f2; display:none; }
 .zhoubao .reply_box .shuru textarea{ width:100%; height:40px; padding:10px; -webkit-box-shadow:0px 5px 5px -3px #D5D5D2 inset;box-shadow:0px 6px 5px -3px #D5D5D2 inset; background-color:#fff; border:1px solid #d0d0d0; }

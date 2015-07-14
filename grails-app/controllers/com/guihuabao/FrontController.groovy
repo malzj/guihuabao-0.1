@@ -4,8 +4,6 @@ import grails.converters.JSON
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.web.multipart.MultipartFile
 
-import java.text.SimpleDateFormat
-
 class FrontController {
 
     def index() {
@@ -472,7 +470,7 @@ class FrontController {
         def month1=["一","二","三","四","五","六","七","八","九","十","十一","十二"]
         def week1=[1,2,3,4]
 
-        def myReportInfo =Zhoubao.findByYearAndMonthAndWeek(year,month,week)
+        def myReportInfo =Zhoubao.findByUidAndCidAndYearAndMonthAndWeek(session.user.id,session.company.id,year,month,week)
         [myReportInfo: myReportInfo,year: year,month: month,week: week,month1:month1,week1:week1]
     }
     def reportShow(){
@@ -491,7 +489,6 @@ class FrontController {
         }
 
         def myReportInfo =Zhoubao.findByUidAndCidAndYearAndMonthAndWeek(session.user.id,session.company.id,n_year,n_month,n_week)
-
         [myReportInfo: myReportInfo,year: n_year,month: n_month,week: n_week,month1:month1,week1:week1]
     }
 
@@ -585,17 +582,102 @@ class FrontController {
     def xsReport(){
         def upid = session.user.pid
         def ubid = session.user.bid
-        def xsReportInfo
+        def ucid = session.user.cid
+        def bumenInfo
         if(upid==1){
-            xsReportInfo =
-            render(view: "myReport", model: [xsReportInfo: xsReportInfo])
-        }else{
-
+            bumenInfo = Bumen.findAllByCid(ucid)
+            render(view: "reportBumenList", model: [bumenInfo: bumenInfo])
+        }else if(upid==2){
+            redirect(action: "reportUserList",params: [bid: ubid,cid: ucid])
+            return
         }
     }
+    def reportUserList(){
+        def companyUserInstance = CompanyUser.findAllByBidAndCid(params.bid,params.cid)
+        [companyUserInstance: companyUserInstance]
+    }
+    def xsReportShow(){
+        Calendar c = Calendar.getInstance()
+        def year = c.get(Calendar.YEAR)
+        def month =c.get(Calendar.MONTH)
+        def week = c.get(Calendar.WEEK_OF_MONTH)
+        def month1=["一","二","三","四","五","六","七","八","九","十","十一","十二"]
+        def week1=[1,2,3,4]
+        def n_year
+        def n_month
+        def n_week
+        if(!params.year||!params.month||!params.week){      //判断时间周数是否为空，空则为第一次访问，显示本周周报
+            n_year=year
+            n_month=month
+            n_week=week
+        }else{
+            n_year=params.year.toInteger()
+            n_month=params.month.toInteger()
+            n_week=params.week.toInteger()
+        }
+
+        def myReportInfo =Zhoubao.findByUidAndCidAndYearAndMonthAndWeekAndSubmit(params.uid,params.cid,n_year,n_month,n_week,1)
+        [myReportInfo: myReportInfo,uid: params.uid,cid: params.cid,year: n_year,month: n_month,week: n_week,month1:month1,week1:week1]
+    }
+    //周报回复保存
+    def replySave(Long id){
+        def replyInstance = new ReplyReport(params)
+        def zhoubao = Zhoubao.get(id)
+        zhoubao.reply = 1
+         replyInstance.zhoubao=  zhoubao
+
+        def date = new Date()
+        replyInstance.date = date
+        replyInstance.status = 0
+        if(!replyInstance.save(flush: true)){
+            render(view: "xsReportShow")
+            return
+        }
+
+        flash.message = message(code: 'default.created.message', args: [message(code: 'companyRole.label', default: 'companyRole'), replyInstance.id])
+        redirect(action: "xsReportShow",params: [uid: params.uid,cid: params.cid,year: params.year,month: params.month,week: params.week])
+    }
     //回复我的
-    def replyReport(){
+    def replyReport(Long id){
+        def uid = session.user.id
+        def cid = session.company.id
+        def zhoubao
+        def i
+        def replyInstance = ReplyReport.findAllByBpuidAndCidAndStatus(uid,cid,0,[sort: "date",order: "desc"])
+        def count = replyInstance?.size()
+        if(!id&&count!=0){
+            zhoubao = replyInstance[0].zhoubao
+        }else if(!id&&count==0) {
+
+        }else{
+            zhoubao = Zhoubao.get(id)
+        }
+        def allReplyInfo = ReplyReport.findAllByZhoubaoAndCid(zhoubao,cid,[sort: "date",order: "desc"])
+        def myReplyInfo = ReplyReport.findAllByZhoubaoAndCidAndBpuid(zhoubao,cid,uid,[sort: "date",order: "desc"])
+        for(i=0;i<myReplyInfo.size();i++){
+            myReplyInfo[i].status=1
+        }
+
+        [replyInstance: replyInstance,allReplyInfo: allReplyInfo,count: count]
+    }
+    def replyStatus(){
 
     }
+    def myReplySave(Long id){
+        def replyInstance = new ReplyReport(params)
+        def zhoubao = Zhoubao.get(id)
+        zhoubao.reply = 1
+        replyInstance.zhoubao=  zhoubao
 
+        def date = new Date()
+        replyInstance.date = date
+        replyInstance.status = 0
+        if(!replyInstance.save(flush: true)){
+            render(view: "replyReport")
+            return
+        }
+
+        flash.message = message(code: 'default.created.message', args: [message(code: 'companyRole.label', default: 'companyRole'), replyInstance.id])
+        redirect(action: "replyReport",id: id)
+    }
 }
