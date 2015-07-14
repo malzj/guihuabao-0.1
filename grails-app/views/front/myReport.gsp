@@ -185,7 +185,6 @@
                         }
                     }
                 })
-                $(".zhoubao .rbtn").removeAttr("disabled")
             });
             //报告预览
             $("#view").click(function(){
@@ -209,6 +208,17 @@
                 $(".popup_box").css("display","none");
                 $(".popup_box .m_box .content").empty();
             });
+            cansubmit();
+            //判断是否能提交
+            function cansubmit(){
+                var performance=$('#performance').val();
+                var xinde=$('#xinde').val();
+                var plan=$('#plan').val();
+                var cooperate=$('#cooperate').val();
+                if(performance&&xinde&&plan&&cooperate){
+                    $(".zhoubao .rbtn").removeAttr("disabled")
+                }
+            }
         })
     </script>
 

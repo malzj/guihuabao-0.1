@@ -7,8 +7,9 @@ class ReplyReport {
     Integer bpuid
     String bpuname
     Integer status
-    Integer count
-    Date dateCreate
+    String content
+    Date date
+    static belongsTo = [zhoubao: Zhoubao]
     static constraints = {
         cid(nullable: true)
         puid(nullable: true)
@@ -16,7 +17,7 @@ class ReplyReport {
         bpuid(nullable: true)
         bpuname(nullable: true)
         status(nullable: true)
-        count(nullable: true)
-        dateCreate(nullable: true)
+        content(nullable: true)
+        date(nullable: true)
     }
 }

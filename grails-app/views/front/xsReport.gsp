@@ -50,8 +50,6 @@
                     </h2>
                     <div class="menu_side">
                         <ul class="menu">
-                        %{--<g:while test="${i<12}">--}%
-                        %{--<%i++%>--}%
                             <g:each status="k" in="${month1}" var="s" >
                                 <li>
                                     <span>${s}月</span>
@@ -62,16 +60,6 @@
                                     </ul>
                                 </li>
                             </g:each>
-                        %{--</g:while>--}%
-                        %{--<li>--}%
-                        %{--<span>2月</span>--}%
-                        %{--<ul class="weeks">--}%
-                        %{--<li><span>第1周</span></li>--}%
-                        %{--<li><span>第2周</span></li>--}%
-                        %{--<li><span>第3周</span></li>--}%
-                        %{--<li><span>第4周</span></li>--}%
-                        %{--</ul>--}%
-                        %{--</li>--}%
                         </ul>
                     </div>
                 </div>

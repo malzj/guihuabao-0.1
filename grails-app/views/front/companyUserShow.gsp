@@ -51,6 +51,10 @@
                             <td width="345">${fieldValue(bean: companyUserInstance, field: "name")}</td>
                         </tr>
                         <tr>
+                            <td>用户名：</td>
+                            <td>${fieldValue(bean: companyUserInstance, field: "username")}</td>
+                        </tr>
+                        <tr>
                             <td>密码：</td>
                             <td>${fieldValue(bean: companyUserInstance, field: "password")}</td>
                         </tr>

@@ -15,14 +15,13 @@
             <li>
                 <g:link action="xsReport">
                     <span>下属报告</span>
-                    <em class="f-r">7</em>
                 </g:link>
             </li>
             </g:if>
             <li>
                 <g:link action="replyReport">
                     <span>回复我的</span>
-                    <em class="f-r">0</em>
+                    <em class="f-r">${com.guihuabao.ReplyReport.countByBpuidAndCidAndStatus(session.user.id,session.company.id,0)}</em>
                 </g:link>
             </li>
         </ul>
