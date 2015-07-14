@@ -5,6 +5,8 @@ import org.springframework.dao.DataIntegrityViolationException
 
 import org.springframework.web.multipart.MultipartFile
 
+import java.text.SimpleDateFormat
+
 class LoginController {
     def login(){
         def username = params.username
@@ -121,14 +123,29 @@ class LoginController {
 
         MultipartFile f = request.getFile('file1')
         if(!f.empty) {
-            fileName=f.getOriginalFilename()
+//            fileName=f.getOriginalFilename()
+//
+//
+//            def webRootDir = servletContext.getRealPath("/")
+//            println webRootDir
+//            def userDir = new File(webRootDir, "/images/")
+//            userDir.mkdirs()
+//            f.transferTo( new File( userDir, f.originalFilename))
+            def date= new Date().getTime()
+            Random random =new Random()
+            def x = random.nextInt(100)
+            def str =f.originalFilename
+            String [] strs = str.split("[.]")
 
+
+            fileName=date.toString()+x.toString()+"."+strs[1]
+//            fileName=f.getOriginalFilename()
 
             def webRootDir = servletContext.getRealPath("/")
             println webRootDir
             def userDir = new File(webRootDir, "/images/")
             userDir.mkdirs()
-            f.transferTo( new File( userDir, f.originalFilename))
+            f.transferTo( new File( userDir, fileName))
 
         }
 
@@ -167,9 +184,21 @@ class LoginController {
 
         MultipartFile f = request.getFile('file1')
         if(!f.empty) {
-            fileName=f.getOriginalFilename()
-            filePath="web-app/images/"
-            f.transferTo(new File(filePath+fileName))
+            def date= new Date().getTime()
+            Random random =new Random()
+            def x = random.nextInt(100)
+            def str =f.originalFilename
+            String [] strs = str.split("[.]")
+
+
+            fileName=date.toString()+x.toString()+"."+strs[1]
+//            fileName=f.getOriginalFilename()
+
+            def webRootDir = servletContext.getRealPath("/")
+            println webRootDir
+            def userDir = new File(webRootDir, "/images/")
+            userDir.mkdirs()
+            f.transferTo( new File( userDir, fileName))
         }
 
 
@@ -369,9 +398,24 @@ class LoginController {
 
         MultipartFile f = request.getFile('file1')
         if(!f.empty) {
-            fileName=f.getOriginalFilename()
-            filePath="web-app/images/"
-            f.transferTo(new File(filePath+fileName))
+//            fileName=f.getOriginalFilename()
+//            filePath="web-app/images/"
+//            f.transferTo(new File(filePath+fileName))
+            def date= new Date().getTime()
+            Random random =new Random()
+            def x = random.nextInt(100)
+            def str =f.originalFilename
+            String [] strs = str.split("[.]")
+
+
+            fileName=date.toString()+x.toString()+"."+strs[1]
+//            fileName=f.getOriginalFilename()
+
+            def webRootDir = servletContext.getRealPath("/")
+            println webRootDir
+            def userDir = new File(webRootDir, "/images/")
+            userDir.mkdirs()
+            f.transferTo( new File( userDir, fileName))
             loginimg.img=fileName
         }
 
@@ -775,16 +819,28 @@ class LoginController {
     def upload(){
 
         def rs=[:]
-        def  filePath
+
         def  fileName
         MultipartFile f = params.imgFile
         if(!f.empty) {
-            fileName=f.getOriginalFilename()
-            filePath="/web-app/images/"
-            f.transferTo(new File(filePath+fileName))
+            def date= new Date().getTime()
+            Random random =new Random()
+            def x = random.nextInt(100)
+            def str =f.originalFilename
+            String [] strs = str.split("[.]")
+
+
+            fileName=date.toString()+x.toString()+"."+strs[1]
+//            fileName=f.getOriginalFilename()
+
+            def webRootDir = servletContext.getRealPath("/")
+            println webRootDir
+            def userDir = new File(webRootDir, "/images/")
+            userDir.mkdirs()
+            f.transferTo( new File( userDir, fileName))
         }
         def web='/guihuabao/static/images/'+fileName
-        def url=filePath+fileName
+
         rs=[error:0,url:web]
 
         if (params.callback) {
@@ -793,6 +849,7 @@ class LoginController {
             render rs as JSON
 
     }
+
     def bookEdit(Long id){
         def bookInstance = Book.get(id)
         [bookInstance: bookInstance]

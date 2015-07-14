@@ -52,7 +52,7 @@
                         <table>
                             <tr>
                                 <td>姓名：</td>
-                                <td><input class="input-shadow" type="text" name="username" value="${userInstance.username}" /></td>
+                                <td><input class="input-shadow" type="text" name="username" value="${userInstance?.username}" /></td>
                             </tr>
                             <tr>
                                 <td>密码：</td>
@@ -62,22 +62,22 @@
                             </tr>
                             <tr>
                                 <td>性别：</td>
-                                <td><input type="radio" name="sex" value="男" <g:if test="${userInstance.sex == '男'}">checked</g:if>>男<input type="radio" name="sex" value="女" <g:if test="${userInstance.sex == '女'}">checked</g:if>>女</td>
+                                <td><input type="radio" name="sex" value="男" <g:if test="${userInstance?.sex == '男'}">checked</g:if>>男<input type="radio" name="sex" value="女" <g:if test="${userInstance?.sex == '女'}">checked</g:if>>女</td>
                             </tr>
                             <tr>
                                 <td>电话：</td>
-                                <td><input class="input-shadow" name="phone" type="text" value="${userInstance.phone}" /></td>
+                                <td><input class="input-shadow" name="phone" type="text" value="${userInstance?.phone}" /></td>
                             </tr>
                             <tr>
                                 <td>部门：</td>
                                 <td>
-                                    ${bumen.name}
+                                    ${bumen?.name}
                                 </td>
                             </tr>
                             <tr>
                                 <td>角色：</td>
                                 <td>
-                                    <g:if test="${userInstance.pid.toInteger() == 1}">Boss</g:if><g:if test="${userInstance.pid.toInteger()==2}">经理</g:if><g:if test="${userInstance.pid.toInteger()==3}">员工</g:if>
+                                    <g:if test="${userInstance?.pid == 1}">Boss</g:if><g:if test="${userInstance?.pid==2}">经理</g:if><g:if test="${userInstance?.pid==3}">员工</g:if>
                                 </td>
                             </tr>
                             <tr>
