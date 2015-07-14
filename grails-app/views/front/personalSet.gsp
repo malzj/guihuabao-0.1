@@ -49,7 +49,7 @@
                         <g:hiddenField name="cid" value="${session.company.id}" />
                         <g:hiddenField name="id" value="${userInstance?.id}" />
                         <g:hiddenField name="version" value="${userInstance?.version}" />
-                        <table>
+                        <table class="f-l">
                             <tr>
                                 <td>姓名：</td>
                                 <td><input class="input-shadow" type="text" name="username" value="${userInstance?.username}" /></td>
