@@ -16,7 +16,7 @@ class Zhoubao {
     Integer submit
     Integer reply
     Date dateCreate
-    static hasMany = [replyReport: ReplyReport]
+    static hasMany = [replyReports: ReplyReport]
     static constraints = {
         uid(nullable: true)
         username(nullable: true)

@@ -470,7 +470,8 @@ class FrontController {
         def month1=["一","二","三","四","五","六","七","八","九","十","十一","十二"]
         def week1=[1,2,3,4]
 
-        def myReportInfo =Zhoubao.findByUidAndCidAndYearAndMonthAndWeek(session.user.id.toLong(),session.company.id.toLong(),year,month,week)
+
+        def myReportInfo =Zhoubao.findByUidAndCidAndYearAndMonthAndWeek(session.user.id.toLong(),session.company.id.toLong(),year.toString(),month.toString(),week.toString())
         [myReportInfo: myReportInfo,year: year,month: month,week: week,month1:month1,week1:week1]
     }
     def reportShow(){

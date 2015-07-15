@@ -168,7 +168,7 @@
                 var n_week = $(this).attr("data-week");
                 window.location.href = '${webRequest.baseUrl}/front/reportShow?year='+n_year+'&month='+n_month+'&week='+n_week;
             })
-            $(".zhoubao textarea").blur(function(){
+            $(".zhoubao textarea").bind("blur",function(){
                 var name=$(this).attr("name")
                 var value=$(this).val()
                 $.ajax({
