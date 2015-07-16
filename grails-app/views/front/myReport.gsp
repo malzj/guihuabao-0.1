@@ -81,7 +81,7 @@
                             ${session.user.username}第${week}周的工作报告
                         </div>
                         <div class="pick_page f-r">
-                            <a class="this_week">本周</a>
+                            <g:link action="myReport" class="this_week">本周</g:link>
                             <button id="view" class="rbtn btn-blue ml25">预览</button>
                         </div>
                     </div>
@@ -170,7 +170,7 @@
             })
             $(".zhoubao textarea").bind("blur",function(){
                 var name=$(this).attr("name")
-                var value=$(this).val()
+                var value=encodeURI($(this).val())
                 $.ajax({
                     url:'${webRequest.baseUrl}/front/reportSave?id=${myReportInfo?.id}&version=${myReportInfo?.version}&uid=${session.user.id}&username=${session.user.username}&cid=${session.company.id}&year=${year}&month=${month}&week=${week}&'+name+'='+value,
                     dataType: "jsonp",

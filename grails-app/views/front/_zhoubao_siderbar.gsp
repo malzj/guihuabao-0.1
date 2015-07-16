@@ -20,8 +20,13 @@
             </g:if>
             <li>
                 <g:link action="replyReport">
-                    <span>回复我的</span>
+                    <span>未读回复</span>
                     <em class="f-r">${com.guihuabao.ReplyReport.countByBpuidAndCidAndStatus(session.user.id,session.company.id,0)}</em>
+                </g:link>
+            </li>
+            <li>
+                <g:link action="allReplyReport">
+                    <span>所有回复</span>
                 </g:link>
             </li>
         </ul>

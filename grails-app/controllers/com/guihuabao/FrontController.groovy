@@ -469,9 +469,12 @@ class FrontController {
         def week = c.get(Calendar.WEEK_OF_MONTH)
         def month1=["一","二","三","四","五","六","七","八","九","十","十一","十二"]
         def week1=[1,2,3,4]
+        def userId= session.user.id
+        def companyId= session.company.id
 
 
-        def myReportInfo =Zhoubao.findByUidAndCidAndYearAndMonthAndWeek(session.user.id.toLong(),session.company.id.toLong(),year.toString(),month.toString(),week.toString())
+//        def myReportInfo =Zhoubao.findByUidAndCidAndYearAndMonthAndWeek(userId,companyId,year,month,week)
+        def myReportInfo =Zhoubao.findByUidAndCidAndYearAndMonthAndWeek(userId,companyId,year.toString(),month.toString(),week.toString())
         [myReportInfo: myReportInfo,year: year,month: month,week: week,month1:month1,week1:week1]
     }
     def reportShow(){
@@ -661,9 +664,32 @@ class FrontController {
 
         [replyInstance: replyInstance,allReplyInfo: allReplyInfo,count: count]
     }
-    def replyStatus(){
 
+    //回复我的
+    def allReplyReport(Long id){
+        def uid = session.user.id
+        def cid = session.company.id
+        Calendar c = Calendar.getInstance()
+        def year = c.get(Calendar.YEAR)
+        def month =c.get(Calendar.MONTH)
+        def week = c.get(Calendar.WEEK_OF_MONTH)
+        def n_year
+        def n_month
+        def n_week
+        if(!params.year||!params.month||!params.week){      //判断时间周数是否为空，空则为第一次访问，显示本周周报
+            n_year=year
+            n_month=month
+            n_week=week
+        }else{
+            n_year=params.year.toInteger()
+            n_month=params.month.toInteger()
+            n_week=params.week.toInteger()
+        }
+        def zhoubaoInstance = Zhoubao.findAllByUidAndCidAndReply(uid,cid,1,[sort:"dateCreate",order: "desc"])
+        def zhoubaoReportInfo=Zhoubao.findByUidAndCidAndYearAndMonthAndWeekAndSubmit(uid,cid,n_year,n_month,n_week,1)
+        [zhoubaoInstance: zhoubaoInstance,zhoubaoReportInfo: zhoubaoReportInfo]
     }
+
     def myReplySave(Long id){
         def replyInstance = new ReplyReport(params)
         def zhoubao = Zhoubao.get(id)

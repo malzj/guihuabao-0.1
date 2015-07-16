@@ -78,10 +78,10 @@
                 <div class="zhoubao">
                     <div class="top clearfix">
                         <div class="address f-l">
-                            oscar第1周的工作报告
+                            ${session.user.username}第${week}周的工作报告
                         </div>
                         <div class="pick_page f-r">
-                            <a class="this_week">本周</a>
+                            <g:link action="myReport" class="this_week">本周</g:link>
                         </div>
                     </div>
                         <div class="hang">

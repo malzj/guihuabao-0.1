@@ -42,21 +42,18 @@
         <section class="wrapper">
             <div class="hxzs_content clearfix">
                 <div class="book_list">
-                    <h2>
-                        未读回复
-                    </h2>
                     <ul class="zblist">
-                    <g:each in="${replyInstance}" var="replyInfo">
-                        <li>
-                            <g:link action="replyReport" id="${replyInfo.zhoubaoId}">
-                                <img src="" height="35" width="35" />
-                                <div class="text">
-                                    <h4>${replyInfo.puname}回复了你</h4>
-                                    <span>${replyInfo.date}</span>
-                                </div>
-                            </g:link>
-                        </li>
-                    </g:each>
+                        <g:each in="${zhoubaoInstance}" var="zhoubaoInfo">
+                            <li>
+                                <g:link action="replyReport" params="[year: zhoubaoInfo.year,month: zhoubaoInfo.month,week: zhoubaoInfo.week]">
+                                    <img src="" height="35" width="35" />
+                                    <div class="text">
+                                        <h4>第${zhoubaoInfo.week}周工作报告</h4>
+                                        <span>${zhoubaoInfo.dateCreate}</span>
+                                    </div>
+                                </g:link>
+                            </li>
+                        </g:each>
                     </ul>
                 </div>
                 <div class="zhoubao">
@@ -69,20 +66,23 @@
                         <h4>反馈及评论</h4>
                     </div>
                     <div id="reply_container">
-                        <g:each in="${allReplyInfo}" var="replyInfo">
+                        <g:each in="${zhoubaoReportInfo?.replyReports}" var="replyInfo">
                             <div class="reply_box">
                                 <div class="name"><g:if test="${replyInfo.puid==session.user.id}">我</g:if><g:else>${replyInfo.puname}</g:else>&nbsp;回复&nbsp;<g:if test="${replyInfo.bpuid==session.user.id}">我</g:if><g:else>${replyInfo.bpuname}</g:else></div>
                                 <p>${replyInfo.content}</p>
-                                <span>${replyInfo.date}</span><g:if test="${replyInfo.puid!=session.user.id}"><a href="javascript:;" class="reply">回复</a></g:if>
+                                <span>${replyInfo.date}</span><g:if test="${replyInfo.puid==session.user.id}"><a href="javascript:;" class="reply">回复</a></g:if>
                                 <div class="shuru">
                                     <span>回复&nbsp;${replyInfo.puname}</span>
                                     <g:form url="[controller:'front',action:'myReplySave']">
-                                        <g:hiddenField name="id" value="${replyInfo?.zhoubaoId}"></g:hiddenField>
+                                        <g:hiddenField name="id" value="${zhoubaoReportInfo?.id}"></g:hiddenField>
                                         <g:hiddenField name="bpuid" value="${replyInfo.puid}"></g:hiddenField>
                                         <g:hiddenField name="bpuname" value="${replyInfo.puname}"></g:hiddenField>
-                                        <g:hiddenField name="cid" value="${replyInfo.cid}"></g:hiddenField>
+                                        <g:hiddenField name="cid" value="${zhoubaoReportInfo?.cid}"></g:hiddenField>
                                         <g:hiddenField name="puid" value="${session.user.id}"></g:hiddenField>
                                         <g:hiddenField name="puname" value="${session.user.username}"></g:hiddenField>
+                                        <g:hiddenField name="year" value="${zhoubaoReportInfo?.year}"></g:hiddenField>
+                                        <g:hiddenField name="month" value="${zhoubaoReportInfo?.month}"></g:hiddenField>
+                                        <g:hiddenField name="week" value="${zhoubaoReportInfo?.week}"></g:hiddenField>
                                         <div class="mt10">
                                             <textarea name="content"></textarea>
                                         </div>
@@ -94,8 +94,8 @@
                         </g:each>
                     </div>
                 </div>
-                </div>
             </div>
+        </div>
         </section>
         <!--main content end-->
 
