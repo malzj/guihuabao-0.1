@@ -45,6 +45,9 @@ class FrontController {
         if(params.pid==1){
             companyUserInstance.pid = 2
         }
+
+        companyUserInstance.img = "touxiang.jpg"
+
         if (!companyUserInstance.save(flush: true)) {
             render(view: "companyUserCreate", model: [companyUserInstance: companyUserInstance])
             return
