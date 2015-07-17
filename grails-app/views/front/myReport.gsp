@@ -172,7 +172,7 @@
                 var name=$(this).attr("name")
                 var value=encodeURI($(this).val())
                 $.ajax({
-                    url:'${webRequest.baseUrl}/front/reportSave?id=${myReportInfo?.id}&version=${myReportInfo?.version}&uid=${session.user.id}&username=${session.user.username}&cid=${session.company.id}&year=${year}&month=${month}&week=${week}&'+name+'='+value,
+                    url:'${webRequest.baseUrl}/front/reportSave?id=${myReportInfo?.id}&version=${myReportInfo?.version}&uid=${session.user.id}&username=${session.user.username}&cid=${session.company.id}&year=${year}&month=${month}&week=${week}&'+name+'='+encodeURI(value),
                     dataType: "jsonp",
                     jsonp: "callback",
                     success: function (data) {

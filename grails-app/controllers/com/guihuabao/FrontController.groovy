@@ -710,4 +710,21 @@ class FrontController {
         flash.message = message(code: 'default.created.message', args: [message(code: 'companyRole.label', default: 'companyRole'), replyInstance.id])
         redirect(action: "replyReport",id: id)
     }
+    //任务
+    def taskCreate(){}
+
+    def taskSave(){
+        def taskInstance = new Task(params)
+        taskInstance.cid = session.company.id
+        taskInstance.fzuid = session.user.id
+
+        if (!taskInstance.save(flush: true)) {
+            render(view: "create", model: [taskInstance: taskInstance])
+            return
+        }
+
+        flash.message = message(code: 'default.created.message', args: [message(code: 'task.label', default: 'Task'), taskInstance.id])
+        redirect(action: "show", id: taskInstance.id)
+    }
+
 }
