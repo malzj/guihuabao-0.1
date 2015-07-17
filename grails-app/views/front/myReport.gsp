@@ -170,7 +170,8 @@
             })
             $(".zhoubao textarea").bind("blur",function(){
                 var name=$(this).attr("name")
-                var value=encodeURI($(this).val())
+                var value=$(this).val()
+
                 $.ajax({
                     url:'${webRequest.baseUrl}/front/reportSave?id=${myReportInfo?.id}&version=${myReportInfo?.version}&uid=${session.user.id}&username=${session.user.username}&cid=${session.company.id}&year=${year}&month=${month}&week=${week}&'+name+'='+encodeURI(value),
                     dataType: "jsonp",
