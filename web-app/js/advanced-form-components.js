@@ -72,7 +72,8 @@ $(".form_datetime").datetimepicker({
     format: 'yyyy-mm-dd hh:ii',
     autoclose: true,
     todayBtn: true,
-    pickerPosition: "bottom-left"
+    pickerPosition: "bottom-left",
+	minView:1
 });
 
 
