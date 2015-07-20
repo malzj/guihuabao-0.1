@@ -165,25 +165,27 @@
                             <div class="r-title-con f-l">任务</div>
                             <div class="r-title-jinji f-l">
                                 <i class="clock-b"></i><span class="r-chd">紧急程度</span>
+                                <input type="hidden" id="playstatus" name="playstatus" />
                                 <ul class="r-jinji-down">
-                                    <li><i class="clock-red"></i>紧急且重要</li>
-                                    <li><i class="clock-yellow"></i>紧急不重要</li>
-                                    <li><i class="clock-green"></i>重要不紧急</li>
-                                    <li><i class="clock-blue"></i>不重要不紧急</li>
+                                    <li><a data-playstatus="1"><i class="clock-red"></i>紧急且重要</a></li>
+                                    <li><a data-playstatus="2"><i class="clock-yellow"></i>紧急不重要</a></li>
+                                    <li><a data-playstatus="3"><i class="clock-green"></i>重要不紧急</a></li>
+                                    <li><a data-playstatus="4"><i class="clock-blue"></i>不重要不紧急</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="control-group">
-                            <input type="text" name="" />
+                            <input type="text" placeholder="一句话描述任务" class="size" name="" />
                         </div>
                         <div class="control-group">
-                            <input type="text" name="" />
+                            <input type="text" placeholder="添加任务详情" class="size" name="" />
                         </div>
                         <div class="control-group">
                             <table>
                                 <tr>
                                     <td>负责人</td>
-                                    <td><input type="text" name="" />
+                                    <td>
+                                        ${session.user.name}
                                     </td>
                                 </tr>
                                 <tr>
@@ -246,9 +248,9 @@
         $(".close").click(function(){
             $(".popup_box").css("display","none");
         });
-        $("#submit").click(function(){
-            var time=$("#startdate").val();
-            alert(time)
+        $(".popup_box .r-jinji-down a").click(function(){
+            var playstatus=$(this).attr("data-playstatus");
+            $("#playstatus").val(playstatus);
         })
     })
 </script>

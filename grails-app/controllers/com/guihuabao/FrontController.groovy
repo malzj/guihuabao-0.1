@@ -711,7 +711,9 @@ class FrontController {
         redirect(action: "replyReport",id: id)
     }
     //任务
-    def taskCreate(){}
+    def taskCreate(){
+        [taskInstance: new Task(params)]
+    }
 
     def taskSave(){
         def taskInstance = new Task(params)
