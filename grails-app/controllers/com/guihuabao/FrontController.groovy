@@ -712,7 +712,9 @@ class FrontController {
     }
     //任务
     def taskCreate(){
-        [taskInstance: new Task(params)]
+        def bumenInstance = Bumen.findAllByCid(session.company.id)
+
+        [taskInstance: new Task(params),bumenInstance: bumenInstance]
     }
 
     def taskSave(){

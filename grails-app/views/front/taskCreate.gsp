@@ -27,6 +27,7 @@
     <link href="${resource(dir: 'css', file: 'style.css')}" rel="stylesheet">
     <link href="${resource(dir: 'css', file: 'style-responsive.css')}" rel="stylesheet">
 
+    <link href="${resource(dir: 'css', file: 'context.standalone.css')}" rel="stylesheet">
     <link href="${resource(dir: 'css', file: 'ownset.css')}" rel="stylesheet">
 </head>
 
@@ -34,34 +35,7 @@
 
 <section id="container" >
     <!--header start-->
-    <header class="header">
-        <div class="top">
-            <div class="t_left">你好Oscar，上次登录规划宝，今日2015年4月20日 星期三</div>
-            <div class="t_right">
-                <ul>
-                    <li><a href="javascript:;"><i class="fa fa-bell"></i>消息<span class="badge bg-important">5</span></a></li>
-                    <li>|</li>
-                    <li><i class="fa fa-cog"></i>设置<a href="javascript:;" class="fa fa-chevron-down"></a></li>
-                    <li>|</li>
-                    <li><a href="javascript:;"><i></i>安全退出</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="navbox">
-            <!--logo start-->
-            <a href="index.html" class="logo"><img height="30" src="img/logo.png"></a>
-            <!--logo end-->
-            <ul class="nav">
-                <li><a href="javascript:;"><i class="home"></i>首页</a></li>
-                <li><a href="javascript:;"><i class="aim"></i>目标</a></li>
-                <li><a href="javascript:;"><i class="rw"></i>任务</a></li>
-                <li><a href="javascript:;"><i class="bg"></i>报告</a></li>
-                <li><a href="javascript:;"><i class="app"></i>应用</a></li>
-                <li><a href="javascript:;"><i class="ht"></i>后台</a></li>
-            </ul>
-            <a href="javascript:;" class="f-r zs"><i></i>和许助手</a>
-        </div>
-    </header>
+    <g:render template="header" />
     <!--header end-->
     <!--sidebar start-->
     <aside>
@@ -160,7 +134,7 @@
                         <span><i class="yh"></i>新建任务</span>
                         <div class="close"><a href="javascript:;" class="fa fa-times"></a></div>
                     </header>
-                    <form>
+                    <g:form url="[controller:'front',action:'taskSave']">
                         <div class="r-title">
                             <div class="r-title-con f-l">任务</div>
                             <div class="r-title-jinji f-l">
@@ -175,10 +149,10 @@
                             </div>
                         </div>
                         <div class="control-group">
-                            <input type="text" placeholder="一句话描述任务" class="size" name="" />
+                            <input type="text" placeholder="一句话描述任务" class="size" name="title" />
                         </div>
                         <div class="control-group">
-                            <input type="text" placeholder="添加任务详情" class="size" name="" />
+                            <input type="text" placeholder="添加任务详情" class="size" name="content" />
                         </div>
                         <div class="control-group">
                             <table>
@@ -186,22 +160,29 @@
                                     <td>负责人</td>
                                     <td>
                                         ${session.user.name}
+                                        <g:hiddenField name="fzuid" value="${session.user.id}" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>执行人</td>
-                                    <td><input type="text" name="" /></td>
+                                    <td>
+                                        <input type="hidden" id="playuid" name="playuid" value="" />
+                                        <input type="hidden" id="playbid" name="playbid" value="" />
+                                        <div class="zhxr">
+                                            <a id="playman">选择</a>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>起止日期</td>
-                                    <td><input id="startdate" name="startdate" min-view="1" value="" readonly="" class="form_datetime" type="text">-<input id="enddate" name="enddate" value="" readonly="" class="form_datetime" type="text"></td>
+                                    <td><input id="startdate" name="bigentime" value="" readonly="" class="form_datetime" type="text">-<input id="enddate" name="overtime" value="" readonly="" class="form_datetime" type="text"></td>
                                 </tr>
                             </table>
                         </div>
                         <div class="control-group">
                             <button id="submit" type="submit" class="btn btn-info f-r">提交</button>
                         </div>
-                    </form>
+                    </g:form>
                 </div>
             </div>
             <!--弹层 end-->
@@ -238,6 +219,10 @@
 
 <!--common script for all pages-->
 <script src="${resource(dir: 'js', file: 'common-scripts.js')}"></script>
+
+<!--菜单js-->
+<script src="${resource(dir: 'js', file: 'context.js')}"></script>
+
 <!--this page  script only-->
 <script src="${resource(dir: 'js', file: 'advanced-form-components.js')}"></script>
 <script type="text/javascript">
@@ -252,6 +237,37 @@
             var playstatus=$(this).attr("data-playstatus");
             $("#playstatus").val(playstatus);
         })
+
+        context.init({preventDoubleContext: false});
+
+        context.attach('#playman', [
+            <g:if test=" ${session.user.pid==1}">
+            {header: '部门'},
+            <g:each in="${bumenInstance}" var="bumenInfo">
+            {text: '${bumenInfo.name}', subMenu: [
+                {header: '员工'},
+                <g:each in="${com.guihuabao.CompanyUser.findAllByCidAndBid(session.company.id,bumenInfo.id)}" var="userInfo">
+                {text: '${userInfo.name}', href: '#', action: function(e){
+                    $("#playuid").val(${userInfo.id});
+                    $("#playbid").val(${bumenInfo.id});
+                    $(this).hide();
+                    $(".zhxr").html("${userInfo.name}");
+                }}
+                </g:each>
+            ]},
+            </g:each>
+            </g:if>
+            <g:else>
+                <g:each in="${com.guihuabao.CompanyUser.findAllByCidAndBid(session.company.id,session.user.bid)}" var="userInfo">
+                {text: '${userInfo.name}', href: '#', action: function(e){
+                    $("#playuid").val(${userInfo.id});
+                    $("#playbid").val(${session.user.bid});
+                    $(this).hide();
+                    $(".zhxr").html("${userInfo.name}");
+                }}
+                </g:each>
+            </g:else>
+        ]);
     })
 </script>
 </body>
