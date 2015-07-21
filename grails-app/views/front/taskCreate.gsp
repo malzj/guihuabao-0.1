@@ -64,8 +64,8 @@
                                 <span class="sn">${i+1}</span>
                                 <span class="title">${taskInfo.title}</span>
                                 <div class="right">
-                                    <span class="hsfinish"><g:link action="taskUpdate" id="${taskInfo.id}" params="[version: taskInfo.version]"><i class="fa fa-square-o"></i>标记完成</g:link></span>
-                                    <span class="del"><g:link action="taskUpdate"  id="${taskInfo.id}"  params="[version: taskInfo.version]"><i class="fa fa-trash-o"></i>删除任务</g:link></span>
+                                    <span class="hsfinish"><g:link action="taskUpdate" id="${taskInfo.id}" params="[version: taskInfo.version]"><i class="fa <g:if test="${taskInfo.status=="1"}">fa-check-square-o</g:if><g:else>fa-square-o</g:else>"></i>标记完成</g:link></span>
+                                    <span class="del"><g:link action="taskDelete"  id="${taskInfo.id}"><i class="fa fa-trash-o"></i>删除任务</g:link></span>
                                     <span class="date f-r">${taskInfo.overtime}</span>
                                 </div>
                             </li>

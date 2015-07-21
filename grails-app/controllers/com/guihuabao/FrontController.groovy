@@ -713,7 +713,7 @@ class FrontController {
     //任务
     def taskCreate(){
         def bumenInstance = Bumen.findAllByCid(session.company.id)
-        def taskInstance = Task.findAllByCidAndPlayuid(session.company.id,session.user.id)
+        def taskInstance = Task.findAllByCidAndPlayuidAndStatus(session.company.id,session.user.id,0)
         [taskInstance: taskInstance,bumenInstance: bumenInstance]
     }
 
@@ -721,6 +721,7 @@ class FrontController {
         def taskInstance = new Task(params)
         taskInstance.cid = session.company.id
         taskInstance.fzuid = session.user.id
+        taskInstance.status = 0
 
         if (!taskInstance.save(flush: true)) {
             render(view: "create", model: [taskInstance: taskInstance])
@@ -762,4 +763,22 @@ class FrontController {
         redirect(action: "taskCreate", id: taskInstance.id)
     }
 
+    def taskDelete(){
+        def taskInstn
+        if (!companyUserInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'companyUser.label', default: 'CompanyUser'), id])
+            redirect(action: "companyUserList")
+            return
+        }
+
+        try {
+            companyUserInstance.delete(flush: true)
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'companyUser.label', default: 'CompanyUser'), id])
+            redirect(action: "companyUserList")
+        }
+        catch (DataIntegrityViolationException e) {
+            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'companyUser.label', default: 'CompanyUser'), id])
+            redirect(action: "companyUserShow", id: id)
+        }
+    }
 }
