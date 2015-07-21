@@ -38,38 +38,7 @@
     <g:render template="header" />
     <!--header end-->
     <!--sidebar start-->
-    <aside>
-        <div id="sidebar"  class="nav-collapse ">
-            <div class="sidebar_object">
-                <i class="page"></i>
-                后台管理
-            </div>
-            <!-- sidebar menu start-->
-            <ul class="sidebar-menu" id="nav-accordion">
-                <li>
-                    <a href="/guihuabao/login/userList">
-                        <span>用户管理</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/guihuabao/login/companyList">
-                        <span>公司管理</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/guihuabao/login/roleList">
-                        <span>权限管理</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="google_maps.html" >
-                        <span>和许助手</span>
-                    </a>
-                </li>
-            </ul>
-            <!-- sidebar menu end-->
-        </div>
-    </aside>
+    <g:render template="tasksiderbar" />
     <!--sidebar end-->
     <!--main content start-->
     <section id="main-content">
@@ -89,8 +58,18 @@
                             <a class="e-list-title"><strong>今天开始（2）</strong><i class="fa fa-angle-right"></i></a>
                         </div>
                         <ul class="e-list">
-                            <li>1234</li>
-                            <li>2345</li>
+                        <g:each in="${taskInstance}" status="i" var="taskInfo">
+                            <li>
+                                <span class="mark <g:if test="${taskInfo.playstatus=='1'}">mark-danger</g:if><g:if test="${taskInfo.playstatus=='2'}">mark-warning</g:if><g:if test="${taskInfo.playstatus=='3'}">mark-safe</g:if><g:if test="${taskInfo.playstatus=='4'}">mark-nomarl</g:if>"><i></i></span>
+                                <span class="sn">${i+1}</span>
+                                <span class="title">${taskInfo.title}</span>
+                                <div class="right">
+                                    <span class="hsfinish"><g:link action="taskUpdate" id="${taskInfo.id}" params="[version: taskInfo.version]"><i class="fa fa-square-o"></i>标记完成</g:link></span>
+                                    <span class="del"><g:link action="taskUpdate"  id="${taskInfo.id}"  params="[version: taskInfo.version]"><i class="fa fa-trash-o"></i>删除任务</g:link></span>
+                                    <span class="date f-r">${taskInfo.overtime}</span>
+                                </div>
+                            </li>
+                        </g:each>
                         </ul>
                     </div>
                     <div class="e-list-group tomorrow">

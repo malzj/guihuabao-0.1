@@ -713,8 +713,8 @@ class FrontController {
     //任务
     def taskCreate(){
         def bumenInstance = Bumen.findAllByCid(session.company.id)
-
-        [taskInstance: new Task(params),bumenInstance: bumenInstance]
+        def taskInstance = Task.findAllByCidAndPlayuid(session.company.id,session.user.id)
+        [taskInstance: taskInstance,bumenInstance: bumenInstance]
     }
 
     def taskSave(){
@@ -728,7 +728,38 @@ class FrontController {
         }
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'task.label', default: 'Task'), taskInstance.id])
-        redirect(action: "show", id: taskInstance.id)
+        redirect(action: "taskCreate", id: taskInstance.id)
+    }
+
+    def taskUpdate(Long id, Long version){
+        def taskInstance = Task.findByIdAndCid(id,session.company.id)
+        taskInstance.status = 1
+        if (!taskInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'task.label', default: 'Task'), id])
+            redirect(action: "taskCreate")
+            return
+        }
+
+        if (version != null) {
+            if (taskInstance.version > version) {
+                taskInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+                        [message(code: 'task.label', default: 'task')] as Object[],
+                        "Another user has updated this User while you were editing")
+                render(view: "taskCreate", model: [taskInstance: taskInstance])
+                return
+            }
+        }
+
+        taskInstance.properties = params
+        taskInstance.status = 1
+
+        if (!taskInstance.save(flush: true)) {
+            render(view: "taskCreate", model: [companyUserInstance: taskInstance])
+            return
+        }
+
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'task.label', default: 'Task'), taskInstance.id])
+        redirect(action: "taskCreate", id: taskInstance.id)
     }
 
 }
