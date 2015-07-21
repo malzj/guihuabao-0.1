@@ -216,7 +216,6 @@
             var playstatus=$(this).attr("data-playstatus");
             $("#playstatus").val(playstatus);
         })
-
         context.init({preventDoubleContext: false});
 
         context.attach('#playman', [

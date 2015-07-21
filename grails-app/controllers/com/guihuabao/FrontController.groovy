@@ -4,7 +4,7 @@ import grails.converters.JSON
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.web.multipart.MultipartFile
 
-
+import java.text.SimpleDateFormat
 import java.util.logging.Logger
 
 class FrontController {
@@ -719,8 +719,11 @@ class FrontController {
     //任务
 
     def taskCreate(){
+        def current = new Date()
+        SimpleDateFormat formate = new SimpleDateFormat("yyyy-MM-dd HH:mm")
+        def now = formate.format(current)
         def bumenInstance = Bumen.findAllByCid(session.company.id)
-        def taskInstance = Task.findAllByCidAndPlayuidAndStatus(session.company.id,session.user.id,0)
+        def taskInstance = Task.findAllByCidAndPlayuidAndStatusAndBigentimeLessThanEqualsAndOvertimeGreaterThanEquals(session.company.id,session.user.id,0,now,now)
         [taskInstance: taskInstance,bumenInstance: bumenInstance]
     }
 
@@ -731,7 +734,6 @@ class FrontController {
         taskInstance.fzuid = session.user.id
 
         taskInstance.status = 0
-
 
         if (!taskInstance.save(flush: true)) {
             render(view: "create", model: [taskInstance: taskInstance])
