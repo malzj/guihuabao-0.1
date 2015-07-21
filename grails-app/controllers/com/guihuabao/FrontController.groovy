@@ -4,7 +4,14 @@ import grails.converters.JSON
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.web.multipart.MultipartFile
 
+<<<<<<< HEAD
 class FrontController {
+=======
+import java.util.logging.Logger
+
+class FrontController {
+    private  Logger logger
+>>>>>>> 1d41bc7d0689bf8390ee11d1cebc9eb2243add87
 
     def index() {
         print("!")
@@ -561,6 +568,10 @@ class FrontController {
                 return
             }
         }
+<<<<<<< HEAD
+=======
+        print(params)
+>>>>>>> 1d41bc7d0689bf8390ee11d1cebc9eb2243add87
         myReportInfo.properties = params
         if (myReportInfo.save(flush: true)) {
             rs.msg = true
@@ -711,17 +722,24 @@ class FrontController {
         redirect(action: "replyReport",id: id)
     }
     //任务
+<<<<<<< HEAD
     def taskCreate(){
         def bumenInstance = Bumen.findAllByCid(session.company.id)
         def taskInstance = Task.findAllByCidAndPlayuidAndStatus(session.company.id,session.user.id,0)
         [taskInstance: taskInstance,bumenInstance: bumenInstance]
     }
+=======
+    def taskCreate(){}
+>>>>>>> 1d41bc7d0689bf8390ee11d1cebc9eb2243add87
 
     def taskSave(){
         def taskInstance = new Task(params)
         taskInstance.cid = session.company.id
         taskInstance.fzuid = session.user.id
+<<<<<<< HEAD
         taskInstance.status = 0
+=======
+>>>>>>> 1d41bc7d0689bf8390ee11d1cebc9eb2243add87
 
         if (!taskInstance.save(flush: true)) {
             render(view: "create", model: [taskInstance: taskInstance])
@@ -729,6 +747,7 @@ class FrontController {
         }
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'task.label', default: 'Task'), taskInstance.id])
+<<<<<<< HEAD
         redirect(action: "taskCreate", id: taskInstance.id)
     }
 
@@ -781,4 +800,9 @@ class FrontController {
             redirect(action: "companyUserShow", id: id)
         }
     }
+=======
+        redirect(action: "show", id: taskInstance.id)
+    }
+
+>>>>>>> 1d41bc7d0689bf8390ee11d1cebc9eb2243add87
 }

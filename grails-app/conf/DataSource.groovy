@@ -14,7 +14,11 @@ environments {
         dataSource {
 
             username = "root"
+<<<<<<< HEAD
             password = "root"
+=======
+            password = ""
+>>>>>>> 1d41bc7d0689bf8390ee11d1cebc9eb2243add87
             dbCreate = "update" // one of 'create', 'create-drop','update'
             url = "jdbc:mysql://localhost:3306/guihuabao?useUnicode=true&characterEncoding=UTF-8"  //你所创建的DB的名称，至于前面写localhost 和127那种都行，如果不在一个机器上，替换为对应的机器名。
         }
